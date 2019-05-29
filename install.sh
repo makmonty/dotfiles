@@ -11,3 +11,4 @@ chsh -s $(which zsh)
 sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
 ln -s $BASEDIR/.zshrc ~/.zshrc
+ln -s $BASEDIR/.bashrc ~/.bashrc
