@@ -2,6 +2,5 @@
 
 ## TODO
 
-- Install Zsh
-- Install oh-my-zsh
+- Install ZSH plugins as submodules
 - Create a branch for work environment
