@@ -1,9 +1,9 @@
 #!/bin/sh
 
-BASEDIR=$(realpath "$0")
+BASEDIR=$(dirname "$0")
 
 # Install ZSH
-sudo apt install zsh
+sudo apt install -y zsh curl git
 # Make it my default shell
 chsh -s $(which zsh)
 
