@@ -14,6 +14,11 @@ ln -s $BASEDIR/.zshrc ~/.zshrc
 ln -s $BASEDIR/.bashrc ~/.bashrc
 ln -s $BASEDIR/.p10k.zsh ~/.p10k.zsh
 
+$CUSTOMDIR=${ZSH_CUSTOM:-~/.oh-my-zsh/custom}
+
 # Install ZSH plugins
-git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
-git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+git clone https://github.com/zsh-users/zsh-autosuggestions $CUSTOMDIR/plugins/zsh-autosuggestions
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $CUSTOMDIR/plugins/zsh-syntax-highlighting
+
+# Instal themes
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git $CUSTOMDIR/themes/powerlevel10k
