@@ -14,7 +14,7 @@ ln -s $BASEDIR/.zshrc ~/.zshrc
 ln -s $BASEDIR/.bashrc ~/.bashrc
 ln -s $BASEDIR/.p10k.zsh ~/.p10k.zsh
 
-$CUSTOMDIR=${ZSH_CUSTOM:-~/.oh-my-zsh/custom}
+CUSTOMDIR=${ZSH_CUSTOM:-~/.oh-my-zsh/custom}
 
 # Install ZSH plugins
 git clone https://github.com/zsh-users/zsh-autosuggestions $CUSTOMDIR/plugins/zsh-autosuggestions
