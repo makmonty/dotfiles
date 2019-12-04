@@ -12,6 +12,7 @@ sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/i
 
 ln -s $BASEDIR/.zshrc ~/.zshrc
 ln -s $BASEDIR/.bashrc ~/.bashrc
+ln -s $BASEDIR/.p10k.zsh ~/.p10k.zsh
 
 # Install ZSH plugins
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
