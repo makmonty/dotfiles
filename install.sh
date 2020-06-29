@@ -1,6 +1,6 @@
 #!/bin/sh
-
-BASEDIR=$(dirname "$0")
+FULLPATH=$(readlink -f "$0")
+BASEDIR=$(dirname "$FULLPATH")
 
 # Install ZSH
 sudo apt install -y zsh curl git
@@ -17,8 +17,11 @@ ln -s $BASEDIR/.p10k.zsh ~/.p10k.zsh
 CUSTOMDIR=${ZSH_CUSTOM:-~/.oh-my-zsh/custom}
 
 # Install ZSH plugins
-git clone https://github.com/zsh-users/zsh-autosuggestions $CUSTOMDIR/plugins/zsh-autosuggestions
-git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $CUSTOMDIR/plugins/zsh-syntax-highlighting
+cd $BASEDIR
+git submodule init
+git submodule update
+ln -s $BASEDIR/plugins/zsh-autosuggestions $CUSTOMDIR/plugins/zsh-autosuggestions
+ln -s $BASEDIR/plugins/zsh-syntax-highlighting $CUSTOMDIR/plugins/zsh-syntax-highlighting
 
 # Instal themes
-git clone --depth=1 https://github.com/romkatv/powerlevel10k.git $CUSTOMDIR/themes/powerlevel10k
+ln -s $BASEDIR/themes/powerlevel10k $CUSTOMDIR/themes/powerlevel10k
