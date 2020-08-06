@@ -18,6 +18,10 @@ Plug 'vim-airline/vim-airline'
 Plug 'altercation/vim-colors-solarized'
 Plug 'kien/ctrlp.vim'
 Plug 'valloric/youcompleteme'
+Plug 'pangloss/vim-javascript'
+Plug 'leafgarland/typescript-vim'
+Plug 'editorconfig/editorconfig-vim'
+Plug 'kien/rainbow_parentheses.vim'
 call plug#end()
 
 " Solarized (not working)
