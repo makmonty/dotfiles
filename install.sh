@@ -13,6 +13,7 @@ sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/i
 ln -s $BASEDIR/.zshrc ~/.zshrc
 ln -s $BASEDIR/.bashrc ~/.bashrc
 ln -s $BASEDIR/.p10k.zsh ~/.p10k.zsh
+ln -s $BASEDIR/.vimrc ~/.vimrc
 
 CUSTOMDIR=${ZSH_CUSTOM:-~/.oh-my-zsh/custom}
 
