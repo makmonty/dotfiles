@@ -7,6 +7,9 @@ if empty(glob('~/.vim/autoload/plug.vim'))
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
+" Sessions
+"set sessionoptions-=blank
+
 " Plugins
 call plug#begin()
 Plug 'preservim/nerdtree'
@@ -28,3 +31,14 @@ call plug#end()
 " syntax enable
 " set background=light
 " colorscheme solarized
+
+" NERDTree
+" Autoopen
+autocmd vimenter * NERDTree
+" Autoopen but only if it's not a session
+"autocmd StdinReadPre * let s:std_in=1
+"autocmd VimEnter * if argc() == 0 && !exists("s:std_in") && v:this_session == "" | NERDTree | endif
+" Keymapping
+map <C-n> :NERDTreeToggle<CR>
+" Close if it's the only window left
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
