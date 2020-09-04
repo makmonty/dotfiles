@@ -34,7 +34,7 @@ call plug#end()
 
 " NERDTree
 " Autoopen
-autocmd vimenter * NERDTree
+autocmd vimenter * NERDTree | wincmd p
 " Autoopen but only if it's not a session
 "autocmd StdinReadPre * let s:std_in=1
 "autocmd VimEnter * if argc() == 0 && !exists("s:std_in") && v:this_session == "" | NERDTree | endif
