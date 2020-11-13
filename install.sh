@@ -3,12 +3,16 @@ FULLPATH=$(readlink -f "$0")
 BASEDIR=$(dirname "$FULLPATH")
 
 # Install ZSH
-sudo apt install -y zsh curl git
+#sudo apt install -y zsh curl git
+
 # Make it my default shell
 chsh -s $(which zsh)
 
 # Install oh-my-zsh
+rm -rf ~/.oh-my-zsh
 sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+
+rm ~/.zshrc ~/.bashrc ~/.p10k.zsh ~/.vimrc
 
 ln -s $BASEDIR/.zshrc ~/.zshrc
 ln -s $BASEDIR/.bashrc ~/.bashrc
@@ -21,8 +25,14 @@ CUSTOMDIR=${ZSH_CUSTOM:-~/.oh-my-zsh/custom}
 cd $BASEDIR
 git submodule init
 git submodule update
+
+rm -rf $CUSTOMDIR/plugins/zsh-autosuggestions $CUSTOMDIR/plugins/zsh-syntax-highlighting $CUSTOMDIR/themes/powerlevel10k
+
 ln -s $BASEDIR/plugins/zsh-autosuggestions $CUSTOMDIR/plugins/zsh-autosuggestions
 ln -s $BASEDIR/plugins/zsh-syntax-highlighting $CUSTOMDIR/plugins/zsh-syntax-highlighting
 
 # Instal themes
 ln -s $BASEDIR/themes/powerlevel10k $CUSTOMDIR/themes/powerlevel10k
+
+# Make it my default shell
+chsh -s $(which zsh)
