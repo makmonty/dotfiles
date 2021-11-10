@@ -1,16 +1,16 @@
 packloadall
 
-" vim-plug
-if empty(glob('~/.vim/autoload/plug.vim'))
-  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+"" vim-plug
+let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
+if empty(glob(data_dir . '/autoload/plug.vim'))
+  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
-" Sessions
+"" Sessions
 "set sessionoptions-=blank
 
-" Plugins
+"" Plugins
 call plug#begin()
 Plug 'preservim/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
@@ -27,11 +27,12 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'kien/rainbow_parentheses.vim'
 call plug#end()
 
-" Solarized (not working)
+"" Solarized (not working)
 "syntax enable
 "set background=light
 "colorscheme solarized
 
+"" Sessions
 fu! SaveSess()
     execute 'mksession! ' . getcwd() . '/.session.vim'
 endfunction
@@ -58,12 +59,15 @@ let NERDTreeShowHidden=1
 " Restore session on starting Vim
 "autocmd VimEnter * call RestoreSess()
 "autocmd VimEnter * NERDTree
-" NERDTree
+
+"" NERDTree
 " Autoopen
 "autocmd VimEnter * NERDTree | wincmd p
+
 " Autoopen but only if it's not a session
 "autocmd StdinReadPre * let s:std_in=1
 "autocmd VimEnter * if argc() == 0 && !exists("s:std_in") && v:this_session == "" | NERDTree | wincmd p | endif
+
 " Keymapping
 map <C-n> :NERDTreeToggle<CR>
 " Close if it's the only window left

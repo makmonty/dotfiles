@@ -1,0 +1,5 @@
+configuration {
+	modi: "combi,window,drun,run,ssh";
+	show-icons: true;
+	combi-modi: "window,drun,run,ssh";
+}
