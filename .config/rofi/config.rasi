@@ -147,4 +147,4 @@ configuration {
 }
 
 @import "myconfig"
-@theme "theme-slate"
+@theme "themes/slate"
