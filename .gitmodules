@@ -7,3 +7,6 @@
 [submodule ".oh-my-zsh/custom/themes/powerlevel10k"]
 	path = .oh-my-zsh/custom/themes/powerlevel10k
 	url = https://github.com/romkatv/powerlevel10k.git
+[submodule ".config/rofi/themes/rofi-themes"]
+	path = .config/rofi/themes/rofi-themes
+	url = https://github.com/sheepla/rofi-themes.git
