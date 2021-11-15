@@ -16,5 +16,8 @@ CUSTOMDIR=${ZSH_CUSTOM:-~/.oh-my-zsh/custom}
 echo "Init submodules"
 yadm submodule update --recursive --init
 
+# Make stuff with the submodules
+cp ~/.config/rofi/themes/rofi-themes/themes/* ~/.config/rofi/themes
+
 # Make ZSH the default shell
 chsh -s $(which zsh)

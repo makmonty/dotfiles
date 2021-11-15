@@ -4,4 +4,4 @@ configuration {
 	combi-modi: "window,drun,run,ssh";
 }
 
-@theme "themes/slate"
+//@theme "themes/slate"

@@ -147,3 +147,5 @@ configuration {
 }
 
 @import "myconfig"
+//@theme "/home/angel/.config/rofi/themes/matcha-dark-aliz.rasi"
+@theme "/home/angel/.config/rofi/themes/slate.rasi"
