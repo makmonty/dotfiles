@@ -2,10 +2,11 @@ local gears = require("gears")
 local awful = require("awful")
 local hotkeys_popup = require("awful.hotkeys_popup")
 local config = require("main.user-variables")
+local menubar = require("menubar")
 
 local modkey = config.modkey
 
-globalkeys = gears.table.join(
+local globalkeys = gears.table.join(
     awful.key({ modkey,           }, "s",      hotkeys_popup.show_help,
               {description="show help", group="awesome"}),
     awful.key({ modkey,           }, "Left",   awful.tag.viewprev,

@@ -1,7 +1,7 @@
 local gears = require("gears")
 local awful = require("awful")
 
-clientbuttons = gears.table.join(
+return gears.table.join(
     awful.button({ }, 1, function (c)
         c:emit_signal("request::activate", "mouse_click", {raise = true})
     end),

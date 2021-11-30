@@ -7,6 +7,8 @@ if empty(glob(data_dir . '/autoload/plug.vim'))
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
+set encoding=UTF-8
+
 "" Sessions
 "set sessionoptions-=blank
 
@@ -19,12 +21,14 @@ Plug 'scrooloose/syntastic'
 Plug 'airblade/vim-gitgutter'
 Plug 'vim-airline/vim-airline'
 Plug 'altercation/vim-colors-solarized'
-Plug 'kien/ctrlp.vim'
-#Plug 'valloric/youcompleteme'
+Plug 'ctrlpvim/ctrlp.vim'
+""Plug 'valloric/youcompleteme'
 Plug 'pangloss/vim-javascript'
 Plug 'leafgarland/typescript-vim'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'kien/rainbow_parentheses.vim'
+Plug 'embear/vim-localvimrc'
+Plug 'ryanoasis/vim-devicons'
 call plug#end()
 
 "" Solarized (not working)
@@ -51,7 +55,7 @@ endif
 endfunction
 
 " Show hidden files in NERDTree
-let NERDTreeShowHidden=1
+let NERDTreeShowHidden = 1
 
 " Save session on quitting Vim
 "autocmd VimLeave * NERDTreeClose
@@ -72,3 +76,11 @@ let NERDTreeShowHidden=1
 map <C-n> :NERDTreeToggle<CR>
 " Close if it's the only window left
 autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+"" CtrlP
+let g:ctrlp_working_path_model = 'ra'
+""let g:ctrlp_custom_ignore = '(node_modules|dist)'
+""set wildignore+=*/node_modules/*,*/dist/*
+
+"" localvimrc
+let g:localvimrc_persistent = 1
