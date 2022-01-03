@@ -27,6 +27,7 @@ Plug 'pangloss/vim-javascript'
 Plug 'leafgarland/typescript-vim'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'kien/rainbow_parentheses.vim'
+Plug 'w0rp/ale'
 Plug 'embear/vim-localvimrc'
 Plug 'ryanoasis/vim-devicons'
 call plug#end()

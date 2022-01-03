@@ -114,4 +114,7 @@ source $ZSH/oh-my-zsh.sh
 alias dir='ls -l --color'
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+[[ ! -r ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# Local configuration
+[[ ! -r ~/.zshrc_local ]] || source ~/.zshrc_local
