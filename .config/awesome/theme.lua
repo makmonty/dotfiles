@@ -11,14 +11,27 @@ local themes_path = gfs.get_themes_dir()
 local shapes = require("helpers.shapes")
 
 local function titlebar_button(color)
-    return shapes.circle_filled(color, 128, 32)
+    return shapes.circle_filled(color, dpi(128), dpi(32))
+end
+
+local function titlebar_button_hover(color)
+    return shapes.circle_filled(color, dpi(192), dpi(24))
+end
+
+local function titlebar_button_active(color)
+    return shapes.circle_empty(dpi(128), dpi(32), dpi(16), color)
 end
 
 local titlebar_close_button = titlebar_button("#E01A4F")
-local titlebar_maximize_button = titlebar_button("#F9C22E")
+local titlebar_close_button_hover = titlebar_button_hover("#E01A4F")
 local titlebar_minimize_button = titlebar_button("#9CD08F")
-local titlebar_extra_button_active = titlebar_button("#9CD08F")
-local titlebar_extra_button_inactive = titlebar_button("#F15946")
+local titlebar_minimize_button_hover = titlebar_button_hover("#9CD08F")
+local titlebar_maximize_button_inactive = titlebar_button("#F9C22E")
+local titlebar_maximize_button_active = titlebar_button_active("#F9C22E")
+local titlebar_maximize_button_hover = titlebar_button_hover("#F9C22E")
+local titlebar_extra_button_active = titlebar_button_active("#9CD08F")
+local titlebar_extra_button_inactive = titlebar_button("#9CD08F")
+local titlebar_extra_button_hover = titlebar_button_hover("#9CD08F")
 
 local theme = {}
 
@@ -83,30 +96,50 @@ theme.menu_width  = dpi(100)
 
 -- Define the image to load
 theme.titlebar_close_button_normal = titlebar_close_button --themes_path.."default/titlebar/close_normal.png"
-theme.titlebar_close_button_focus  = titlebar_close_button --themes_path.."default/titlebar/close_focus.png"
+theme.titlebar_close_button_focus = titlebar_close_button --themes_path.."default/titlebar/close_focus.png"
+theme.titlebar_close_button_normal_hover = titlebar_close_button_hover
+theme.titlebar_close_button_focus_hover = titlebar_close_button_hover
 
 theme.titlebar_minimize_button_normal = titlebar_minimize_button --themes_path.."default/titlebar/minimize_normal.png"
-theme.titlebar_minimize_button_focus  = titlebar_minimize_button --themes_path.."default/titlebar/minimize_focus.png"
+theme.titlebar_minimize_button_focus = titlebar_minimize_button --themes_path.."default/titlebar/minimize_focus.png"
+theme.titlebar_minimize_button_normal_hover = titlebar_minimize_button_hover
+theme.titlebar_minimize_button_focus_hover = titlebar_minimize_button_hover
 
-theme.titlebar_maximized_button_normal_inactive = titlebar_maximize_button --themes_path.."default/titlebar/maximized_normal_inactive.png"
-theme.titlebar_maximized_button_focus_inactive  = titlebar_maximize_button --themes_path.."default/titlebar/maximized_focus_inactive.png"
-theme.titlebar_maximized_button_normal_active = titlebar_maximize_button --themes_path.."default/titlebar/maximized_normal_active.png"
-theme.titlebar_maximized_button_focus_active  = titlebar_maximize_button --themes_path.."default/titlebar/maximized_focus_active.png"
+theme.titlebar_maximized_button_normal_inactive = titlebar_maximize_button_inactive --themes_path.."default/titlebar/maximized_normal_inactive.png"
+theme.titlebar_maximized_button_focus_inactive = titlebar_maximize_button_inactive --themes_path.."default/titlebar/maximized_focus_inactive.png"
+theme.titlebar_maximized_button_normal_active = titlebar_maximize_button_active --themes_path.."default/titlebar/maximized_normal_active.png"
+theme.titlebar_maximized_button_focus_active = titlebar_maximize_button_active --themes_path.."default/titlebar/maximized_focus_active.png"
+theme.titlebar_maximized_button_normal_inactive_hover = titlebar_maximize_button_hover
+theme.titlebar_maximized_button_focus_inactive_hover = titlebar_maximize_button_hover
+theme.titlebar_maximized_button_normal_active_hover = titlebar_maximize_button_hover
+theme.titlebar_maximized_button_focus_active_hover = titlebar_maximize_button_hover
 
 theme.titlebar_ontop_button_normal_inactive = titlebar_extra_button_inactive --themes_path.."default/titlebar/ontop_normal_inactive.png"
-theme.titlebar_ontop_button_focus_inactive  = titlebar_extra_button_inactive --themes_path.."default/titlebar/ontop_focus_inactive.png"
+theme.titlebar_ontop_button_focus_inactive = titlebar_extra_button_inactive --themes_path.."default/titlebar/ontop_focus_inactive.png"
 theme.titlebar_ontop_button_normal_active = titlebar_extra_button_active --themes_path.."default/titlebar/ontop_normal_active.png"
-theme.titlebar_ontop_button_focus_active  = titlebar_extra_button_active --themes_path.."default/titlebar/ontop_focus_active.png"
+theme.titlebar_ontop_button_focus_active = titlebar_extra_button_active --themes_path.."default/titlebar/ontop_focus_active.png"
+theme.titlebar_ontop_button_normal_inactive_hover = titlebar_extra_button_hover
+theme.titlebar_ontop_button_focus_inactive_hover = titlebar_extra_button_hover
+theme.titlebar_ontop_button_normal_active_hover = titlebar_extra_button_hover
+theme.titlebar_ontop_button_focus_active_hover = titlebar_extra_button_hover
 
 theme.titlebar_sticky_button_normal_inactive = titlebar_extra_button_inactive --themes_path.."default/titlebar/sticky_normal_inactive.png"
 theme.titlebar_sticky_button_focus_inactive  = titlebar_extra_button_inactive --themes_path.."default/titlebar/sticky_focus_inactive.png"
 theme.titlebar_sticky_button_normal_active = titlebar_extra_button_active --themes_path.."default/titlebar/sticky_normal_active.png"
 theme.titlebar_sticky_button_focus_active  = titlebar_extra_button_active --themes_path.."default/titlebar/sticky_focus_active.png"
+theme.titlebar_sticky_button_normal_inactive_hover = titlebar_extra_button_hover
+theme.titlebar_sticky_button_focus_inactive_hover = titlebar_extra_button_hover
+theme.titlebar_sticky_button_normal_active_hover = titlebar_extra_button_hover
+theme.titlebar_sticky_button_focus_active_hover = titlebar_extra_button_hover
 
 theme.titlebar_floating_button_normal_inactive = titlebar_extra_button_inactive --themes_path.."default/titlebar/floating_normal_inactive.png"
-theme.titlebar_floating_button_focus_inactive  = titlebar_extra_button_inactive --themes_path.."default/titlebar/floating_focus_inactive.png"
+theme.titlebar_floating_button_focus_inactive = titlebar_extra_button_inactive --themes_path.."default/titlebar/floating_focus_inactive.png"
 theme.titlebar_floating_button_normal_active = titlebar_extra_button_active --themes_path.."default/titlebar/floating_normal_active.png"
-theme.titlebar_floating_button_focus_active  = titlebar_extra_button_active --themes_path.."default/titlebar/floating_focus_active.png"
+theme.titlebar_floating_button_focus_active = titlebar_extra_button_active --themes_path.."default/titlebar/floating_focus_active.png"
+theme.titlebar_floating_button_normal_inactive_hover = titlebar_extra_button_hover
+theme.titlebar_floating_button_focus_inactive_hover = titlebar_extra_button_hover
+theme.titlebar_floating_button_normal_active_hover = titlebar_extra_button_hover
+theme.titlebar_floating_button_focus_active_hover = titlebar_extra_button_hover
 
 theme.wallpaper = "/home/angel/Imágenes/Fondos/Retro_Love_by_swiebel.jpg"
 
