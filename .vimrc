@@ -9,6 +9,8 @@ endif
 
 set encoding=UTF-8
 
+set updatetime=1000
+
 "" Sessions
 "set sessionoptions-=blank
 
