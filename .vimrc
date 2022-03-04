@@ -16,14 +16,13 @@ set encoding=UTF-8
 call plug#begin()
 Plug 'preservim/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'pangloss/vim-javascript'
 Plug 'tpope/vim-fugitive'
-Plug 'scrooloose/syntastic'
+""Plug 'scrooloose/syntastic'
 Plug 'airblade/vim-gitgutter'
 Plug 'vim-airline/vim-airline'
 Plug 'altercation/vim-colors-solarized'
 Plug 'ctrlpvim/ctrlp.vim'
-""Plug 'valloric/youcompleteme'
-Plug 'pangloss/vim-javascript'
 Plug 'leafgarland/typescript-vim'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'kien/rainbow_parentheses.vim'
@@ -33,7 +32,7 @@ Plug 'ryanoasis/vim-devicons'
 call plug#end()
 
 "" Solarized (not working)
-"syntax enable
+syntax enable
 "set background=light
 "colorscheme solarized
 
@@ -85,3 +84,15 @@ let g:ctrlp_working_path_model = 'ra'
 
 "" localvimrc
 let g:localvimrc_persistent = 1
+
+"" Syntastic
+"set statusline+=%#warningmsg#
+"set statusline+=%{SyntasticStatuslineFlag()}
+"set statusline+=%*
+
+"let g:syntastic_always_populate_loc_list = 1
+"let g:syntastic_auto_loc_list = 1
+"let g:syntastic_check_on_open = 1
+"let g:syntastic_check_on_wq = 0
+
+"let g:syntastic_javascript_checkers = ['eslint']
