@@ -17,7 +17,9 @@ set updatetime=1000
 "" Plugins
 call plug#begin()
 Plug 'preservim/nerdtree'
+Plug 'ryanoasis/vim-devicons'
 Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'pangloss/vim-javascript'
 Plug 'tpope/vim-fugitive'
 ""Plug 'scrooloose/syntastic'
@@ -30,7 +32,6 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'kien/rainbow_parentheses.vim'
 Plug 'w0rp/ale'
 Plug 'embear/vim-localvimrc'
-Plug 'ryanoasis/vim-devicons'
 call plug#end()
 
 "" Solarized (not working)
