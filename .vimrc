@@ -26,7 +26,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 Plug 'vim-airline/vim-airline'
 Plug 'altercation/vim-colors-solarized'
-""Plug 'ctrlpvim/ctrlp.vim'
+Plug 'ctrlpvim/ctrlp.vim'
 Plug 'leafgarland/typescript-vim'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'kien/rainbow_parentheses.vim'
@@ -83,11 +83,11 @@ map <C-n> :NERDTreeToggle<CR>
 autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 "" ZFZ
-map <C-p> :GFiles<CR>
+"map <C-p> :GFiles<CR>
 map <C-F> :Rg<CR>
 
 "" CtrlP
-"let g:ctrlp_working_path_model = 'ra'
+let g:ctrlp_working_path_mode = 'ra'
 "set wildignore+=*/node_modules/*,*/dist/*
 
 "" localvimrc
