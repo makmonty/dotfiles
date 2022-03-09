@@ -12,6 +12,14 @@ set encoding=UTF-8
 set updatetime=1000
 
 filetype plugin on
+syntax enable
+
+"" Color schemes
+" Monokai
+colorscheme monokai
+" Solarized (not working)
+"set background=light
+"colorscheme solarized
 
 "" Sessions
 "set sessionoptions-=blank
@@ -23,6 +31,7 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'pangloss/vim-javascript'
+Plug 'posva/vim-vue'
 Plug 'tpope/vim-fugitive'
 ""Plug 'scrooloose/syntastic'
 Plug 'airblade/vim-gitgutter'
@@ -46,11 +55,6 @@ Plug 'liuchengxu/vista.vim'
 Plug 'preservim/nerdcommenter'
 Plug 'mustache/vim-mustache-handlebars'
 call plug#end()
-
-"" Solarized (not working)
-syntax enable
-"set background=light
-"colorscheme solarized
 
 "" Sessions
 fu! SaveSess()
