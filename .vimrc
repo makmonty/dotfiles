@@ -44,6 +44,7 @@ Plug 'mg979/vim-visual-multi'
 Plug 'APZelos/blamer.nvim'
 Plug 'liuchengxu/vista.vim'
 Plug 'preservim/nerdcommenter'
+Plug 'mustache/vim-mustache-handlebars'
 call plug#end()
 
 "" Solarized (not working)
