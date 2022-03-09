@@ -11,6 +11,8 @@ set encoding=UTF-8
 
 set updatetime=1000
 
+filetype plugin on
+
 "" Sessions
 "set sessionoptions-=blank
 
@@ -34,6 +36,14 @@ Plug 'w0rp/ale'
 Plug 'embear/vim-localvimrc'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
+Plug 'ap/vim-css-color'
+Plug 'itchyny/vim-cursorword'
+Plug 'tpope/vim-surround'
+Plug 'preservim/vim-pencil'
+Plug 'mg979/vim-visual-multi'
+Plug 'APZelos/blamer.nvim'
+Plug 'liuchengxu/vista.vim'
+Plug 'preservim/nerdcommenter'
 call plug#end()
 
 "" Solarized (not working)
@@ -77,14 +87,8 @@ let NERDTreeShowHidden = 1
 "autocmd StdinReadPre * let s:std_in=1
 "autocmd VimEnter * if argc() == 0 && !exists("s:std_in") && v:this_session == "" | NERDTree | wincmd p | endif
 
-" Keymapping
-map <C-n> :NERDTreeToggle<CR>
 " Close if it's the only window left
 autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-
-"" ZFZ
-"map <C-p> :GFiles<CR>
-map <C-F> :Rg<CR>
 
 "" CtrlP
 let g:ctrlp_working_path_mode = 'ra'
@@ -104,3 +108,23 @@ let g:localvimrc_persistent = 1
 "let g:syntastic_check_on_wq = 0
 
 "let g:syntastic_javascript_checkers = ['eslint']
+
+"" Visual Multi
+
+"" Blamer
+let g:blamer_enabled = 1
+let g:blamer_delay = 500
+""highlight Blamer guifg=DarkGrey
+
+"" Keymappings
+map <C-F> :Rg<CR>
+"map <C-p> :GFiles<CR>
+map <C-i> :NERDTreeToggle<CR>
+nnoremap th  :tabfirst<CR>
+nnoremap tk  :tabnext<CR>
+nnoremap tj  :tabprev<CR>
+nnoremap tl  :tablast<CR>
+nnoremap tt  :tabedit<Space>
+nnoremap tn  :tabnew<Space>
+nnoremap tm  :tabm<Space>
+nnoremap td  :tabclose<CR>
