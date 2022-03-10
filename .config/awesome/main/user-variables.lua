@@ -1,7 +1,7 @@
 local awful = require("awful")
 
 -- Themes define colours, icons, font and wallpapers.
-local theme_path = "/home/angel/.config/awesome/theme.lua"
+--local theme_path = "/home/angel/.config/awesome/theme.lua"
 
 -- This is used later as the default terminal and editor to run.
 local terminal = "xfce4-terminal"
@@ -36,7 +36,7 @@ local layouts = {
 }
 
 return {
-    theme_path = theme_path,
+--    theme_path = theme_path,
     terminal = terminal,
     editor = editor,
     editor_cmd = editor_cmd,

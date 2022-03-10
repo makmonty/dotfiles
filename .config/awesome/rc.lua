@@ -29,17 +29,17 @@ require("main.error-handling")
 RC = {}
 RC.vars = require("main.user-variables")
 -- Themes define colours, icons, font and wallpapers.
-beautiful.init(RC.vars.theme_path)
+--beautiful.init(RC.vars.theme_path)
 
 -- Add a titlebar if titlebars_enabled is set to true in the rules.
---local nice = require("nice")
---nice {
---    titlebar_items = {
---        left = {"sticky", "ontop", "floating"},
---        middle = "title",
---        right = {"minimize", "maximize", "close"},
---    }
---}
+local nice = require("nice")
+nice {
+    titlebar_items = {
+        left = {"sticky", "ontop", "floating"},
+        middle = "title",
+        right = {"minimize", "maximize", "close"},
+    }
+}
 
 -- This is used later as the default terminal and editor to run.
 terminal = RC.vars.terminal
@@ -162,7 +162,7 @@ client.connect_signal("manage", function (c)
     end
 end)
 
-client.connect_signal("request::titlebars", require('main.titlebar'))
+--client.connect_signal("request::titlebars", require('main.titlebar'))
 
 -- Enable sloppy focus, so that focus follows mouse.
 client.connect_signal("mouse::enter", function(c)
