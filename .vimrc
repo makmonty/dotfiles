@@ -37,7 +37,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 Plug 'vim-airline/vim-airline'
 Plug 'altercation/vim-colors-solarized'
-Plug 'ctrlpvim/ctrlp.vim'
+""Plug 'ctrlpvim/ctrlp.vim'
 Plug 'leafgarland/typescript-vim'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'kien/rainbow_parentheses.vim'
@@ -96,7 +96,7 @@ let NERDTreeShowHidden = 1
 autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 "" CtrlP
-let g:ctrlp_working_path_mode = 'ra'
+""let g:ctrlp_working_path_mode = 'ra'
 "set wildignore+=*/node_modules/*,*/dist/*
 
 "" localvimrc
@@ -123,7 +123,7 @@ let g:blamer_delay = 500
 
 "" Keymappings
 map <C-F> :Rg<CR>
-"map <C-p> :GFiles<CR>
+map <C-p> :GFiles<CR>
 map <C-i> :NERDTreeToggle<CR>
 nnoremap th  :tabfirst<CR>
 nnoremap tk  :tabnext<CR>
