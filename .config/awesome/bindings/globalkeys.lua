@@ -3,6 +3,7 @@ local awful = require("awful")
 local hotkeys_popup = require("awful.hotkeys_popup")
 local config = require("main.user-variables")
 local menubar = require("menubar")
+local volume_widget = require("awesome-wm-widgets.volume-widget.volume")
 
 local modkey = config.modkey
 
@@ -109,7 +110,11 @@ local globalkeys = gears.table.join(
     awful.key({ "Control" }, "space",
               function() awful.util.spawn("rofi -show combi") end,
 	      {description = "Launch Rofi combi", group = "awesome"}
-    )
+    ),
+    -- Volume
+    awful.key({ }, "XF86AudioRaiseVolume", function() volume_widget:inc(5) end),
+    awful.key({ }, "XF86AudioLowerVolume", function() volume_widget:dec(5) end),
+    awful.key({ }, "XF86AudioMute", function() volume_widget:toggle() end)
 )
 
 -- Bind all key numbers to tags.

@@ -124,7 +124,7 @@ let g:blamer_delay = 500
 "" Keymappings
 map <C-F> :Rg<CR>
 map <C-p> :GFiles<CR>
-map <C-i> :NERDTreeToggle<CR>
+"map <C-i> :NERDTreeToggle<CR> " <Tab> mapping already exists
 nnoremap th  :tabfirst<CR>
 nnoremap tk  :tabnext<CR>
 nnoremap tj  :tabprev<CR>
