@@ -1,9 +1,10 @@
-local autorunCommands = 
+local autorunCommands =
 {
 	"xrandr --output HDMI-0 --left-of DVI-D-0",
 	"xsettingsd",
 	"lxpolkit",
 }
+local useNice = true
 
 -- If LuaRocks is installed, make sure that packages installed through it are
 -- found (e.g. lgi). If LuaRocks is not installed, do nothing.
@@ -29,21 +30,23 @@ require("main.error-handling")
 RC = {}
 RC.vars = require("main.user-variables")
 -- Themes define colours, icons, font and wallpapers.
---beautiful.init(RC.vars.theme_path)
+beautiful.init(RC.vars.theme_path)
 
 -- Add a titlebar if titlebars_enabled is set to true in the rules.
-local nice = require("nice")
-nice {
-    titlebar_items = {
-        left = {"sticky", "ontop", "floating"},
-        middle = "title",
-        right = {"minimize", "maximize", "close"},
+if useNice then
+    local nice = require("nice")
+    nice {
+        titlebar_items = {
+            left = {"sticky", "ontop", "floating"},
+            middle = "title",
+            right = {"minimize", "maximize", "close"},
+        }
     }
-}
+end
 
 -- This is used later as the default terminal and editor to run.
 terminal = RC.vars.terminal
-editor = RC.vars.editor 
+editor = RC.vars.editor
 editor_cmd = RC.vars.editor_cmd
 
 -- Default modkey.
@@ -162,7 +165,9 @@ client.connect_signal("manage", function (c)
     end
 end)
 
---client.connect_signal("request::titlebars", require('main.titlebar'))
+if not useNice then
+    client.connect_signal("request::titlebars", require('main.titlebar'))
+end
 
 -- Enable sloppy focus, so that focus follows mouse.
 client.connect_signal("mouse::enter", function(c)
