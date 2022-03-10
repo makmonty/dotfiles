@@ -122,9 +122,9 @@ let g:blamer_delay = 500
 ""highlight Blamer guifg=DarkGrey
 
 "" Keymappings
-map <C-F> :Rg<CR>
-map <C-p> :GFiles<CR>
-"map <C-i> :NERDTreeToggle<CR> " <Tab> mapping already exists
+nnoremap <C-F> :Rg<CR>
+nnoremap <expr> <C-p> isdirectory(".git") ? ":GFiles\<CR>" : ":Files\<CR>"
+nnoremap <C-i> :NERDTreeToggle<CR>
 nnoremap th  :tabfirst<CR>
 nnoremap tk  :tabnext<CR>
 nnoremap tj  :tabprev<CR>
