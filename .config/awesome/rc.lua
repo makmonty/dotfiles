@@ -167,7 +167,7 @@ awful.rules.rules = {
 
     -- Plank
     {
-        rule_any = { class = "plank" },
+        rule_any = { name = "Plank" },
         properties = {
             border_width = 0,
             ontop = true

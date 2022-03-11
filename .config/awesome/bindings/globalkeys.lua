@@ -109,7 +109,7 @@ local globalkeys = gears.table.join(
     -- Rofi
     awful.key({ "Control" }, "space",
               --function() awful.util.spawn("rofi -show combi") end,
-              function() awful.util.spawn("/home/angel/.config/rofi/launchers/misc/launcher.sh") end,
+              function() awful.util.spawn("/home/angel/.config/rofi/bin/launcher_misc") end,
 	      {description = "Launch Rofi", group = "awesome"}
     ),
     -- Volume
