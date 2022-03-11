@@ -1,8 +1,14 @@
 local autorunCommands =
 {
-	"xrandr --output HDMI-0 --left-of DVI-D-0",
+	"xrandr --output HDMI-0 --left-of DP-3",
 	"xsettingsd",
 	"lxpolkit",
+    "picom --experimental-backends --backend glx -b",
+    "plank",
+    "blueman-applet",
+    "nextcloud",
+    "dropbox",
+    "xfce4-clipman"
 }
 local useNice = true
 
@@ -30,9 +36,10 @@ require("main.error-handling")
 RC = {}
 RC.vars = require("main.user-variables")
 -- Themes define colours, icons, font and wallpapers.
+local theme = require("theme")
 beautiful.init(RC.vars.theme_path)
 
--- Add a titlebar if titlebars_enabled is set to true in the rules.
+-- Clients titlebar and decoration
 if useNice then
     local nice = require("nice")
     nice {
@@ -40,8 +47,17 @@ if useNice then
             left = {"sticky", "ontop", "floating"},
             middle = "title",
             right = {"minimize", "maximize", "close"},
-        }
+        },
+        titlebar_font = theme.font,
+        close_color = "#f92672",
+        maximize_color = "#a6e22e",
+        minimize_color = "#e6db74",
+        ontop_color = "#ae81ff",
+        sticky_color = "#ae81ff",
+        floating_color = "#ae81ff"
     }
+else
+    client.connect_signal("request::titlebars", require('main.titlebar'))
 end
 
 -- This is used later as the default terminal and editor to run.
@@ -93,48 +109,53 @@ local clientbuttons = require("bindings.clientbuttons")
 -- Rules to apply to new clients (through the "manage" signal).
 awful.rules.rules = {
     -- All clients will match this rule.
-    { rule = { },
-      properties = { border_width = beautiful.border_width,
-                     border_color = beautiful.border_normal,
-                     focus = awful.client.focus.filter,
-                     raise = true,
-                     keys = clientkeys,
-                     buttons = clientbuttons,
-                     screen = awful.screen.preferred,
-                     placement = awful.placement.no_overlap+awful.placement.no_offscreen
-     }
+    {
+        rule = { },
+        properties = {
+            border_width = beautiful.border_width,
+            border_color = beautiful.border_normal,
+            focus = awful.client.focus.filter,
+            raise = true,
+            keys = clientkeys,
+            buttons = clientbuttons,
+            screen = awful.screen.preferred,
+            placement = awful.placement.no_overlap+awful.placement.no_offscreen
+        }
     },
 
     -- Floating clients.
-    { rule_any = {
-        instance = {
-          "DTA",  -- Firefox addon DownThemAll.
-          "copyq",  -- Includes session name in class.
-          "pinentry",
-        },
-        class = {
-          "Arandr",
-          "Blueman-manager",
-          "Gpick",
-          "Kruler",
-          "MessageWin",  -- kalarm.
-          "Sxiv",
-          "Tor Browser", -- Needs a fixed window size to avoid fingerprinting by screen size.
-          "Wpa_gui",
-          "veromix",
-          "xtightvncviewer"},
+    {
+        rule_any = {
+            instance = {
+                "DTA",  -- Firefox addon DownThemAll.
+                "copyq",  -- Includes session name in class.
+                "pinentry",
+            },
+            class = {
+              "Arandr",
+              "Blueman-manager",
+              "Gpick",
+              "Kruler",
+              "MessageWin",  -- kalarm.
+              "Sxiv",
+              "Tor Browser", -- Needs a fixed window size to avoid fingerprinting by screen size.
+              "Wpa_gui",
+              "veromix",
+              "xtightvncviewer"},
 
-        -- Note that the name property shown in xprop might be set slightly after creation of the client
-        -- and the name shown there might not match defined rules here.
-        name = {
-          "Event Tester",  -- xev.
+            -- Note that the name property shown in xprop might be set slightly after creation of the client
+            -- and the name shown there might not match defined rules here.
+            name = {
+              "Event Tester",  -- xev.
+            },
+            role = {
+              "AlarmWindow",  -- Thunderbird's calendar.
+              "ConfigManager",  -- Thunderbird's about:config.
+              "pop-up",       -- e.g. Google Chrome's (detached) Developer Tools.
+            }
         },
-        role = {
-          "AlarmWindow",  -- Thunderbird's calendar.
-          "ConfigManager",  -- Thunderbird's about:config.
-          "pop-up",       -- e.g. Google Chrome's (detached) Developer Tools.
-        }
-      }, properties = { floating = true }},
+        properties = { floating = true }
+    },
 
     -- Add titlebars to normal clients and dialogs
     {
@@ -143,6 +164,15 @@ awful.rules.rules = {
         },
         properties = { titlebars_enabled = true }
     },
+
+    -- Plank
+    {
+        rule_any = { class = "plank" },
+        properties = {
+            border_width = 0,
+            ontop = true
+        }
+    }
 
     -- Set Firefox to always map on the tag named "2" on screen 1.
     -- { rule = { class = "Firefox" },
@@ -164,10 +194,6 @@ client.connect_signal("manage", function (c)
         awful.placement.no_offscreen(c)
     end
 end)
-
-if not useNice then
-    client.connect_signal("request::titlebars", require('main.titlebar'))
-end
 
 -- Enable sloppy focus, so that focus follows mouse.
 client.connect_signal("mouse::enter", function(c)

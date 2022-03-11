@@ -35,7 +35,7 @@ local titlebar_extra_button_hover = titlebar_button_hover("#9CD08F")
 
 local theme = {}
 
-theme.font          = "sans 8"
+theme.font          = "sans 10"
 
 theme.bg_normal     = "#222222"
 theme.bg_focus      = "#222222" --"#535d6c"
@@ -49,7 +49,7 @@ theme.fg_urgent     = "#ffffff"
 theme.fg_minimize   = "#ffffff"
 
 theme.useless_gap   = dpi(0)
-theme.border_width  = dpi(1)
+theme.border_width  = 0 --dpi(1)
 theme.border_normal = "#000000"
 --theme.border_focus  = "#535d6c"
 theme.border_marked = "#91231c"
@@ -141,7 +141,7 @@ theme.titlebar_floating_button_focus_inactive_hover = titlebar_extra_button_hove
 theme.titlebar_floating_button_normal_active_hover = titlebar_extra_button_hover
 theme.titlebar_floating_button_focus_active_hover = titlebar_extra_button_hover
 
-theme.wallpaper = "/home/angel/Imágenes/Fondos/Retro_Love_by_swiebel.jpg"
+theme.wallpaper = "/home/angel/Imágenes/Fondos/Paisajes/pexels-simon-berger-1323550.jpg"
 
 -- You can use your own layout icons like this:
 theme.layout_fairh = themes_path.."default/layouts/fairhw.png"

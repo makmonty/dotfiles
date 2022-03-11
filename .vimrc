@@ -17,6 +17,7 @@ syntax enable
 "" Color schemes
 " Monokai
 colorscheme monokai
+hi Normal guibg=NONE ctermbg=NONE
 " Solarized (not working)
 "set background=light
 "colorscheme solarized
