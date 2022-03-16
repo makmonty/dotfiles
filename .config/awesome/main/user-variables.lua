@@ -4,7 +4,7 @@ local awful = require("awful")
 local theme_path = "/home/angel/.config/awesome/theme.lua"
 
 -- This is used later as the default terminal and editor to run.
-local terminal = "xfce4-terminal"
+local terminal = "kitty" --"xfce4-terminal"
 local editor = "nvim" -- os.getenv("EDITOR") or "nano"
 local editor_cmd = terminal .. " -e " .. editor
 

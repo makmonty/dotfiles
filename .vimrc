@@ -13,6 +13,7 @@ set updatetime=1000
 
 filetype plugin on
 syntax enable
+"set omnifunc=syntaxcomplete#Complete
 
 "" Color schemes
 " Monokai
@@ -34,11 +35,12 @@ Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'pangloss/vim-javascript'
 Plug 'posva/vim-vue'
 Plug 'tpope/vim-fugitive'
+""Plug 'ycm-core/YouCompleteMe'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 ""Plug 'scrooloose/syntastic'
 Plug 'airblade/vim-gitgutter'
 Plug 'vim-airline/vim-airline'
 Plug 'altercation/vim-colors-solarized'
-""Plug 'ctrlpvim/ctrlp.vim'
 Plug 'leafgarland/typescript-vim'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'kien/rainbow_parentheses.vim'
