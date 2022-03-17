@@ -167,10 +167,18 @@ awful.rules.rules = {
 
     -- Plank
     {
-        rule_any = { name = "Plank" },
+        rule = { class = "Plank" },
         properties = {
             border_width = 0,
             ontop = true
+        }
+    },
+
+    -- Nextcloud
+    {
+        rule = { class = "Nextcloud" },
+        properties = {
+            titlebars_enabled = false
         }
     }
 
