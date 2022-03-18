@@ -1,10 +1,10 @@
 local autorunCommands =
 {
-	"xrandr --output HDMI-0 --left-of DP-3",
-	"xsettingsd",
-	"lxpolkit",
+    "xrandr --output HDMI-0 --left-of DP-3",
+    "xsettingsd",
+    "lxpolkit",
     "picom --experimental-backends --backend glx -b",
-    "plank",
+    --"plank",
     "blueman-applet",
     "nextcloud",
     "dropbox",
@@ -170,7 +170,7 @@ awful.rules.rules = {
         rule = { class = "Plank" },
         properties = {
             border_width = 0,
-            ontop = true
+            --ontop = true
         }
     },
 

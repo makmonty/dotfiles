@@ -125,6 +125,7 @@ let g:blamer_delay = 500
 ""highlight Blamer guifg=DarkGrey
 
 "" Keymappings
+let mapleader = ","
 nnoremap <C-F> :Rg<CR>
 nnoremap <expr> <C-p> isdirectory(".git") ? ":GFiles\<CR>" : ":Files\<CR>"
 nnoremap <C-i> :NERDTreeToggle<CR>

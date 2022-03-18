@@ -6,7 +6,8 @@ local theme_path = "/home/angel/.config/awesome/theme.lua"
 -- This is used later as the default terminal and editor to run.
 local terminal = "kitty" --"xfce4-terminal"
 local editor = "nvim" -- os.getenv("EDITOR") or "nano"
-local editor_cmd = terminal .. " -e " .. editor
+local term_app_command = terminal .. " -e "
+local editor_cmd = term_app_command .. editor
 
 -- Default modkey.
 -- Usually, Mod4 is the key with a logo between Control and Alt.
@@ -38,6 +39,7 @@ local layouts = {
 return {
     theme_path = theme_path,
     terminal = terminal,
+    term_app_command = term_app_command,
     editor = editor,
     editor_cmd = editor_cmd,
     modkey = modkey,
