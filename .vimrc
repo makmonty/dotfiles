@@ -128,7 +128,11 @@ let g:blamer_delay = 500
 let mapleader = ","
 nnoremap <C-F> :Rg<CR>
 nnoremap <expr> <C-p> isdirectory(".git") ? ":GFiles\<CR>" : ":Files\<CR>"
-nnoremap <C-i> :NERDTreeToggle<CR>
+nnoremap <expr> <C-i> exists("g:NERDTree") && g:NERDTree.IsOpen() ? ":NERDTreeToggle<CR>" : ":NERDTreeFind<CR>"
+nnoremap <leader><Left> <C-w><Left>
+nnoremap <leader><Right> <C-w><Right>
+nnoremap <leader><Up> <C-w><Up>
+nnoremap <leader><Down> <C-w><Down>
 nnoremap th  :tabfirst<CR>
 nnoremap tk  :tabnext<CR>
 nnoremap tj  :tabprev<CR>

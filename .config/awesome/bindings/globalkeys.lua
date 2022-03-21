@@ -6,7 +6,7 @@ local menubar = require("menubar")
 local volume_widget = require("awesome-wm-widgets.volume-widget.volume")
 
 local modkey = config.modkey
-local term_app_command = config.term_app_command
+local terminal_cmd = config.terminal_cmd
 
 local globalkeys = gears.table.join(
     awful.key({ modkey, }, "s",
@@ -161,7 +161,7 @@ local globalkeys = gears.table.join(
     -- Music
     awful.key({ modkey }, "m",
         --function() awful.util.spawn("rofi -show combi") end,
-        function() awful.util.spawn(term_app_command .. "ncmpcpp") end,
+        function() awful.util.spawn(terminal_cmd .. "ncmpcpp") end,
         { description = "Music", group = "launcher"}
     ),
     -- Volume
