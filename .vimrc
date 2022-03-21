@@ -124,11 +124,19 @@ let g:blamer_enabled = 1
 let g:blamer_delay = 500
 ""highlight Blamer guifg=DarkGrey
 
+function ToggleNERDTree()
+    if expand('%:p') == '' || exists("g:NERDTree") && g:NERDTree.IsOpen()
+        execute ":NERDTreeToggle"
+    else
+        execute ":NERDTreeFind"
+    endif
+endfunction
+
 "" Keymappings
 let mapleader = ","
 nnoremap <C-F> :Rg<CR>
 nnoremap <expr> <C-p> isdirectory(".git") ? ":GFiles\<CR>" : ":Files\<CR>"
-nnoremap <expr> <C-i> exists("g:NERDTree") && g:NERDTree.IsOpen() ? ":NERDTreeToggle<CR>" : ":NERDTreeFind<CR>"
+nnoremap <C-i> :call ToggleNERDTree()<CR>
 nnoremap <leader><Left> <C-w><Left>
 nnoremap <leader><Right> <C-w><Right>
 nnoremap <leader><Up> <C-w><Up>
