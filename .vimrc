@@ -11,6 +11,8 @@ set encoding=UTF-8
 
 set updatetime=1000
 
+set mouse=a
+
 filetype plugin on
 syntax enable
 "set omnifunc=syntaxcomplete#Complete
