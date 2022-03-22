@@ -10,6 +10,8 @@ local gfs = require("gears.filesystem")
 local themes_path = gfs.get_themes_dir()
 local shapes = require("helpers.shapes")
 
+local colors = require("main.user-variables").colors
+
 local function titlebar_button(color)
     return shapes.circle_filled(color, dpi(128), dpi(32))
 end
@@ -19,19 +21,20 @@ local function titlebar_button_hover(color)
 end
 
 local function titlebar_button_active(color)
-    return shapes.circle_empty(dpi(128), dpi(32), dpi(16), color)
+    --return shapes.circle_empty(dpi(72), dpi(32), dpi(32), color)
+    return titlebar_button(color)
 end
 
-local titlebar_close_button = titlebar_button("#E01A4F")
-local titlebar_close_button_hover = titlebar_button_hover("#E01A4F")
-local titlebar_minimize_button = titlebar_button("#9CD08F")
-local titlebar_minimize_button_hover = titlebar_button_hover("#9CD08F")
-local titlebar_maximize_button_inactive = titlebar_button("#F9C22E")
-local titlebar_maximize_button_active = titlebar_button_active("#F9C22E")
-local titlebar_maximize_button_hover = titlebar_button_hover("#F9C22E")
-local titlebar_extra_button_active = titlebar_button_active("#9CD08F")
-local titlebar_extra_button_inactive = titlebar_button("#9CD08F")
-local titlebar_extra_button_hover = titlebar_button_hover("#9CD08F")
+local titlebar_close_button = titlebar_button(colors.red)
+local titlebar_close_button_hover = titlebar_button_hover(colors.red)
+local titlebar_minimize_button = titlebar_button(colors.yellow)
+local titlebar_minimize_button_hover = titlebar_button_hover(colors.yellow)
+local titlebar_maximize_button_inactive = titlebar_button(colors.green)
+local titlebar_maximize_button_active = titlebar_button_active(colors.green)
+local titlebar_maximize_button_hover = titlebar_button_hover(colors.green)
+local titlebar_extra_button_active = titlebar_button_active(colors.pink)
+local titlebar_extra_button_inactive = titlebar_button(colors.pink)
+local titlebar_extra_button_hover = titlebar_button_hover(colors.pink)
 
 local theme = {}
 

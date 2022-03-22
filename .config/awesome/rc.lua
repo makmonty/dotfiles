@@ -8,7 +8,8 @@ local autorunCommands =
     "blueman-applet",
     "nextcloud",
     "dropbox",
-    "xfce4-clipman"
+    "xfce4-clipman",
+    "nm-applet"
 }
 local useNice = true
 
@@ -37,6 +38,7 @@ RC = {}
 RC.vars = require("main.user-variables")
 -- Themes define colours, icons, font and wallpapers.
 local theme = require("theme")
+local colors = RC.vars.colors
 beautiful.init(RC.vars.theme_path)
 
 -- Clients titlebar and decoration
@@ -49,12 +51,12 @@ if useNice then
             right = {"minimize", "maximize", "close"},
         },
         titlebar_font = theme.font,
-        close_color = "#f92672",
-        maximize_color = "#a6e22e",
-        minimize_color = "#e6db74",
-        ontop_color = "#ae81ff",
-        sticky_color = "#ae81ff",
-        floating_color = "#ae81ff"
+        close_color = colors.red,
+        maximize_color = colors.green,
+        minimize_color = colors.yellow,
+        ontop_color = colors.pink,
+        sticky_color = colors.pink,
+        floating_color = colors.pink
     }
 else
     client.connect_signal("request::titlebars", require('main.titlebar'))

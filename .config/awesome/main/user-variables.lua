@@ -8,6 +8,8 @@ local terminal = "kitty" --"xfce4-terminal"
 local editor = "nvim" -- os.getenv("EDITOR") or "nano"
 local terminal_cmd = terminal .. " -e "
 local editor_cmd = terminal_cmd .. editor
+local file_explorer = terminal_cmd .. "nnn" -- "thunar"
+local music_player = terminal_cmd .. "ncmpcpp"
 
 -- Default modkey.
 -- Usually, Mod4 is the key with a logo between Control and Alt.
@@ -36,12 +38,22 @@ local layouts = {
     -- awful.layout.suit.corner.se,
 }
 
+local colors = {
+    red = "#f92672",
+    green = "#a6e22e",
+    yellow = "#e6db74",
+    pink = "#ae81ff"
+}
+
 return {
     theme_path = theme_path,
     terminal = terminal,
     terminal_cmd = terminal_cmd,
     editor = editor,
     editor_cmd = editor_cmd,
+    file_explorer = file_explorer,
+    music_player = music_player,
     modkey = modkey,
-    layouts = layouts
+    layouts = layouts,
+    colors = colors
 }

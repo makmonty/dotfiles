@@ -7,6 +7,8 @@ local volume_widget = require("awesome-wm-widgets.volume-widget.volume")
 
 local modkey = config.modkey
 local terminal_cmd = config.terminal_cmd
+local file_explorer = config.file_explorer
+local music_player = config.music_player
 
 local globalkeys = gears.table.join(
     awful.key({ modkey, }, "s",
@@ -158,11 +160,17 @@ local globalkeys = gears.table.join(
         function() awful.util.spawn("/home/angel/.config/rofi/bin/launcher_misc") end,
 	    { description = "Launch Rofi", group = "launcher"}
     ),
-    -- Music
+    -- Music player
     awful.key({ modkey }, "m",
         --function() awful.util.spawn("rofi -show combi") end,
-        function() awful.util.spawn(terminal_cmd .. "ncmpcpp") end,
-        { description = "Music", group = "launcher"}
+        function() awful.util.spawn(music_player) end,
+        { description = "Music player", group = "launcher"}
+    ),
+    -- File explorer
+    awful.key({ modkey }, "f",
+        --function() awful.util.spawn("rofi -show combi") end,
+        function() awful.util.spawn(file_explorer) end,
+        { description = "File explorer", group = "launcher"}
     ),
     -- Volume
     awful.key({ }, "XF86AudioRaiseVolume", function() volume_widget:inc(5) end),
