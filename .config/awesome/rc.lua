@@ -4,7 +4,7 @@ local autorunCommands =
     "xsettingsd",
     "lxpolkit",
     "picom --experimental-backends --backend glx -b",
-    --"plank",
+    "plank",
     "blueman-applet",
     "nextcloud",
     "dropbox",
@@ -172,7 +172,11 @@ awful.rules.rules = {
         rule = { class = "Plank" },
         properties = {
             border_width = 0,
-            --ontop = true
+            floating = true,
+            sticky = true,
+            ontop = true,
+            focusable = false,
+            below = true
         }
     },
 

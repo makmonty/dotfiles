@@ -18,8 +18,8 @@ syntax enable
 "set omnifunc=syntaxcomplete#Complete
 
 "" Color schemes
-" Monokai
-colorscheme monokai
+let g:molokai_original = 1
+colorscheme molokai "monokai
 hi Normal guibg=NONE ctermbg=NONE
 " Solarized (not working)
 "set background=light
@@ -125,6 +125,14 @@ let g:localvimrc_persistent = 1
 let g:blamer_enabled = 1
 let g:blamer_delay = 500
 ""highlight Blamer guifg=DarkGrey
+
+"" CoC
+let g:coc_global_extensions = [
+    \ 'coc-ember',
+    \ 'coc-json',
+    \ 'coc-snippets',
+    \ 'coc-tsserver'
+\]
 
 function ToggleNERDTree()
     if expand('%:p') == '' || exists("g:NERDTree") && g:NERDTree.IsOpen()
