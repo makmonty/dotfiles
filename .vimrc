@@ -59,6 +59,7 @@ Plug 'APZelos/blamer.nvim'
 Plug 'liuchengxu/vista.vim'
 Plug 'preservim/nerdcommenter'
 Plug 'mustache/vim-mustache-handlebars'
+Plug 'ggandor/lightspeed.nvim'
 call plug#end()
 
 "" Sessions
@@ -144,7 +145,8 @@ endfunction
 
 "" Keymappings
 let mapleader = ","
-nnoremap <C-F> :Rg<CR>
+nnoremap <C-f> :Lines<CR>
+nnoremap <C-g> :Rg<CR>
 nnoremap <expr> <C-p> isdirectory(".git") ? ":GFiles\<CR>" : ":Files\<CR>"
 nnoremap <C-i> :call ToggleNERDTree()<CR>
 nnoremap <leader><Left> <C-w><Left>

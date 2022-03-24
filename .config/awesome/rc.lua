@@ -174,7 +174,7 @@ awful.rules.rules = {
             border_width = 0,
             floating = true,
             sticky = true,
-            ontop = true,
+            ontop = false,
             focusable = false,
             below = true
         }
