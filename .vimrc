@@ -59,7 +59,10 @@ Plug 'APZelos/blamer.nvim'
 Plug 'liuchengxu/vista.vim'
 Plug 'preservim/nerdcommenter'
 Plug 'mustache/vim-mustache-handlebars'
-Plug 'ggandor/lightspeed.nvim'
+"" Nvim only
+""Plug 'ggandor/lightspeed.nvim'
+Plug 'ggandor/leap.nvim'
+Plug 'mickael-menu/zk-nvim'
 call plug#end()
 
 "" Sessions
