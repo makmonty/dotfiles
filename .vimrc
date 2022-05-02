@@ -17,55 +17,85 @@ filetype plugin on
 syntax enable
 "set omnifunc=syntaxcomplete#Complete
 
+"" Plugins
+call plug#begin()
+" Color scheme
+Plug 'srcery-colors/srcery-vim'
+" Filesystem tree
+Plug 'preservim/nerdtree'
+" Icons for NERDTree
+Plug 'ryanoasis/vim-devicons'
+" Git integration for NERDTree
+Plug 'Xuyuanp/nerdtree-git-plugin'
+" Colorize NERDTree
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+" Javascript integration
+Plug 'pangloss/vim-javascript'
+" Vue syntax highlight
+Plug 'posva/vim-vue'
+" Git plugin
+Plug 'tpope/vim-fugitive'
+""Plug 'ycm-core/YouCompleteMe'
+" Suggestions and completion
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+""Plug 'scrooloose/syntastic'
+" Git marks in the gutter
+Plug 'airblade/vim-gitgutter'
+" Statusbar
+Plug 'vim-airline/vim-airline'
+" Typescript integration
+Plug 'leafgarland/typescript-vim'
+" Editorconfig integration
+Plug 'editorconfig/editorconfig-vim'
+" Colorize parentheses
+Plug 'kien/rainbow_parentheses.vim'
+" LSP marks in the gutter
+Plug 'w0rp/ale'
+" Local vimrc
+Plug 'embear/vim-localvimrc'
+" Fuzzy finder
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+" Show css colors inline
+Plug 'ap/vim-css-color'
+" Underlines the current word and its appearances
+Plug 'itchyny/vim-cursorword'
+" Change easily the surrounding characters
+Plug 'tpope/vim-surround'
+" For writers
+Plug 'preservim/vim-pencil'
+" Make multiline changes
+Plug 'mg979/vim-visual-multi'
+" Inline git blame
+Plug 'APZelos/blamer.nvim'
+" Symbols and tags in a sidebar
+Plug 'liuchengxu/vista.vim'
+" Comment easily
+Plug 'preservim/nerdcommenter'
+" Handlebars integration
+Plug 'mustache/vim-mustache-handlebars'
+"" Nvim only
+if has('nvim')
+  ""Plug 'ggandor/lightspeed.nvim'
+  " Search in the current window
+  Plug 'ggandor/leap.nvim'
+  " Zettelkasten command (zk) integration
+  Plug 'mickael-menu/zk-nvim'
+endif
+call plug#end()
+
 "" Color schemes
-let g:molokai_original = 1
-colorscheme molokai "monokai
-hi Normal guibg=NONE ctermbg=NONE
+"let g:molokai_original = 1
+"colorscheme molokai
+"colorscheme monokai
+colorscheme srcery
+"hi Normal guibg=NONE ctermbg=NONE
 " Solarized (not working)
 "set background=light
 "colorscheme solarized
 
 "" Sessions
 "set sessionoptions-=blank
-
-"" Plugins
-call plug#begin()
-Plug 'preservim/nerdtree'
-Plug 'ryanoasis/vim-devicons'
-Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
-Plug 'pangloss/vim-javascript'
-Plug 'posva/vim-vue'
-Plug 'tpope/vim-fugitive'
-""Plug 'ycm-core/YouCompleteMe'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-""Plug 'scrooloose/syntastic'
-Plug 'airblade/vim-gitgutter'
-Plug 'vim-airline/vim-airline'
-Plug 'altercation/vim-colors-solarized'
-Plug 'leafgarland/typescript-vim'
-Plug 'editorconfig/editorconfig-vim'
-Plug 'kien/rainbow_parentheses.vim'
-Plug 'w0rp/ale'
-Plug 'embear/vim-localvimrc'
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
-Plug 'ap/vim-css-color'
-Plug 'itchyny/vim-cursorword'
-Plug 'tpope/vim-surround'
-Plug 'preservim/vim-pencil'
-Plug 'mg979/vim-visual-multi'
-Plug 'APZelos/blamer.nvim'
-Plug 'liuchengxu/vista.vim'
-Plug 'preservim/nerdcommenter'
-Plug 'mustache/vim-mustache-handlebars'
-"" Nvim only
-""Plug 'ggandor/lightspeed.nvim'
-Plug 'ggandor/leap.nvim'
-Plug 'mickael-menu/zk-nvim'
-call plug#end()
-
-"" Sessions
 fu! SaveSess()
     execute 'mksession! ' . getcwd() . '/.session.vim'
 endfunction
@@ -135,7 +165,8 @@ let g:coc_global_extensions = [
     \ 'coc-ember',
     \ 'coc-json',
     \ 'coc-snippets',
-    \ 'coc-tsserver'
+    \ 'coc-tsserver',
+    \ '@yaegassy/coc-volar'
 \]
 
 function ToggleNERDTree()

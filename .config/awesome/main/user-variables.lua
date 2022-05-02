@@ -8,7 +8,7 @@ local terminal = "kitty" --"xfce4-terminal"
 local editor = "nvim" -- os.getenv("EDITOR") or "nano"
 local terminal_cmd = terminal .. " -e "
 local editor_cmd = terminal_cmd .. editor
-local file_explorer = terminal_cmd .. "nnn" -- "thunar"
+local file_explorer = "thunar" --terminal_cmd .. "nnn"
 local music_player = terminal_cmd .. "ncmpcpp"
 
 -- Default modkey.
@@ -38,11 +38,20 @@ local layouts = {
     -- awful.layout.suit.corner.se,
 }
 
+-- Molokai
+--local colors = {
+    --red = "#f92672",
+    --green = "#a6e22e",
+    --yellow = "#e6db74",
+    --pink = "#ae81ff"
+--}
+-- Srcery
 local colors = {
-    red = "#f92672",
-    green = "#a6e22e",
-    yellow = "#e6db74",
-    pink = "#ae81ff"
+    red = "#EF2F27",
+    green = "#519F50",
+    yellow = "#FBB829",
+    pink = "#E02C6D"
+
 }
 
 return {
