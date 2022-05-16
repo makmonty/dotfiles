@@ -9,7 +9,8 @@ local autorunCommands =
     "nextcloud",
     "dropbox",
     "xfce4-clipman",
-    "nm-applet"
+    "nm-applet",
+    "solaar --window=hide"
 }
 local useNice = true
 

@@ -175,7 +175,35 @@ local globalkeys = gears.table.join(
     -- Volume
     awful.key({ }, "XF86AudioRaiseVolume", function() volume_widget:inc(5) end),
     awful.key({ }, "XF86AudioLowerVolume", function() volume_widget:dec(5) end),
-    awful.key({ }, "XF86AudioMute", function() volume_widget:toggle() end)
+    awful.key({ }, "XF86AudioMute", function() volume_widget:toggle() end),
+
+    -- Win+Alt+Left/Right: move client to prev/next tag and switch to it
+    awful.key({ modkey, "Mod1" }, "Left",
+        function ()
+            -- get current tag
+            local t = client.focus and client.focus.first_tag or nil
+            if t == nil then
+                return
+            end
+            -- get previous tag (modulo 9 excluding 0 to wrap from 1 to 9)
+            local tag = client.focus.screen.tags[(t.name - 2) % 9 + 1]
+            awful.client.movetotag(tag)
+            awful.tag.viewprev()
+        end,
+            {description = "move client to previous tag and switch to it", group = "layout"}),
+    awful.key({ modkey, "Mod1" }, "Right",
+        function ()
+            -- get current tag
+            local t = client.focus and client.focus.first_tag or nil
+            if t == nil then
+                return
+            end
+            -- get next tag (modulo 9 excluding 0 to wrap from 9 to 1)
+            local tag = client.focus.screen.tags[(t.name % 9) + 1]
+            awful.client.movetotag(tag)
+            awful.tag.viewnext()
+        end,
+            {description = "move client to next tag and switch to it", group = "layout"})
 )
 
 -- Bind all key numbers to tags.
