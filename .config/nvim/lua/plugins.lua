@@ -1,4 +1,4 @@
-local Plug = require('helpers/plug')
+local Plug = require('helpers.plug')
 
 Plug.begin()
 
@@ -13,7 +13,7 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 -- Colorize NERDTree
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 -- Treesitter for syntax highlighting
---Plug('nvim-treesitter/nvim-treesitter', { run = vim.fn[':TSUpdate'] })
+Plug('nvim-treesitter/nvim-treesitter', { run = vim.fn[':TSUpdate'] })
 -- Javascript integration
 Plug 'pangloss/vim-javascript'
 -- Vue syntax highlight
@@ -63,3 +63,26 @@ Plug 'mustache/vim-mustache-handlebars'
 Plug 'ggandor/leap.nvim'
 
 Plug.ends()
+
+-- NERDTree
+vim.cmd('let NERDTreeShowHidden = 1')
+vim.cmd([[autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif]])
+
+-- localvimrc
+vim.cmd('let g:localvimrc_persistent = 1')
+
+-- Blamer
+vim.cmd('let g:blamer_enabled = 1')
+vim.cmd('let g:blamer_delay = 500')
+
+-- CoC
+vim.cmd('let g:coc_global_extensions = ['..
+  [['coc-ember',]]..
+  [['coc-json',]]..
+  [['coc-snippets',]]..
+  [['coc-tsserver',]]..
+  [['@yaegassy/coc-volar']]..
+']')
+
+-- Leap
+require('leap').set_default_keymaps()
