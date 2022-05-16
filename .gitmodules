@@ -22,3 +22,6 @@
 [submodule ".config/rofi.old/themes/rofi-themes"]
 	path = .config/rofi.old/themes/rofi-themes
 	url = https://github.com/sheepla/rofi-themes.git
+[submodule ".config/nvim/pack/packer/start/packer.nvim"]
+	path = .config/nvim/pack/packer/start/packer.nvim
+	url = https://github.com/wbthomason/packer.nvim
