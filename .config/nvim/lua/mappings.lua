@@ -2,9 +2,9 @@ local map = require('helpers.map')
 
 function ToggleNERDTree()
     --if expand('%:p') == '' || exists("g:NERDTree") && g:NERDTree.IsOpen() then
-	vim.cmd('NERDTreeToggleVCS')
+  vim.cmd('NERDTreeToggleVCS')
     --else
-	--vim.cmd('NERDTreeFind')
+  --vim.cmd('NERDTreeFind')
     --end
 end
 
@@ -12,7 +12,7 @@ end
 vim.g.mapleader = ','
 
 map('n', '<C-f>', ':Lines<CR>')
-map('n', '<C-g>', ':Rg<CR>')
+map('n', '<C-g>', ':RG<CR>')
 map('n', '<C-p>', 'isdirectory(".git") ? ":GFiles<CR>" : ":Files<CR>"', { expr = true })
 map('n', '<Tab>', '<Cmd>lua ToggleNERDTree()<CR>')
 map('n', '<leader><Left>', '<C-w><Left>')
