@@ -2,13 +2,20 @@ local plugins = require('packer').startup(function(use)
   -- Color scheme
   use 'srcery-colors/srcery-vim'
   -- Filesystem tree
-  use 'preservim/nerdtree'
+  --use 'preservim/nerdtree'
+  use {
+    'kyazdani42/nvim-tree.lua',
+    requires = {
+      'kyazdani42/nvim-web-devicons', -- optional, for file icon
+    },
+    --tag = 'nightly' -- optional, updated every week. (see issue #1193)
+  }
   -- Icons for NERDTree
   use 'ryanoasis/vim-devicons'
   -- Git integration for NERDTree
-  use 'Xuyuanp/nerdtree-git-plugin'
+  --use 'Xuyuanp/nerdtree-git-plugin'
   -- Colorize NERDTree
-  use 'tiagofumo/vim-nerdtree-syntax-highlight'
+  --use 'tiagofumo/vim-nerdtree-syntax-highlight'
   -- Treesitter for syntax highlighting
   use {'nvim-treesitter/nvim-treesitter', { run = vim.fn[':TSUpdate'] }}
   -- Javascript integration
@@ -63,8 +70,21 @@ local plugins = require('packer').startup(function(use)
 end)
 
 -- NERDTree
-vim.cmd('let NERDTreeShowHidden = 1')
-vim.cmd([[autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif]])
+--vim.cmd('let NERDTreeShowHidden = 1')
+--vim.cmd([[autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif]])
+
+-- NvimTree
+require'nvim-tree'.setup {
+}
+-- Close when it's the last
+vim.api.nvim_create_autocmd("BufEnter", {
+  nested = true,
+  callback = function()
+    if #vim.api.nvim_list_wins() == 1 and vim.api.nvim_buf_get_name(0):match("NvimTree_") ~= nil then
+      vim.cmd "quit"
+    end
+  end
+})
 
 -- localvimrc
 vim.cmd('let g:localvimrc_persistent = 1')

@@ -11,10 +11,11 @@ end
 
 vim.g.mapleader = ','
 
-map('n', '<C-f>', ':Lines<CR>')
+map('n', '<C-f>', ':BLines<CR>')
 map('n', '<C-g>', ':RG<CR>')
 map('n', '<C-p>', 'isdirectory(".git") ? ":GFiles<CR>" : ":Files<CR>"', { expr = true })
-map('n', '<Tab>', '<Cmd>lua ToggleNERDTree()<CR>')
+--map('n', '<Tab>', '<Cmd>lua ToggleNERDTree()<CR>')
+map('n', '<Tab>', ':NvimTreeFindFileToggle<CR>')
 map('n', '<leader><Left>', '<C-w><Left>')
 map('n', '<leader><Right>', '<C-w><Right>')
 map('n', '<leader><Up>', '<C-w><Up>')
