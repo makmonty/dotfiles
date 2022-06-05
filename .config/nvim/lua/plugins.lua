@@ -9,6 +9,8 @@ vim.cmd("let g:coq_settings = { 'auto_start': 'shut-up' }")
 local plugins = require('packer').startup(function(use)
   -- Package manager
   use 'wbthomason/packer.nvim'
+  -- Startup
+  use 'glepnir/dashboard-nvim'
   -- Treesitter for syntax highlighting
   use {'nvim-treesitter/nvim-treesitter', { run = vim.fn[':TSUpdate'] }}
   -- LSP
@@ -76,10 +78,13 @@ local plugins = require('packer').startup(function(use)
   -- Local vimrc
   use 'embear/vim-localvimrc'
   -- Fuzzy finder
-  use {'junegunn/fzf', { run = vim.fn['fzf#install'] }}
-  use 'junegunn/fzf.vim'
-  --use 'nvim-lua/plenary.nvim'
-  --use 'nvim-telescope/telescope.nvim'
+  --use {'junegunn/fzf', { run = vim.fn['fzf#install'] }}
+  --use 'junegunn/fzf.vim'
+  use {
+    'nvim-telescope/telescope.nvim',
+    {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' },
+    requires = { {'nvim-lua/plenary.nvim'} }
+  }
   -- Show css colors inline
   use 'ap/vim-css-color'
   -- Underlines the current word and its appearances
@@ -112,13 +117,18 @@ local plugins = require('packer').startup(function(use)
   end
 end)
 
+-- Dashboard
+vim.cmd("let g:dashboard_default_executive='fzf'")
+
+-- Telescope
+require('telescope').load_extension('fzf')
+
 -- NERDTree
 --vim.cmd('let NERDTreeShowHidden = 1')
 --vim.cmd([[autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif]])
 
 -- NvimTree
-require'nvim-tree'.setup {
-}
+require('nvim-tree').setup {}
 -- Close when it's the last
 vim.api.nvim_create_autocmd("BufEnter", {
   nested = true,
