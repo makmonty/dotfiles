@@ -138,7 +138,13 @@ require'nvim-treesitter.configs'.setup {
 }
 
 -- Telescope
-require('telescope').load_extension('fzf')
+local telescope = require('telescope')
+telescope.load_extension('fzf')
+--telescope.setup{
+  --defaults = {
+    --theme = "ivy"
+  --}
+--}
 
 -- NERDTree
 --vim.cmd('let NERDTreeShowHidden = 1')
