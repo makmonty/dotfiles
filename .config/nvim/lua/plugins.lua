@@ -1,4 +1,44 @@
+local fn = vim.fn
+local packer_install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+if fn.empty(fn.glob(packer_install_path)) > 0 then
+  packer_bootstrap = fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', packer_install_path})
+end
+
+vim.cmd("let g:coq_settings = { 'auto_start': 'shut-up' }")
+
 local plugins = require('packer').startup(function(use)
+  -- Package manager
+  use 'wbthomason/packer.nvim'
+  -- Treesitter for syntax highlighting
+  use {'nvim-treesitter/nvim-treesitter', { run = vim.fn[':TSUpdate'] }}
+  -- LSP
+  use {
+    "williamboman/nvim-lsp-installer",
+    -- Completion
+    {'ms-jpq/coq_nvim', { branch = 'coq' }},
+    {'ms-jpq/coq.artifacts', { branch = 'artifacts' }},
+    {'ms-jpq/coq.thirdparty', { branch = '3p' }},
+    {
+      "neovim/nvim-lspconfig",
+      config = function()
+        require("nvim-lsp-installer").setup {
+          automatic_installation = true,
+        }
+        local lspconfig = require("lspconfig")
+        local coq = require("coq")
+        -- Here go the server setups
+        lspconfig.sumneko_lua.setup{}
+        local eslint_config = require("lspconfig.server_configurations.eslint")
+        lspconfig.eslint.setup(coq.lsp_ensure_capabilities({
+          cmd = { "yarn", "exec", unpack(eslint_config.default_config.cmd) }
+        }))
+        lspconfig.volar.setup(coq.lsp_ensure_capabilities({
+          filetypes = {'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue', 'json'}
+        }))
+        lspconfig.ember.setup(coq.lsp_ensure_capabilities({}))
+      end
+    }
+  }
   -- Color scheme
   use 'srcery-colors/srcery-vim'
   -- Filesystem tree
@@ -11,13 +51,11 @@ local plugins = require('packer').startup(function(use)
     --tag = 'nightly' -- optional, updated every week. (see issue #1193)
   }
   -- Icons for NERDTree
-  use 'ryanoasis/vim-devicons'
+  --use 'ryanoasis/vim-devicons'
   -- Git integration for NERDTree
   --use 'Xuyuanp/nerdtree-git-plugin'
   -- Colorize NERDTree
   --use 'tiagofumo/vim-nerdtree-syntax-highlight'
-  -- Treesitter for syntax highlighting
-  use {'nvim-treesitter/nvim-treesitter', { run = vim.fn[':TSUpdate'] }}
   -- Javascript integration
   use 'pangloss/vim-javascript'
   -- Vue syntax highlight
@@ -25,7 +63,6 @@ local plugins = require('packer').startup(function(use)
   -- Git plugin
   use 'tpope/vim-fugitive'
   -- Suggestions and completion
-  use {'neoclide/coc.nvim', { branch = 'release' }}
   -- Git marks in the gutter
   use 'airblade/vim-gitgutter'
   -- Statusbar
@@ -67,6 +104,12 @@ local plugins = require('packer').startup(function(use)
   use 'lukas-reineke/indent-blankline.nvim'
   -- Bracket colorization
   use 'junegunn/rainbow_parentheses.vim'
+
+  -- Automatically set up your configuration after cloning packer.nvim
+  -- Put this at the end after all plugins
+  if packer_bootstrap then
+    require('packer').sync()
+  end
 end)
 
 -- NERDTree
@@ -92,15 +135,6 @@ vim.cmd('let g:localvimrc_persistent = 1')
 -- Blamer
 vim.cmd('let g:blamer_enabled = 1')
 vim.cmd('let g:blamer_delay = 500')
-
--- CoC
-vim.cmd('let g:coc_global_extensions = ['..
-  [['coc-ember',]]..
-  [['coc-json',]]..
-  [['coc-snippets',]]..
-  [['coc-tsserver',]]..
-  [['@yaegassy/coc-volar']]..
-']')
 
 -- Leap
 require('leap').set_default_keymaps()
