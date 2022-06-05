@@ -1,5 +1,6 @@
 local fn = vim.fn
 local packer_install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+local packer_bootstrap
 if fn.empty(fn.glob(packer_install_path)) > 0 then
   packer_bootstrap = fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', packer_install_path})
 end
@@ -29,7 +30,15 @@ local plugins = require('packer').startup(function(use)
         local lspconfig = require("lspconfig")
         local coq = require("coq")
         -- Here go the server setups
-        lspconfig.sumneko_lua.setup{}
+        lspconfig.sumneko_lua.setup{
+          settings = {
+            Lua = {
+              diagnostics = {
+                globals = { 'vim' }
+              }
+            }
+          }
+        }
         local eslint_config = require("lspconfig.server_configurations.eslint")
         lspconfig.eslint.setup(coq.lsp_ensure_capabilities({
           cmd = { "yarn", "exec", unpack(eslint_config.default_config.cmd) }
@@ -82,8 +91,10 @@ local plugins = require('packer').startup(function(use)
   --use 'junegunn/fzf.vim'
   use {
     'nvim-telescope/telescope.nvim',
-    {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' },
-    requires = { {'nvim-lua/plenary.nvim'} }
+    requires = {
+      {'nvim-lua/plenary.nvim'},
+      {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' },
+    }
   }
   -- Show css colors inline
   use 'ap/vim-css-color'
@@ -119,6 +130,12 @@ end)
 
 -- Dashboard
 vim.cmd("let g:dashboard_default_executive='fzf'")
+
+-- Treesitter
+require'nvim-treesitter.configs'.setup {
+  -- A list of parser names, or "all"
+  ensure_installed = { "javascript", "typescript", "json", "css", "scss", "vue", "lua" },
+}
 
 -- Telescope
 require('telescope').load_extension('fzf')
