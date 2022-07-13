@@ -1,9 +1,11 @@
 local gears = require("gears")
 local awful = require("awful")
+local wibox = require("wibox")
 local hotkeys_popup = require("awful.hotkeys_popup")
 local config = require("main.user-variables")
 local menubar = require("menubar")
 local volume_widget = require("awesome-wm-widgets.volume-widget.volume")
+local popup = require("helpers.popups");
 
 local modkey = config.modkey
 local terminal_cmd = config.terminal_cmd
@@ -11,6 +13,19 @@ local file_explorer = config.file_explorer
 local music_player = config.music_player
 
 local globalkeys = gears.table.join(
+    -- Tests
+    awful.key({ modkey }, "o",
+        function () popup.createPopup({
+            {
+                text   = "foobar",
+                widget = wibox.widget.textbox
+            },
+            margins = 10,
+            widget  = wibox.container.margin
+        }) end,
+        { description = "Run test", group = "awesome" }
+    ),
+    -- End tests
     awful.key({ modkey, }, "s",
         hotkeys_popup.show_help,
         { description="show help", group="awesome" }

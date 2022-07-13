@@ -51,7 +51,8 @@ local plugins = require('packer').startup(function(use)
     }
   }
   -- Color scheme
-  use 'srcery-colors/srcery-vim'
+  --use 'srcery-colors/srcery-vim'
+  use { "ellisonleao/gruvbox.nvim" }
   -- Filesystem tree
   --use 'preservim/nerdtree'
   use {

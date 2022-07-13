@@ -8,7 +8,7 @@ local terminal = "kitty" --"xfce4-terminal"
 local editor = "nvim" -- os.getenv("EDITOR") or "nano"
 local terminal_cmd = terminal .. " -e "
 local editor_cmd = terminal_cmd .. editor
-local file_explorer = "thunar" --terminal_cmd .. "nnn"
+local file_explorer = "nautilus" --"thunar" --terminal_cmd .. "nnn"
 local music_player = terminal_cmd .. "ncmpcpp"
 
 -- Default modkey.
