@@ -173,4 +173,10 @@ vim.cmd('let g:blamer_delay = 500')
 -- Leap
 require('leap').set_default_keymaps()
 
+-- Indentation
+require('indent_blankline').setup {
+  show_current_context = true,
+  show_current_context_start = true
+}
+
 return plugins
