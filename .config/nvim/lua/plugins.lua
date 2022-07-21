@@ -30,7 +30,7 @@ local plugins = require('packer').startup(function(use)
         local lspconfig = require("lspconfig")
         local coq = require("coq")
         -- Here go the server setups
-        lspconfig.sumneko_lua.setup{
+        lspconfig.sumneko_lua.setup(coq.lsp_ensure_capabilities({
           settings = {
             Lua = {
               diagnostics = {
@@ -38,7 +38,7 @@ local plugins = require('packer').startup(function(use)
               }
             }
           }
-        }
+        }))
         local eslint_config = require("lspconfig.server_configurations.eslint")
         lspconfig.eslint.setup(coq.lsp_ensure_capabilities({
           cmd = { "yarn", "exec", unpack(eslint_config.default_config.cmd) }
@@ -47,11 +47,19 @@ local plugins = require('packer').startup(function(use)
           filetypes = {'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue', 'json'}
         }))
         lspconfig.ember.setup(coq.lsp_ensure_capabilities({}))
+
+        local capabilities = vim.lsp.protocol.make_client_capabilities()
+        capabilities.textDocument.completion.completionItem.snippetSupport = true
+        lspconfig.cssls.setup(coq.lsp_ensure_capabilities({
+          capabilities = capabilities,
+          cmd = { "vscode-css-language-server", "--stdio" },
+          filetypes = { "css", "scss", "less" },
+        }))
       end
     }
   }
   -- Color scheme
-  --use 'srcery-colors/srcery-vim'
+  use 'srcery-colors/srcery-vim'
   use { "ellisonleao/gruvbox.nvim" }
   -- Filesystem tree
   --use 'preservim/nerdtree'
