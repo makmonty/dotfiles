@@ -32,3 +32,12 @@ map('n', 'tt', ' :tabedit<Space>')
 map('n', 'tn', ' :tabnew<Space>')
 map('n', 'tm', ' :tabm<Space>')
 map('n', 'td', ' :tabclose<CR>')
+
+-- Autoclosing pairs
+map('i', '"', '""<left>')
+map('i', "'", "''<left>")
+map('i', '(', '()<left>')
+map('i', '[', '[]<left>')
+map('i', '{', '{}<left>')
+map('i', '{<CR>', '{<CR>}<ESC>O')
+map('i', '{;<CR>', '{<CR>};<ESC>O')
