@@ -76,8 +76,8 @@ local plugins = require('packer').startup(function(use)
   -- Local vimrc
   use 'embear/vim-localvimrc'
   -- Fuzzy finder
-  --use {'junegunn/fzf', { run = vim.fn['fzf#install'] }}
-  --use 'junegunn/fzf.vim'
+  use {'junegunn/fzf', { run = vim.fn['fzf#install'] }}
+  use 'junegunn/fzf.vim'
   use {
     'nvim-telescope/telescope.nvim',
     requires = {
@@ -91,6 +91,15 @@ local plugins = require('packer').startup(function(use)
   use 'itchyny/vim-cursorword'
   -- Change easily the surrounding characters
   use 'tpope/vim-surround'
+  -- Autoclosing brackets
+  use 'jiangmiao/auto-pairs'
+  --use 'vim-scripts/AutoClose'
+  --use {
+    --'LucHermitte/lh-brackets',
+    --requires = {
+      --{'LucHermitte/lh-vim-lib'},
+    --}
+  --}
   -- For writers
   use 'preservim/vim-pencil'
   -- Make multiline changes

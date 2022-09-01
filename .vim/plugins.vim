@@ -41,6 +41,8 @@ Plug 'ap/vim-css-color'
 Plug 'itchyny/vim-cursorword'
 " Change easily the surrounding characters
 Plug 'tpope/vim-surround'
+" Autoclose pairs
+Plug 'jiangmiao/auto-pairs'
 " For writers
 Plug 'preservim/vim-pencil'
 " Make multiline changes
