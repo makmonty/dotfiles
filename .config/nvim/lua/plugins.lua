@@ -23,6 +23,10 @@ local plugins = require('packer').startup(function(use)
     {'ms-jpq/coq.thirdparty', { branch = '3p' }},
     {'neovim/nvim-lspconfig'}
   }
+  use {
+    "folke/trouble.nvim",
+    requires = "kyazdani42/nvim-web-devicons",
+  }
   -- Color scheme
   use 'srcery-colors/srcery-vim'
   use 'ellisonleao/gruvbox.nvim'
@@ -30,12 +34,21 @@ local plugins = require('packer').startup(function(use)
   use 'rmagatti/auto-session'
   -- Filesystem tree
   --use 'preservim/nerdtree'
+  --use {
+    --'kyazdani42/nvim-tree.lua',
+    --requires = {
+      --'kyazdani42/nvim-web-devicons', -- optional, for file icon
+    --},
+    ----tag = 'nightly' -- optional, updated every week. (see issue #1193)
+  --}
   use {
-    'kyazdani42/nvim-tree.lua',
+    'nvim-neo-tree/neo-tree.nvim',
+    branch = 'v2.x',
     requires = {
-      'kyazdani42/nvim-web-devicons', -- optional, for file icon
-    },
-    --tag = 'nightly' -- optional, updated every week. (see issue #1193)
+      'nvim-lua/plenary.nvim',
+      'kyazdani42/nvim-web-devicons', -- not strictly required, but recommended
+      'MunifTanjim/nui.nvim',
+    }
   }
   -- Icons for NERDTree
   --use 'ryanoasis/vim-devicons'
@@ -205,15 +218,25 @@ telescope.load_extension('fzf')
 --vim.cmd([[autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif]])
 
 -- NvimTree
-require('nvim-tree').setup {}
+--require('nvim-tree').setup {}
 -- Close when it's the last
-vim.api.nvim_create_autocmd("BufEnter", {
-  nested = true,
-  callback = function()
-    if #vim.api.nvim_list_wins() == 1 and vim.api.nvim_buf_get_name(0):match("NvimTree_") ~= nil then
-      vim.cmd "quit"
-    end
-  end
+--vim.api.nvim_create_autocmd("BufEnter", {
+  --nested = true,
+  --callback = function()
+    --if #vim.api.nvim_list_wins() == 1 and vim.api.nvim_buf_get_name(0):match("NvimTree_") ~= nil then
+      --vim.cmd "quit"
+    --end
+  --end
+--})
+require("neo-tree").setup({
+  close_if_last_window = true,
+  filesystem = {
+    filtered_items = {
+      visible = true,
+    },
+    follow_current_file = true,
+    use_libuv_file_watcher = true,
+  }
 })
 
 -- localvimrc
