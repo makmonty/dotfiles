@@ -73,8 +73,13 @@ local plugins = require('packer').startup(function(use)
   use 'editorconfig/editorconfig-vim'
   -- LSP marks in the gutter
   use 'w0rp/ale'
-  -- Local vimrc
-  use 'embear/vim-localvimrc'
+  -- Per-project config files
+  use {
+    'MunifTanjim/exrc.nvim',
+    requires = {
+      'MunifTanjim/nui.nvim',
+    },
+  }
   -- Fuzzy finder
   use {'junegunn/fzf', { run = vim.fn['fzf#install'] }}
   use 'junegunn/fzf.vim'
@@ -165,6 +170,9 @@ lspconfig.jsonls.setup(coq.lsp_ensure_capabilities{
   capabilities = capabilities,
 })
 
+-- ALE Linting
+vim.cmd('let g:ale_fix_on_save = 1')
+
 -- Dashboard
 vim.cmd("let g:dashboard_default_executive='fzf'")
 local dashboard = require('dashboard')
@@ -248,8 +256,17 @@ require("neo-tree").setup({
   }
 })
 
--- localvimrc
-vim.cmd('let g:localvimrc_persistent = 1')
+-- Local config files
+require('exrc').setup({
+  files = {
+    '.vimrc',
+    '.lvimrc',
+    '.nvimrc',
+    '.exrc',
+    '.nvimrc.lua',
+    '.exrc.lua',
+  }
+})
 
 -- Blamer
 vim.cmd('let g:blamer_enabled = 1')
