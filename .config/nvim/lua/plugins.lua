@@ -5,23 +5,35 @@ if fn.empty(fn.glob(packer_install_path)) > 0 then
   packer_bootstrap = fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', packer_install_path})
 end
 
-vim.cmd("let g:coq_settings = { 'auto_start': 'shut-up' }")
+--vim.cmd("let g:coq_settings = { 'auto_start': 'shut-up' }")
 
 local plugins = require('packer').startup(function(use)
   -- Package manager
   use 'wbthomason/packer.nvim'
+  -- Per-project config files
+  use {
+    'MunifTanjim/exrc.nvim',
+    requires = {
+      'MunifTanjim/nui.nvim',
+    },
+  }
   -- Startup
   use 'glepnir/dashboard-nvim'
   -- Treesitter for syntax highlighting
-  --use {'nvim-treesitter/nvim-treesitter', { run = vim.fn[':TSUpdate'] }}
+  use {'nvim-treesitter/nvim-treesitter', { run = vim.fn[':TSUpdate'] }}
   -- LSP
   use {
     'williamboman/nvim-lsp-installer',
     -- Completion
-    {'ms-jpq/coq_nvim', { branch = 'coq' }},
-    {'ms-jpq/coq.artifacts', { branch = 'artifacts' }},
-    {'ms-jpq/coq.thirdparty', { branch = '3p' }},
-    {'neovim/nvim-lspconfig'}
+    --{'ms-jpq/coq_nvim', { branch = 'coq' }},
+    --{'ms-jpq/coq.artifacts', { branch = 'artifacts' }},
+    --{'ms-jpq/coq.thirdparty', { branch = '3p' }},
+    {'neovim/nvim-lspconfig'},
+    {'hrsh7th/cmp-nvim-lsp'},
+    {'hrsh7th/cmp-buffer'},
+    {'hrsh7th/cmp-path'},
+    {'hrsh7th/cmp-cmdline'},
+    {'hrsh7th/nvim-cmp'},
   }
   use {
     "folke/trouble.nvim",
@@ -33,14 +45,6 @@ local plugins = require('packer').startup(function(use)
   -- Sessions
   use 'rmagatti/auto-session'
   -- Filesystem tree
-  --use 'preservim/nerdtree'
-  --use {
-    --'kyazdani42/nvim-tree.lua',
-    --requires = {
-      --'kyazdani42/nvim-web-devicons', -- optional, for file icon
-    --},
-    ----tag = 'nightly' -- optional, updated every week. (see issue #1193)
-  --}
   use {
     'nvim-neo-tree/neo-tree.nvim',
     branch = 'v2.x',
@@ -50,12 +54,6 @@ local plugins = require('packer').startup(function(use)
       'MunifTanjim/nui.nvim',
     }
   }
-  -- Icons for NERDTree
-  --use 'ryanoasis/vim-devicons'
-  -- Git integration for NERDTree
-  --use 'Xuyuanp/nerdtree-git-plugin'
-  -- Colorize NERDTree
-  --use 'tiagofumo/vim-nerdtree-syntax-highlight'
   -- Javascript integration
   use 'pangloss/vim-javascript'
   -- Vue syntax highlight
@@ -73,13 +71,6 @@ local plugins = require('packer').startup(function(use)
   use 'editorconfig/editorconfig-vim'
   -- LSP marks in the gutter
   use 'w0rp/ale'
-  -- Per-project config files
-  use {
-    'MunifTanjim/exrc.nvim',
-    requires = {
-      'MunifTanjim/nui.nvim',
-    },
-  }
   -- Fuzzy finder
   use {'junegunn/fzf', { run = vim.fn['fzf#install'] }}
   use 'junegunn/fzf.vim'
@@ -98,13 +89,6 @@ local plugins = require('packer').startup(function(use)
   use 'tpope/vim-surround'
   -- Autoclosing brackets
   use 'jiangmiao/auto-pairs'
-  --use 'vim-scripts/AutoClose'
-  --use {
-    --'LucHermitte/lh-brackets',
-    --requires = {
-      --{'LucHermitte/lh-vim-lib'},
-    --}
-  --}
   -- For writers
   use 'preservim/vim-pencil'
   -- Make multiline changes
@@ -131,16 +115,63 @@ local plugins = require('packer').startup(function(use)
   end
 end)
 
+-- Local config files
+require('exrc').setup({
+  files = {
+    '.vimrc',
+    '.lvimrc',
+    '.nvimrc',
+    '.exrc',
+    '.nvimrc.lua',
+    '.exrc.lua',
+  }
+})
+
+local cmp = require'cmp'
+cmp.setup({
+  snippet = {
+    -- REQUIRED - you must specify a snippet engine
+    expand = function(args)
+      --vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
+       require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
+      -- require('snippy').expand_snippet(args.body) -- For `snippy` users.
+      -- vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
+    end,
+  },
+  window = {
+    -- completion = cmp.config.window.bordered(),
+    -- documentation = cmp.config.window.bordered(),
+  },
+  mapping = cmp.mapping.preset.insert({
+    ['<C-b>'] = cmp.mapping.scroll_docs(-4),
+    ['<C-f>'] = cmp.mapping.scroll_docs(4),
+    ['<C-Space>'] = cmp.mapping.complete(),
+    ['<C-e>'] = cmp.mapping.abort(),
+    ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+  }),
+  sources = cmp.config.sources({
+    { name = 'nvim_lsp' },
+    --{ name = 'vsnip' }, -- For vsnip users.
+     { name = 'luasnip' }, -- For luasnip users.
+    -- { name = 'ultisnips' }, -- For ultisnips users.
+    -- { name = 'snippy' }, -- For snippy users.
+  }, {
+    { name = 'buffer' },
+  })
+})
+
+
 -- Configure LSP servers
 require("nvim-lsp-installer").setup {
   automatic_installation = true,
 }
 local lspconfig = require("lspconfig")
-local coq = require("coq")
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities.textDocument.completion.completionItem.snippetSupport = true
+--local coq = require("coq")
+--local capabilities = vim.lsp.protocol.make_client_capabilities()
+local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+--capabilities.textDocument.completion.completionItem.snippetSupport = true
 -- Here go the server setups
-lspconfig.sumneko_lua.setup(coq.lsp_ensure_capabilities({
+lspconfig.sumneko_lua.setup({
   settings = {
     Lua = {
       diagnostics = {
@@ -148,25 +179,31 @@ lspconfig.sumneko_lua.setup(coq.lsp_ensure_capabilities({
       }
     }
   }
-}))
+})
 local eslint_config = require("lspconfig.server_configurations.eslint")
-lspconfig.eslint.setup(coq.lsp_ensure_capabilities{
+lspconfig.eslint.setup({
+  capabilities = capabilities,
   cmd = { "yarn", "exec", unpack(eslint_config.default_config.cmd) }
 })
-lspconfig.volar.setup(coq.lsp_ensure_capabilities{
+lspconfig.volar.setup({
+  capabilities = capabilities,
   filetypes = {'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue', 'json'}
 })
-lspconfig.ember.setup(coq.lsp_ensure_capabilities{})
-lspconfig.cssls.setup(coq.lsp_ensure_capabilities{
+lspconfig.ember.setup({
+  capabilities = capabilities,
+})
+lspconfig.cssls.setup({
   capabilities = capabilities,
   cmd = { "vscode-css-language-server", "--stdio" },
   filetypes = { "css", "scss", "less" },
 })
-lspconfig.html.setup(coq.lsp_ensure_capabilities{
+lspconfig.html.setup({
   capabilities = capabilities,
 })
-lspconfig.stylelint_lsp.setup(coq.lsp_ensure_capabilities{})
-lspconfig.jsonls.setup(coq.lsp_ensure_capabilities{
+lspconfig.stylelint_lsp.setup({
+  capabilities = capabilities,
+})
+lspconfig.jsonls.setup({
   capabilities = capabilities,
 })
 
@@ -216,35 +253,16 @@ require('auto-session').setup {
 }
 
 -- Treesitter
---require'nvim-treesitter.configs'.setup {
-  ---- A list of parser names, or "all"
-  --ensure_installed = { "javascript", "typescript", "json", "css", "scss", "vue", "lua" },
---}
+require'nvim-treesitter.configs'.setup {
+  -- A list of parser names, or "all"
+  ensure_installed = { "javascript", "typescript", "json", "css", "scss", "vue", "lua" },
+}
 
 -- Telescope
 local telescope = require('telescope')
 telescope.load_extension('fzf')
---telescope.setup{
-  --defaults = {
-    --theme = "ivy"
-  --}
---}
 
--- NERDTree
---vim.cmd('let NERDTreeShowHidden = 1')
---vim.cmd([[autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif]])
-
--- NvimTree
---require('nvim-tree').setup {}
--- Close when it's the last
---vim.api.nvim_create_autocmd("BufEnter", {
-  --nested = true,
-  --callback = function()
-    --if #vim.api.nvim_list_wins() == 1 and vim.api.nvim_buf_get_name(0):match("NvimTree_") ~= nil then
-      --vim.cmd "quit"
-    --end
-  --end
---})
+-- File tree
 require("neo-tree").setup({
   close_if_last_window = true,
   filesystem = {
@@ -253,18 +271,6 @@ require("neo-tree").setup({
     },
     follow_current_file = true,
     use_libuv_file_watcher = true,
-  }
-})
-
--- Local config files
-require('exrc').setup({
-  files = {
-    '.vimrc',
-    '.lvimrc',
-    '.nvimrc',
-    '.exrc',
-    '.nvimrc.lua',
-    '.exrc.lua',
   }
 })
 
