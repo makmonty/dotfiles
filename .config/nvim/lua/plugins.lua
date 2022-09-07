@@ -13,7 +13,7 @@ local plugins = require('packer').startup(function(use)
   -- Startup
   use 'glepnir/dashboard-nvim'
   -- Treesitter for syntax highlighting
-  use {'nvim-treesitter/nvim-treesitter', { run = vim.fn[':TSUpdate'] }}
+  --use {'nvim-treesitter/nvim-treesitter', { run = vim.fn[':TSUpdate'] }}
   -- LSP
   use {
     'williamboman/nvim-lsp-installer',
@@ -216,10 +216,10 @@ require('auto-session').setup {
 }
 
 -- Treesitter
-require'nvim-treesitter.configs'.setup {
-  -- A list of parser names, or "all"
-  ensure_installed = { "javascript", "typescript", "json", "css", "scss", "vue", "lua" },
-}
+--require'nvim-treesitter.configs'.setup {
+  ---- A list of parser names, or "all"
+  --ensure_installed = { "javascript", "typescript", "json", "css", "scss", "vue", "lua" },
+--}
 
 -- Telescope
 local telescope = require('telescope')
