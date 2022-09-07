@@ -13,7 +13,7 @@ local plugins = require('packer').startup(function(use)
   -- Startup
   use 'glepnir/dashboard-nvim'
   -- Treesitter for syntax highlighting
-  --use {'nvim-treesitter/nvim-treesitter', { run = vim.fn[':TSUpdate'] }}
+  use {'nvim-treesitter/nvim-treesitter', { run = vim.fn[':TSUpdate'] }}
   -- LSP
   use {
     'williamboman/nvim-lsp-installer',
@@ -33,14 +33,6 @@ local plugins = require('packer').startup(function(use)
   -- Sessions
   use 'rmagatti/auto-session'
   -- Filesystem tree
-  --use 'preservim/nerdtree'
-  --use {
-    --'kyazdani42/nvim-tree.lua',
-    --requires = {
-      --'kyazdani42/nvim-web-devicons', -- optional, for file icon
-    --},
-    ----tag = 'nightly' -- optional, updated every week. (see issue #1193)
-  --}
   use {
     'nvim-neo-tree/neo-tree.nvim',
     branch = 'v2.x',
@@ -50,12 +42,6 @@ local plugins = require('packer').startup(function(use)
       'MunifTanjim/nui.nvim',
     }
   }
-  -- Icons for NERDTree
-  --use 'ryanoasis/vim-devicons'
-  -- Git integration for NERDTree
-  --use 'Xuyuanp/nerdtree-git-plugin'
-  -- Colorize NERDTree
-  --use 'tiagofumo/vim-nerdtree-syntax-highlight'
   -- Javascript integration
   use 'pangloss/vim-javascript'
   -- Vue syntax highlight
@@ -98,13 +84,6 @@ local plugins = require('packer').startup(function(use)
   use 'tpope/vim-surround'
   -- Autoclosing brackets
   use 'jiangmiao/auto-pairs'
-  --use 'vim-scripts/AutoClose'
-  --use {
-    --'LucHermitte/lh-brackets',
-    --requires = {
-      --{'LucHermitte/lh-vim-lib'},
-    --}
-  --}
   -- For writers
   use 'preservim/vim-pencil'
   -- Make multiline changes
@@ -216,35 +195,16 @@ require('auto-session').setup {
 }
 
 -- Treesitter
---require'nvim-treesitter.configs'.setup {
-  ---- A list of parser names, or "all"
-  --ensure_installed = { "javascript", "typescript", "json", "css", "scss", "vue", "lua" },
---}
+require'nvim-treesitter.configs'.setup {
+  -- A list of parser names, or "all"
+  ensure_installed = { "javascript", "typescript", "json", "css", "scss", "vue", "lua" },
+}
 
 -- Telescope
 local telescope = require('telescope')
 telescope.load_extension('fzf')
---telescope.setup{
-  --defaults = {
-    --theme = "ivy"
-  --}
---}
 
--- NERDTree
---vim.cmd('let NERDTreeShowHidden = 1')
---vim.cmd([[autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif]])
-
--- NvimTree
---require('nvim-tree').setup {}
--- Close when it's the last
---vim.api.nvim_create_autocmd("BufEnter", {
-  --nested = true,
-  --callback = function()
-    --if #vim.api.nvim_list_wins() == 1 and vim.api.nvim_buf_get_name(0):match("NvimTree_") ~= nil then
-      --vim.cmd "quit"
-    --end
-  --end
---})
+-- Filesystem tree
 require("neo-tree").setup({
   close_if_last_window = true,
   filesystem = {
