@@ -11,9 +11,56 @@ local plugins = require('packer').startup(function(use)
   -- Package manager
   use 'wbthomason/packer.nvim'
   -- Startup
-  use 'glepnir/dashboard-nvim'
+  use {
+    'glepnir/dashboard-nvim',
+    config = function()
+      vim.cmd('let g:dashboard_default_executive="fzf"')
+      local dashboard = require'dashboard'
+      dashboard.custom_center = {
+        {
+          icon = '  ',
+          desc = 'Restore last session                    ',
+          shortcut = 'SPC s l',
+          action ='RestoreSession'
+        },
+        {
+          icon = '  ',
+          desc = 'Recent sessions                         ',
+          action =  'Autosession search',
+          shortcut = 'SPC f h'
+        },
+        {
+          icon = '  ',
+          desc = 'Find File                               ',
+          action = 'Telescope find_files find_command=rg,--hidden,--files',
+          shortcut = 'SPC f f'
+        },
+        {
+          icon = '  ',
+          desc ='File Browser                            ',
+          action =  'Telescope file_browser',
+          shortcut = 'SPC f b'
+        },
+        {
+          icon = '  ',
+          desc = 'Find word                               ',
+          action = 'Telescope live_grep',
+          shortcut = 'SPC f w'
+        },
+      }
+    end
+  }
   -- Treesitter for syntax highlighting
-  use {'nvim-treesitter/nvim-treesitter', { run = vim.fn[':TSUpdate'] }}
+  use {
+    'nvim-treesitter/nvim-treesitter',
+    run = vim.fn[':TSUpdate'],
+    config = function()
+      require'nvim-treesitter.configs'.setup{
+        -- A list of parser names, or "all"
+        ensure_installed = { "javascript", "typescript", "json", "css", "scss", "vue", "lua" },
+      }
+    end
+  }
   -- LSP
   use {
     'williamboman/nvim-lsp-installer',
@@ -31,7 +78,15 @@ local plugins = require('packer').startup(function(use)
   use 'srcery-colors/srcery-vim'
   use 'ellisonleao/gruvbox.nvim'
   -- Sessions
-  use 'rmagatti/auto-session'
+  use {
+    'rmagatti/auto-session',
+    config = function()
+      require'auto-session'.setup{
+        auto_save_enabled = true,
+        auto_restore_enabled = false
+      }
+    end
+  }
   -- Filesystem tree
   use {
     'nvim-neo-tree/neo-tree.nvim',
@@ -40,7 +95,19 @@ local plugins = require('packer').startup(function(use)
       'nvim-lua/plenary.nvim',
       'kyazdani42/nvim-web-devicons', -- not strictly required, but recommended
       'MunifTanjim/nui.nvim',
-    }
+    },
+    config = function()
+      require'neo-tree'.setup{
+        close_if_last_window = true,
+        filesystem = {
+          filtered_items = {
+            visible = true,
+          },
+          follow_current_file = true,
+          use_libuv_file_watcher = true,
+        }
+      }
+    end
   }
   -- Javascript integration
   use 'pangloss/vim-javascript'
@@ -58,13 +125,28 @@ local plugins = require('packer').startup(function(use)
   -- Editorconfig integration
   use 'editorconfig/editorconfig-vim'
   -- LSP marks in the gutter
-  use 'w0rp/ale'
+  use {
+    'w0rp/ale',
+    config = 'vim.cmd("let g:ale_fix_on_save = 1")',
+  }
   -- Per-project config files
   use {
     'MunifTanjim/exrc.nvim',
     requires = {
       'MunifTanjim/nui.nvim',
     },
+    config = function()
+      require'exrc'.setup{
+        files = {
+          '.vimrc',
+          '.lvimrc',
+          '.nvimrc',
+          '.exrc',
+          '.nvimrc.lua',
+          '.exrc.lua',
+        }
+      }
+    end
   }
   -- Fuzzy finder
   use {'junegunn/fzf', { run = vim.fn['fzf#install'] }}
@@ -74,7 +156,10 @@ local plugins = require('packer').startup(function(use)
     requires = {
       {'nvim-lua/plenary.nvim'},
       {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' },
-    }
+    },
+    config = function()
+      require'telescope'.load_extension('fzf')
+    end
   }
   -- Show css colors inline
   use 'ap/vim-css-color'
@@ -97,9 +182,22 @@ local plugins = require('packer').startup(function(use)
   -- Handlebars integration
   use 'mustache/vim-mustache-handlebars'
   -- Search in the current window
-  use 'ggandor/leap.nvim'
+  use {
+    'ggandor/leap.nvim',
+    config = function()
+      require'leap'.set_default_keymaps()
+    end
+  }
   -- Indent lines
-  use 'lukas-reineke/indent-blankline.nvim'
+  use {
+    'lukas-reineke/indent-blankline.nvim',
+    config = function()
+      require'indent_blankline'.setup{
+        show_current_context = true,
+        show_current_context_start = true
+      }
+    end
+  }
   -- Bracket colorization
   use 'junegunn/rainbow_parentheses.vim'
 
@@ -148,93 +246,5 @@ lspconfig.stylelint_lsp.setup(coq.lsp_ensure_capabilities{})
 lspconfig.jsonls.setup(coq.lsp_ensure_capabilities{
   capabilities = capabilities,
 })
-
--- ALE Linting
-vim.cmd('let g:ale_fix_on_save = 1')
-
--- Dashboard
-vim.cmd("let g:dashboard_default_executive='fzf'")
-local dashboard = require('dashboard')
-dashboard.custom_center = {
-  {
-    icon = '  ',
-    desc = 'Restore last session                    ',
-    shortcut = 'SPC s l',
-    action ='RestoreSession'
-  },
-  {
-    icon = '  ',
-    desc = 'Recent sessions                         ',
-    action =  'Autosession search',
-    shortcut = 'SPC f h'
-  },
-  {
-    icon = '  ',
-    desc = 'Find File                               ',
-    action = 'Telescope find_files find_command=rg,--hidden,--files',
-    shortcut = 'SPC f f'
-  },
-  {
-    icon = '  ',
-    desc ='File Browser                            ',
-    action =  'Telescope file_browser',
-    shortcut = 'SPC f b'
-  },
-  {
-    icon = '  ',
-    desc = 'Find word                               ',
-    action = 'Telescope live_grep',
-    shortcut = 'SPC f w'
-  },
-}
-
--- Session
-require('auto-session').setup {
-  auto_save_enabled = true,
-  auto_restore_enabled = false
-}
-
--- Treesitter
-require'nvim-treesitter.configs'.setup {
-  -- A list of parser names, or "all"
-  ensure_installed = { "javascript", "typescript", "json", "css", "scss", "vue", "lua" },
-}
-
--- Telescope
-local telescope = require('telescope')
-telescope.load_extension('fzf')
-
--- Filesystem tree
-require("neo-tree").setup({
-  close_if_last_window = true,
-  filesystem = {
-    filtered_items = {
-      visible = true,
-    },
-    follow_current_file = true,
-    use_libuv_file_watcher = true,
-  }
-})
-
--- Local config files
-require('exrc').setup({
-  files = {
-    '.vimrc',
-    '.lvimrc',
-    '.nvimrc',
-    '.exrc',
-    '.nvimrc.lua',
-    '.exrc.lua',
-  }
-})
-
--- Leap
-require('leap').set_default_keymaps()
-
--- Indentation
-require('indent_blankline').setup {
-  show_current_context = true,
-  show_current_context_start = true
-}
 
 return plugins
