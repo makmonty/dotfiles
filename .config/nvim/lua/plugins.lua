@@ -89,7 +89,7 @@ local plugins = require('packer').startup(function(use)
   -- Make multiline changes
   use 'mg979/vim-visual-multi'
   -- Inline git blame
-  use 'APZelos/blamer.nvim'
+  use 'f-person/git-blame.nvim'
   -- Symbols and tags in a sidebar
   use 'liuchengxu/vista.vim'
   -- Comment easily
@@ -227,10 +227,6 @@ require('exrc').setup({
     '.exrc.lua',
   }
 })
-
--- Blamer
-vim.cmd('let g:blamer_enabled = 1')
-vim.cmd('let g:blamer_delay = 500')
 
 -- Leap
 require('leap').set_default_keymaps()
