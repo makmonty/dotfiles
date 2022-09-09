@@ -73,6 +73,16 @@ local plugins = require('packer').startup(function(use)
       'williamboman/mason-lspconfig.nvim',
       config = function()
         require'mason-lspconfig'.setup{
+          ensure_installed = {
+            'eslint-lsp',
+            'lua-language-server',
+            'css-lsp',
+            'html-lsp',
+            'json-lsp',
+            'eslint_d',
+            'typescript-language-server',
+            'vue-language-server',
+          },
           automatic_installation = true,
         }
       end
@@ -84,47 +94,7 @@ local plugins = require('packer').startup(function(use)
     'ms-jpq/coq_nvim',
     branch = 'coq',
     config = function()
-      local lspconfig = require("lspconfig")
-      local coq = require("coq")
-      local capabilities = vim.lsp.protocol.make_client_capabilities()
-      capabilities.textDocument.completion.completionItem.snippetSupport = true
-      -- Here go the server setups
-      lspconfig.sumneko_lua.setup(coq.lsp_ensure_capabilities({
-        settings = {
-          Lua = {
-            diagnostics = {
-              globals = { 'vim' }
-            }
-          }
-        }
-      }))
-      local eslint_config = require("lspconfig.server_configurations.eslint")
-      lspconfig.eslint.setup(coq.lsp_ensure_capabilities{
-        capabilities = capabilities,
-      })
-      lspconfig.volar.setup(coq.lsp_ensure_capabilities{
-        capabilities = capabilities,
-      })
-      lspconfig.ember.setup(coq.lsp_ensure_capabilities{
-        capabilities = capabilities,
-      })
-      lspconfig.cssls.setup(coq.lsp_ensure_capabilities{
-        capabilities = capabilities,
-        cmd = { "vscode-css-language-server", "--stdio" },
-        filetypes = { "css", "scss", "less" },
-      })
-      lspconfig.html.setup(coq.lsp_ensure_capabilities{
-        capabilities = capabilities,
-      })
-      lspconfig.stylelint_lsp.setup(coq.lsp_ensure_capabilities{
-        capabilities = capabilities,
-      })
-      lspconfig.jsonls.setup(coq.lsp_ensure_capabilities{
-        capabilities = capabilities,
-      })
-      lspconfig.tsserver.setup(coq.lsp_ensure_capabilities{
-        capabilities = capabilities,
-      })
+      require'plugins.lsp'
     end,
   }
   use {
@@ -136,8 +106,12 @@ local plugins = require('packer').startup(function(use)
     branch = '3p'
   }
   use {
-    "folke/trouble.nvim",
-    requires = "kyazdani42/nvim-web-devicons",
+    'folke/trouble.nvim',
+    requires = 'kyazdani42/nvim-web-devicons',
+  }
+  use {
+    'romgrk/barbar.nvim',
+    requires = 'kyazdani42/nvim-web-devicons',
   }
   -- Color scheme
   use 'srcery-colors/srcery-vim'
@@ -184,7 +158,18 @@ local plugins = require('packer').startup(function(use)
   -- Git marks in the gutter
   use 'airblade/vim-gitgutter'
   -- Statusbar
-  use 'vim-airline/vim-airline'
+  --use 'vim-airline/vim-airline'
+  use {
+    'nvim-lualine/lualine.nvim',
+    requires = { 'kyazdani42/nvim-web-devicons', opt = true },
+    config = function()
+      require'lualine'.setup{
+        options = {
+          theme = 'gruvbox'
+        }
+      }
+    end
+  }
   -- Typescript integration
   use 'leafgarland/typescript-vim'
   -- Editorconfig integration

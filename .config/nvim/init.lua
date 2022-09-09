@@ -1,7 +1,8 @@
 require('plugins')
 require('mappings')
 require('commands')
-require('tabline')
+-- Replaced by barbar.nvim
+--require('tabline')
 
 vim.cmd('set clipboard=unnamedplus')
 vim.cmd('colorscheme srcery')
