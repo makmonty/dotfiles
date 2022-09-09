@@ -63,12 +63,77 @@ local plugins = require('packer').startup(function(use)
   }
   -- LSP
   use {
-    'williamboman/nvim-lsp-installer',
-    -- Completion
-    {'ms-jpq/coq_nvim', { branch = 'coq' }},
-    {'ms-jpq/coq.artifacts', { branch = 'artifacts' }},
-    {'ms-jpq/coq.thirdparty', { branch = '3p' }},
-    {'neovim/nvim-lspconfig'}
+    {
+      'williamboman/mason.nvim',
+      config = function()
+        require'mason'.setup()
+      end
+    },
+    {
+      'williamboman/mason-lspconfig.nvim',
+      config = function()
+        require'mason-lspconfig'.setup{
+          automatic_installation = true,
+        }
+      end
+    },
+    'neovim/nvim-lspconfig'
+  }
+  -- Completion
+  use {
+    'ms-jpq/coq_nvim',
+    branch = 'coq',
+    config = function()
+      local lspconfig = require("lspconfig")
+      local coq = require("coq")
+      local capabilities = vim.lsp.protocol.make_client_capabilities()
+      capabilities.textDocument.completion.completionItem.snippetSupport = true
+      -- Here go the server setups
+      lspconfig.sumneko_lua.setup(coq.lsp_ensure_capabilities({
+        settings = {
+          Lua = {
+            diagnostics = {
+              globals = { 'vim' }
+            }
+          }
+        }
+      }))
+      local eslint_config = require("lspconfig.server_configurations.eslint")
+      lspconfig.eslint.setup(coq.lsp_ensure_capabilities{
+        capabilities = capabilities,
+      })
+      lspconfig.volar.setup(coq.lsp_ensure_capabilities{
+        capabilities = capabilities,
+      })
+      lspconfig.ember.setup(coq.lsp_ensure_capabilities{
+        capabilities = capabilities,
+      })
+      lspconfig.cssls.setup(coq.lsp_ensure_capabilities{
+        capabilities = capabilities,
+        cmd = { "vscode-css-language-server", "--stdio" },
+        filetypes = { "css", "scss", "less" },
+      })
+      lspconfig.html.setup(coq.lsp_ensure_capabilities{
+        capabilities = capabilities,
+      })
+      lspconfig.stylelint_lsp.setup(coq.lsp_ensure_capabilities{
+        capabilities = capabilities,
+      })
+      lspconfig.jsonls.setup(coq.lsp_ensure_capabilities{
+        capabilities = capabilities,
+      })
+      lspconfig.tsserver.setup(coq.lsp_ensure_capabilities{
+        capabilities = capabilities,
+      })
+    end,
+  }
+  use {
+    'ms-jpq/coq.artifacts',
+    branch = 'artifacts'
+  }
+  use {
+    'ms-jpq/coq.thirdparty',
+    branch = '3p'
   }
   use {
     "folke/trouble.nvim",
@@ -126,7 +191,7 @@ local plugins = require('packer').startup(function(use)
   use 'editorconfig/editorconfig-vim'
   -- LSP marks in the gutter
   use {
-    'w0rp/ale',
+    'dense-analysis/ale',
     config = 'vim.cmd("let g:ale_fix_on_save = 1")',
   }
   -- Per-project config files
@@ -207,44 +272,5 @@ local plugins = require('packer').startup(function(use)
     require('packer').sync()
   end
 end)
-
--- Configure LSP servers
-require("nvim-lsp-installer").setup {
-  automatic_installation = true,
-}
-local lspconfig = require("lspconfig")
-local coq = require("coq")
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities.textDocument.completion.completionItem.snippetSupport = true
--- Here go the server setups
-lspconfig.sumneko_lua.setup(coq.lsp_ensure_capabilities({
-  settings = {
-    Lua = {
-      diagnostics = {
-        globals = { 'vim' }
-      }
-    }
-  }
-}))
-local eslint_config = require("lspconfig.server_configurations.eslint")
-lspconfig.eslint.setup(coq.lsp_ensure_capabilities{
-  cmd = { "yarn", "exec", unpack(eslint_config.default_config.cmd) }
-})
-lspconfig.volar.setup(coq.lsp_ensure_capabilities{
-  filetypes = {'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue', 'json'}
-})
-lspconfig.ember.setup(coq.lsp_ensure_capabilities{})
-lspconfig.cssls.setup(coq.lsp_ensure_capabilities{
-  capabilities = capabilities,
-  cmd = { "vscode-css-language-server", "--stdio" },
-  filetypes = { "css", "scss", "less" },
-})
-lspconfig.html.setup(coq.lsp_ensure_capabilities{
-  capabilities = capabilities,
-})
-lspconfig.stylelint_lsp.setup(coq.lsp_ensure_capabilities{})
-lspconfig.jsonls.setup(coq.lsp_ensure_capabilities{
-  capabilities = capabilities,
-})
 
 return plugins
