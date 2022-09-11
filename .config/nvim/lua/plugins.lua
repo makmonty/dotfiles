@@ -53,7 +53,7 @@ local plugins = require('packer').startup(function(use)
   -- Treesitter for syntax highlighting
   use {
     'nvim-treesitter/nvim-treesitter',
-    run = vim.fn[':TSUpdate'],
+    run = function() require('nvim-treesitter.install').update({ with_sync = true }) end,
     config = function()
       require'nvim-treesitter.configs'.setup{
         -- A list of parser names, or "all"
