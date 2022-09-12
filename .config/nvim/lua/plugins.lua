@@ -157,6 +157,11 @@ local plugins = require('packer').startup(function(use)
   -- Suggestions and completion
   -- Git marks in the gutter
   use 'airblade/vim-gitgutter'
+  -- Git diff
+  use {
+    'sindrets/diffview.nvim',
+    requires = 'nvim-lua/plenary.nvim'
+  }
   -- Statusbar
   --use 'vim-airline/vim-airline'
   use {
