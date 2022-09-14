@@ -1,5 +1,6 @@
 local awful = require("awful")
 
+local theme = "gruvbox"
 -- Themes define colours, icons, font and wallpapers.
 local theme_path = "/home/angel/.config/awesome/theme.lua"
 
@@ -38,23 +39,8 @@ local layouts = {
     -- awful.layout.suit.corner.se,
 }
 
--- Molokai
---local colors = {
-    --red = "#f92672",
-    --green = "#a6e22e",
-    --yellow = "#e6db74",
-    --pink = "#ae81ff"
---}
--- Srcery
-local colors = {
-    red = "#EF2F27",
-    green = "#519F50",
-    yellow = "#FBB829",
-    pink = "#E02C6D"
-
-}
-
 return {
+    theme = theme,
     theme_path = theme_path,
     terminal = terminal,
     terminal_cmd = terminal_cmd,
@@ -64,5 +50,4 @@ return {
     music_player = music_player,
     modkey = modkey,
     layouts = layouts,
-    colors = colors
 }

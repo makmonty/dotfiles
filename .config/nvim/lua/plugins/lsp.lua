@@ -38,7 +38,7 @@ local on_attach = function(client, bufnr)
 
   --autocmds
   vim.cmd('autocmd CursorHold * silent! lua vim.diagnostic.open_float({focus = false})')
-  vim.cmd('autocmd CursorHoldI * silent! lua vim.lsp.buf.signature_help()')
+  --vim.cmd('autocmd CursorHoldI * silent! lua vim.lsp.buf.signature_help()')
 end
 
 local lsp_flags = {
