@@ -114,7 +114,6 @@ local plugins = require('packer').startup(function(use)
     requires = 'kyazdani42/nvim-web-devicons',
   }
   -- Color scheme
-  use 'srcery-colors/srcery-vim'
   use 'ellisonleao/gruvbox.nvim'
   -- Sessions
   use {
@@ -204,8 +203,8 @@ local plugins = require('packer').startup(function(use)
     end
   }
   -- Fuzzy finder
-  use {'junegunn/fzf', { run = vim.fn['fzf#install'] }}
-  use 'junegunn/fzf.vim'
+  --use {'junegunn/fzf', { run = vim.fn['fzf#install'] }}
+  --use 'junegunn/fzf.vim'
   use {
     'nvim-telescope/telescope.nvim',
     requires = {
@@ -215,6 +214,10 @@ local plugins = require('packer').startup(function(use)
     config = function()
       require'telescope'.load_extension('fzf')
     end
+  }
+  use {'ibhagwan/fzf-lua',
+    -- optional for icon support
+    requires = {'kyazdani42/nvim-web-devicons'}
   }
   -- Show css colors inline
   use 'ap/vim-css-color'
