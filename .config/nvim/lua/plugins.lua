@@ -14,40 +14,7 @@ local plugins = require('packer').startup(function(use)
   use {
     'glepnir/dashboard-nvim',
     config = function()
-      vim.cmd('let g:dashboard_default_executive="fzf"')
-      local dashboard = require'dashboard'
-      dashboard.custom_center = {
-        {
-          icon = '  ',
-          desc = 'Restore last session                    ',
-          shortcut = 'SPC s l',
-          action ='RestoreSession'
-        },
-        {
-          icon = '  ',
-          desc = 'Recent sessions                         ',
-          action =  'Autosession search',
-          shortcut = 'SPC f h'
-        },
-        {
-          icon = '  ',
-          desc = 'Find File                               ',
-          action = 'Telescope find_files find_command=rg,--hidden,--files',
-          shortcut = 'SPC f f'
-        },
-        {
-          icon = '  ',
-          desc ='File Browser                            ',
-          action =  'Telescope file_browser',
-          shortcut = 'SPC f b'
-        },
-        {
-          icon = '  ',
-          desc = 'Find word                               ',
-          action = 'Telescope live_grep',
-          shortcut = 'SPC f w'
-        },
-      }
+      require'plugins.dashboard'
     end
   }
   -- Treesitter for syntax highlighting
@@ -55,10 +22,7 @@ local plugins = require('packer').startup(function(use)
     'nvim-treesitter/nvim-treesitter',
     run = function() require('nvim-treesitter.install').update({ with_sync = true }) end,
     config = function()
-      require'nvim-treesitter.configs'.setup{
-        -- A list of parser names, or "all"
-        ensure_installed = { "javascript", "typescript", "json", "css", "scss", "vue", "lua" },
-      }
+      require'plugins.treesitter'
     end
   }
   -- LSP
@@ -135,16 +99,7 @@ local plugins = require('packer').startup(function(use)
       'MunifTanjim/nui.nvim',
     },
     config = function()
-      require'neo-tree'.setup{
-        close_if_last_window = true,
-        filesystem = {
-          filtered_items = {
-            visible = true,
-          },
-          follow_current_file = true,
-          use_libuv_file_watcher = true,
-        }
-      }
+      require'plugins.neotree'
     end
   }
   -- Javascript integration
