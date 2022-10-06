@@ -68,6 +68,7 @@ lspconfig.volar.setup(coq.lsp_ensure_capabilities{
   capabilities = capabilities,
   on_attach = on_attach,
   flags = lsp_flags,
+  filetypes = {'typescript', 'javascript', 'vue'},
 })
 lspconfig.ember.setup(coq.lsp_ensure_capabilities{
   capabilities = capabilities,
