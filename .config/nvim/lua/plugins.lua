@@ -79,6 +79,13 @@ local plugins = require('packer').startup(function(use)
   }
   -- Color scheme
   use 'ellisonleao/gruvbox.nvim'
+  -- Scroll
+  use  {
+    'karb94/neoscroll.nvim',
+    config = function ()
+      require'neoscroll'.setup()
+    end
+  }
   -- Sessions
   use {
     'rmagatti/auto-session',
