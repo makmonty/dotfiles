@@ -79,6 +79,7 @@ local plugins = require('packer').startup(function(use)
   }
   -- Color scheme
   use 'ellisonleao/gruvbox.nvim'
+  use {'srcery-colors/srcery-vim', as = 'srcery'}
   -- Scroll
   use  {
     'karb94/neoscroll.nvim',
