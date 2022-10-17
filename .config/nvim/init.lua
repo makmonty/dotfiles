@@ -1,6 +1,6 @@
 require('plugins')
 require('mappings')
-require('commands')
+--require('commands')
 -- Replaced by barbar.nvim
 --require('tabline')
 
