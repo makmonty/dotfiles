@@ -38,14 +38,14 @@ local plugins = require('packer').startup(function(use)
       config = function()
         require'mason-lspconfig'.setup{
           ensure_installed = {
-            'eslint-lsp',
-            'lua-language-server',
-            'css-lsp',
-            'html-lsp',
-            'json-lsp',
-            'eslint_d',
-            'typescript-language-server',
-            'vue-language-server',
+            'eslint',
+            'sumneko_lua',
+            'cssls',
+            'html',
+            'jsonls',
+            --'eslint_d',
+            'tsserver',
+            'volar',
           },
           automatic_installation = true,
         }
