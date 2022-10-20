@@ -149,10 +149,10 @@ local plugins = require('packer').startup(function(use)
   -- Editorconfig integration
   use 'editorconfig/editorconfig-vim'
   -- LSP marks in the gutter
-  use {
-    'dense-analysis/ale',
-    config = 'vim.cmd("let g:ale_fix_on_save = 1")',
-  }
+  --use {
+    --'dense-analysis/ale',
+    --config = 'vim.cmd("let g:ale_fix_on_save = 1")',
+  --}
   -- Per-project config files
   use {
     'MunifTanjim/exrc.nvim',
