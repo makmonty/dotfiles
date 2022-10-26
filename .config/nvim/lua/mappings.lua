@@ -11,6 +11,9 @@ end
 
 vim.g.mapleader = ','
 
+map('i', '<C-S>', '<C-O>:w<CR>')
+map('n', '<C-S>', ':w<CR>')
+map('n', '<C-S>', ':w<CR>')
 --map('n', '<C-f>', ':BLines<CR>')
 --map('n', '<C-f>', ':Telescope current_buffer_fuzzy_find theme=dropdown<CR>')
 map('n', '<C-f>', ':FzfLua lgrep_curbuf<CR>')
