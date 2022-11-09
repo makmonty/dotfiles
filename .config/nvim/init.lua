@@ -11,4 +11,6 @@ vim.cmd('set mouse=a')
 vim.cmd('set laststatus=3')
 vim.cmd('set updatetime=100')
 vim.o.sessionoptions='blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal'
-
+vim.diagnostic.config {
+  virtual_text = false
+}
