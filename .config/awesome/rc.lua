@@ -12,7 +12,6 @@ local autorunCommands =
     "nm-applet",
     "solaar --window=hide"
 }
-local useNice = false
 
 -- If LuaRocks is installed, make sure that packages installed through it are
 -- found (e.g. lgi). If LuaRocks is not installed, do nothing.
@@ -43,25 +42,7 @@ local colors = RC.vars.colors
 beautiful.init(RC.vars.theme_path)
 
 -- Clients titlebar and decoration
-if useNice then
-    local nice = require("nice")
-    nice {
-        titlebar_items = {
-            left = {"sticky", "ontop", "floating"},
-            middle = "title",
-            right = {"minimize", "maximize", "close"},
-        },
-        titlebar_font = theme.font,
-        close_color = colors.red,
-        maximize_color = colors.green,
-        minimize_color = colors.yellow,
-        ontop_color = colors.pink,
-        sticky_color = colors.pink,
-        floating_color = colors.pink
-    }
-else
-    client.connect_signal("request::titlebars", require('main.titlebar'))
-end
+client.connect_signal("request::titlebars", require('main.titlebar'))
 
 -- This is used later as the default terminal and editor to run.
 terminal = RC.vars.terminal
@@ -164,6 +145,11 @@ awful.rules.rules = {
     {
         rule_any = {
             type = { "normal", "dialog" }
+        },
+        except_any = {
+            class = {
+                --"Steam"
+            }
         },
         properties = { titlebars_enabled = true }
     },
