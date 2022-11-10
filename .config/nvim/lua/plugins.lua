@@ -112,6 +112,10 @@ local plugins = require('packer').startup(function(use)
   }
   -- Color scheme
   use 'ellisonleao/gruvbox.nvim'
+  --use {
+    --'taphill/gruvbox.nvim',
+    --requires = 'tjdevries/colorbuddy.nvim'
+  --}
   use {'srcery-colors/srcery-vim', as = 'srcery'}
   -- Scroll
   use  {
