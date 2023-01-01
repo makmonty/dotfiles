@@ -47,8 +47,13 @@ local lsp_flags = {
   debounce_text_changes = 150,
 }
 
+local setupLsp = function(lsp, options)
+  lsp.setup(coq.lsp_ensure_capabilities(options))
+end
+
 -- Here go the server setups
-lspconfig.sumneko_lua.setup(coq.lsp_ensure_capabilities({
+
+setupLsp(lspconfig.sumneko_lua, {
   settings = {
     Lua = {
       diagnostics = {
@@ -58,10 +63,10 @@ lspconfig.sumneko_lua.setup(coq.lsp_ensure_capabilities({
   },
   on_attach = on_attach,
   flags = lsp_flags,
-}))
-
-lspconfig.eslint.setup(coq.lsp_ensure_capabilities{
+})
+setupLsp(lspconfig.eslint, {
   capabilities = capabilities,
+  flags = lsp_flags,
   on_attach = function(client, bufnr)
     on_attach(client, bufnr)
     --if client.server_capabilities.documentFormattingProvider then
@@ -75,7 +80,6 @@ lspconfig.eslint.setup(coq.lsp_ensure_capabilities{
       --})
     --end
   end,
-  flags = lsp_flags,
   --cmd = { 'eslint_d', "--stdio" },
   --settings = {
     --codeActionOnSave = {
@@ -84,42 +88,117 @@ lspconfig.eslint.setup(coq.lsp_ensure_capabilities{
     --},
   --},
 })
-lspconfig.volar.setup(coq.lsp_ensure_capabilities{
+setupLsp(lspconfig.volar, {
   capabilities = capabilities,
   on_attach = on_attach,
   flags = lsp_flags,
   filetypes = {'typescript', 'javascript', 'vue'},
 })
-lspconfig.ember.setup(coq.lsp_ensure_capabilities{
+setupLsp(lspconfig.ember, {
   capabilities = capabilities,
   on_attach = on_attach,
   flags = lsp_flags,
 })
-lspconfig.cssls.setup(coq.lsp_ensure_capabilities{
+setupLsp(lspconfig.cssls, {
   capabilities = capabilities,
   on_attach = on_attach,
   flags = lsp_flags,
   cmd = { "vscode-css-language-server", "--stdio" },
   filetypes = { "css", "scss", "less" },
 })
-lspconfig.html.setup(coq.lsp_ensure_capabilities{
+setupLsp(lspconfig.html, {
   capabilities = capabilities,
   on_attach = on_attach,
   flags = lsp_flags,
 })
-lspconfig.stylelint_lsp.setup(coq.lsp_ensure_capabilities{
+--setupLsp(lspconfig.stylelint_lsp, {
+  --capabilities = capabilities,
+  --on_attach = on_attach,
+  --flags = lsp_flags,
+--})
+setupLsp(lspconfig.jsonls, {
   capabilities = capabilities,
   on_attach = on_attach,
   flags = lsp_flags,
 })
-lspconfig.jsonls.setup(coq.lsp_ensure_capabilities{
+setupLsp(lspconfig.tsserver, {
   capabilities = capabilities,
   on_attach = on_attach,
   flags = lsp_flags,
 })
-lspconfig.tsserver.setup(coq.lsp_ensure_capabilities{
-  capabilities = capabilities,
-  on_attach = on_attach,
-  flags = lsp_flags,
-})
+
+--lspconfig.sumneko_lua.setup(coq.lsp_ensure_capabilities({
+  --settings = {
+    --Lua = {
+      --diagnostics = {
+        --globals = { 'vim' }
+      --}
+    --}
+  --},
+  --on_attach = on_attach,
+  --flags = lsp_flags,
+--}))
+
+--lspconfig.eslint.setup(coq.lsp_ensure_capabilities{
+  --capabilities = capabilities,
+  --on_attach = function(client, bufnr)
+    --on_attach(client, bufnr)
+    ----if client.server_capabilities.documentFormattingProvider then
+      ----local au_lsp = vim.api.nvim_create_augroup("eslint_lsp", { clear = true })
+      ----vim.api.nvim_create_autocmd("BufWritePre", {
+        ----pattern = "*",
+        ----callback = function()
+          ----vim.lsp.buf.format()
+        ----end,
+        ----group = au_lsp,
+      ----})
+    ----end
+  --end,
+  --flags = lsp_flags,
+  ----cmd = { 'eslint_d', "--stdio" },
+  ----settings = {
+    ----codeActionOnSave = {
+      ----enabled = true,
+      ----mode = 'all',
+    ----},
+  ----},
+--})
+--lspconfig.volar.setup(coq.lsp_ensure_capabilities{
+  --capabilities = capabilities,
+  --on_attach = on_attach,
+  --flags = lsp_flags,
+  --filetypes = {'typescript', 'javascript', 'vue'},
+--})
+--lspconfig.ember.setup(coq.lsp_ensure_capabilities{
+  --capabilities = capabilities,
+  --on_attach = on_attach,
+  --flags = lsp_flags,
+--})
+--lspconfig.cssls.setup(coq.lsp_ensure_capabilities{
+  --capabilities = capabilities,
+  --on_attach = on_attach,
+  --flags = lsp_flags,
+  --cmd = { "vscode-css-language-server", "--stdio" },
+  --filetypes = { "css", "scss", "less" },
+--})
+--lspconfig.html.setup(coq.lsp_ensure_capabilities{
+  --capabilities = capabilities,
+  --on_attach = on_attach,
+  --flags = lsp_flags,
+--})
+--lspconfig.stylelint_lsp.setup(coq.lsp_ensure_capabilities{
+  --capabilities = capabilities,
+  --on_attach = on_attach,
+  --flags = lsp_flags,
+--})
+--lspconfig.jsonls.setup(coq.lsp_ensure_capabilities{
+  --capabilities = capabilities,
+  --on_attach = on_attach,
+  --flags = lsp_flags,
+--})
+--lspconfig.tsserver.setup(coq.lsp_ensure_capabilities{
+  --capabilities = capabilities,
+  --on_attach = on_attach,
+  --flags = lsp_flags,
+--})
 
