@@ -5,7 +5,7 @@ if fn.empty(fn.glob(packer_install_path)) > 0 then
   packer_bootstrap = fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', packer_install_path})
 end
 
-vim.cmd("let g:coq_settings = { 'auto_start': 'shut-up' }")
+--vim.cmd("let g:coq_settings = { 'auto_start': 'shut-up' }")
 
 local plugins = require('packer').startup(function(use)
   -- Package manager
@@ -51,7 +51,12 @@ local plugins = require('packer').startup(function(use)
         }
       end
     },
-    'neovim/nvim-lspconfig'
+    {
+      'neovim/nvim-lspconfig',
+      config = function()
+        require'plugins.lsp'
+      end,
+    }
   }
   -- Null LSP
   use {
@@ -87,21 +92,21 @@ local plugins = require('packer').startup(function(use)
     end
   }
   -- Completion
-  use {
-    'ms-jpq/coq_nvim',
-    branch = 'coq',
-    config = function()
-      require'plugins.lsp'
-    end,
-  }
-  use {
-    'ms-jpq/coq.artifacts',
-    branch = 'artifacts'
-  }
-  use {
-    'ms-jpq/coq.thirdparty',
-    branch = '3p'
-  }
+  --use {
+    --'ms-jpq/coq_nvim',
+    --branch = 'coq',
+    --config = function()
+      --require'plugins.lsp'
+    --end,
+  --}
+  --use {
+    --'ms-jpq/coq.artifacts',
+    --branch = 'artifacts'
+  --}
+  --use {
+    --'ms-jpq/coq.thirdparty',
+    --branch = '3p'
+  --}
   use {
     'folke/trouble.nvim',
     requires = 'kyazdani42/nvim-web-devicons',
