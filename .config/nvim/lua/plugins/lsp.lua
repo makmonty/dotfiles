@@ -1,4 +1,5 @@
-local lspconfig = require("lspconfig")
+local lspconfig = require('lspconfig')
+local util = lspconfig.util
 --local coq = require("coq")
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
@@ -93,12 +94,13 @@ setupLsp(lspconfig.volar, {
   capabilities = capabilities,
   on_attach = on_attach,
   flags = lsp_flags,
-  filetypes = {'typescript', 'javascript', 'vue'},
+  filetypes = { 'vue' }
 })
 setupLsp(lspconfig.ember, {
   capabilities = capabilities,
   on_attach = on_attach,
   flags = lsp_flags,
+  root_dir = util.root_pattern('ember-cli-build.js'),
 })
 setupLsp(lspconfig.cssls, {
   capabilities = capabilities,

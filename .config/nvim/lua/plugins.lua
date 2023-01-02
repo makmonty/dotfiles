@@ -205,7 +205,7 @@ require('lazy').setup({
   --'vim-airline/vim-airline'
   {
     'nvim-lualine/lualine.nvim',
-    dependencies = { 'kyazdani42/nvim-web-devicons', opt = true },
+    dependencies = { 'kyazdani42/nvim-web-devicons' },
     config = function()
       require'lualine'.setup{
         options = {
@@ -301,4 +301,10 @@ require('lazy').setup({
   },
   -- Bracket colorization
   { 'junegunn/rainbow_parentheses.vim' },
+  {
+    'folke/which-key.nvim',
+    config = function()
+      require'which-key'.setup{}
+    end
+  }
 })
