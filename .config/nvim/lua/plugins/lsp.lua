@@ -39,7 +39,7 @@ local on_attach = function(client, bufnr)
   vim.keymap.set('n', '<space>f', vim.lsp.buf.formatting, bufopts)
 
   --autocmds
-  vim.cmd('autocmd CursorHold * silent! lua vim.diagnostic.open_float({focus = false})')
+  vim.cmd('autocmd CursorHold * silent! lua vim.diagnostic.open_float({focus = false, source = true})')
   --vim.cmd('autocmd CursorHoldI * silent! lua vim.lsp.buf.signature_help()')
 end
 
