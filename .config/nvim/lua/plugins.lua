@@ -42,7 +42,7 @@ require('lazy').setup({
       require'mason-lspconfig'.setup{
         ensure_installed = {
           'eslint',
-          'sumneko_lua',
+          'lua_ls',
           'cssls',
           'html',
           'jsonls',

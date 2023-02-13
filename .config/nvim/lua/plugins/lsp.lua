@@ -55,7 +55,7 @@ end
 
 -- Here go the server setups
 
-setupLsp(lspconfig.sumneko_lua, {
+setupLsp(lspconfig.lua_ls, {
   settings = {
     Lua = {
       diagnostics = {
