@@ -258,10 +258,10 @@ require('lazy').setup({
       telescope.load_extension('fzf')
     end
   },
-  {'ibhagwan/fzf-lua',
-    -- optional for icon support
-    dependencies = {'kyazdani42/nvim-web-devicons'}
-  },
+  --{'ibhagwan/fzf-lua',
+  --  -- optional for icon support
+  --  dependencies = {'kyazdani42/nvim-web-devicons'}
+  --},
   -- Show css colors inline
   { 'ap/vim-css-color' },
   -- Underlines the current word and its appearances
