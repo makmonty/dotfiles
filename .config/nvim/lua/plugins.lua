@@ -266,7 +266,14 @@ require('lazy').setup({
     },
     config = function()
       local telescope = require'telescope'
-      telescope.setup{}
+      telescope.setup{
+        defaults = {
+          cache_picker = {
+            num_pickers = -1,
+            limit_entries = 50,
+          }
+        }
+      }
       telescope.load_extension('fzf')
     end
   },
