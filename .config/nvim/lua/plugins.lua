@@ -298,11 +298,23 @@ require('lazy').setup({
   -- Symbols and tags in a sidebar
   { 'liuchengxu/vista.vim' },
   -- Comment easily
-  --{ 'preservim/nerdcommenter' },
   {
     'numToStr/Comment.nvim',
     config = function()
-      require'Comment'.setup()
+      require'Comment'.setup{
+        toggler = {
+          line = '<Leader>cl',
+          block = '<Leader>cb',
+        },
+        opleader = {
+          line = '<Leader>cl',
+          block = '<Leader>cb',
+        },
+        mappings = {
+          basic = true,
+          extra = false,
+        },
+      }
     end
   },
   -- Handlebars integration

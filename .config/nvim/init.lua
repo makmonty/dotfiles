@@ -1,3 +1,4 @@
+require('constants')
 require('plugins')
 require('mappings')
 --require('commands')
