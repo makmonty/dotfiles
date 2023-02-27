@@ -60,6 +60,18 @@ require('lazy').setup({
       --require'plugins.lsp'
     end,
   },
+  {
+    "glepnir/lspsaga.nvim",
+    event = "BufRead",
+    config = function()
+      require("lspsaga").setup({})
+    end,
+    dependencies = {
+      {"nvim-tree/nvim-web-devicons"},
+      --Please make sure you install markdown and markdown_inline parser
+      {"nvim-treesitter/nvim-treesitter"}
+    }
+  },
   -- Null LSP
   {
     'jose-elias-alvarez/null-ls.nvim',
@@ -125,11 +137,11 @@ require('lazy').setup({
 
   {
     'folke/trouble.nvim',
-    dependencies = 'kyazdani42/nvim-web-devicons',
+    dependencies = 'nvim-tree/nvim-web-devicons',
   },
   {
     'romgrk/barbar.nvim',
-    dependencies = 'kyazdani42/nvim-web-devicons',
+    dependencies = 'nvim-tree/nvim-web-devicons',
   },
   -- Color scheme
   {
@@ -173,7 +185,7 @@ require('lazy').setup({
     branch = 'v2.x',
     dependencies = {
       'nvim-lua/plenary.nvim',
-      'kyazdani42/nvim-web-devicons', -- not strictly required, but recommended
+      'nvim-tree/nvim-web-devicons', -- not strictly required, but recommended
       'MunifTanjim/nui.nvim',
     },
     config = function()
@@ -205,7 +217,7 @@ require('lazy').setup({
   --'vim-airline/vim-airline'
   {
     'nvim-lualine/lualine.nvim',
-    dependencies = { 'kyazdani42/nvim-web-devicons' },
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
     config = function()
       require'lualine'.setup{
         options = {
@@ -260,7 +272,7 @@ require('lazy').setup({
   },
   --{'ibhagwan/fzf-lua',
   --  -- optional for icon support
-  --  dependencies = {'kyazdani42/nvim-web-devicons'}
+  --  dependencies = {'nvim-tree/nvim-web-devicons'}
   --},
   -- Show css colors inline
   { 'ap/vim-css-color' },
