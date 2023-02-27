@@ -279,7 +279,13 @@ require('lazy').setup({
   -- Symbols and tags in a sidebar
   { 'liuchengxu/vista.vim' },
   -- Comment easily
-  { 'preservim/nerdcommenter' },
+  --{ 'preservim/nerdcommenter' },
+  {
+    'numToStr/Comment.nvim',
+    config = function()
+      require'Comment'.setup()
+    end
+  },
   -- Handlebars integration
   { 'mustache/vim-mustache-handlebars' },
   -- Search in the current window
