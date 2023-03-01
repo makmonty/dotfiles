@@ -1,4 +1,7 @@
-require('constants')
+local constants = require('constants')
+
+vim.g.mapleader = constants.leader
+
 require('plugins')
 require('mappings')
 --require('commands')
@@ -7,6 +10,7 @@ require('mappings')
 
 vim.cmd('set clipboard=unnamedplus')
 vim.cmd('set number')
+vim.cmd('set relativenumber')
 vim.cmd('set mouse=a')
 vim.cmd('set laststatus=3')
 vim.cmd('set updatetime=100')

@@ -39,8 +39,14 @@ local on_attach = function(client, bufnr)
   vim.keymap.set('n', '<space>f', vim.lsp.buf.formatting, bufopts)
 
   --autocmds
-  vim.cmd('autocmd CursorHold * silent! lua vim.diagnostic.open_float({focus = false, source = true})')
+  -- vim.cmd('autocmd CursorHold * silent! lua vim.diagnostic.open_float({focus = false, source = true})')
   --vim.cmd('autocmd CursorHoldI * silent! lua vim.lsp.buf.signature_help()')
+  local diagnosticGroup = vim.api.nvim_create_augroup('Line diagnostics', { clear = true })
+  vim.api.nvim_create_autocmd('CursorHold', {
+    command = 'Lspsaga show_cursor_diagnostics',
+    group = diagnosticGroup,
+  })
+  -- vim.cmd('autocmd CursorHold * silent! Lspsaga show_cursor_diagnostics')
 end
 
 local lsp_flags = {

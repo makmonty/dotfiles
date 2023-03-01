@@ -101,6 +101,7 @@ require('lazy').setup({
         sources = {
           nullls.builtins.code_actions.eslint_d,
           nullls.builtins.formatting.eslint_d,
+          nullls.builtins.formatting.prettier,
         }
       }
     end
@@ -199,13 +200,17 @@ require('lazy').setup({
   -- Git plugin
   { 'tpope/vim-fugitive' },
   -- Suggestions and completion
-  -- Git marks in the gutter
-  --'airblade/vim-gitgutter'
+  -- Git marks, actions and blame
   {
     'lewis6991/gitsigns.nvim',
     tag = 'release', -- To use the latest release (do not use this if you run Neovim nightly or dev builds!)
     config = function()
-      require('gitsigns').setup()
+      require('gitsigns').setup{
+        current_line_blame = true,
+        current_line_blame_opts = {
+          delay = 500,
+        },
+      }
     end
   },
   -- Git diff
@@ -293,8 +298,6 @@ require('lazy').setup({
   { 'preservim/vim-pencil' },
   -- Make multiline changes
   { 'mg979/vim-visual-multi' },
-  -- Inline git blame
-  { 'f-person/git-blame.nvim' },
   -- Symbols and tags in a sidebar
   { 'liuchengxu/vista.vim' },
   -- Comment easily
