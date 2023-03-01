@@ -99,6 +99,13 @@ require('lazy').setup({
           end
         end,
         sources = {
+          nullls.builtins.code_actions.gitsigns.with({
+            config = {
+              filter_actions = function(title)
+                return title:lower():match("blame") == nil -- filter out blame actions
+              end,
+            },
+          }),
           nullls.builtins.code_actions.eslint_d,
           nullls.builtins.formatting.eslint_d,
           nullls.builtins.formatting.prettierd.with({
