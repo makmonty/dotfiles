@@ -101,7 +101,7 @@ require('lazy').setup({
         sources = {
           nullls.builtins.code_actions.eslint_d,
           nullls.builtins.formatting.eslint_d,
-          nullls.builtins.formatting.prettier,
+          nullls.builtins.formatting.prettierd,
         }
       }
     end

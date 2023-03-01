@@ -43,7 +43,7 @@ local on_attach = function(client, bufnr)
   --vim.cmd('autocmd CursorHoldI * silent! lua vim.lsp.buf.signature_help()')
   local diagnosticGroup = vim.api.nvim_create_augroup('Line diagnostics', { clear = true })
   vim.api.nvim_create_autocmd('CursorHold', {
-    command = 'Lspsaga show_cursor_diagnostics',
+    command = 'Lspsaga show_line_diagnostics',
     group = diagnosticGroup,
   })
   -- vim.cmd('autocmd CursorHold * silent! Lspsaga show_cursor_diagnostics')
