@@ -101,7 +101,22 @@ require('lazy').setup({
         sources = {
           nullls.builtins.code_actions.eslint_d,
           nullls.builtins.formatting.eslint_d,
-          nullls.builtins.formatting.prettierd,
+          nullls.builtins.formatting.prettierd.with({
+            condition = function(utils)
+              return utils.root_has_file({
+                ".prettierrc",
+                ".prettierrc.json",
+                ".prettierrc.yml",
+                ".prettierrc.yaml",
+                ".prettierrc.json5",
+                ".prettierrc.js",
+                ".prettierrc.cjs",
+                ".prettierrc.toml",
+                "prettier.config.js",
+                "prettier.config.cjs",
+              })
+            end
+          }),
         }
       }
     end
