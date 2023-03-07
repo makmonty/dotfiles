@@ -3,7 +3,7 @@ local awful = require("awful")
 local wibox = require("wibox")
 local beautiful = require("beautiful")
 local volume_widget = require("awesome-wm-widgets.volume-widget.volume")
-local session_widget = require("awesome-wm-widgets-makmonty.logout-popup-widget.logout-popup")
+local session_widget = require("awesome-wm-widgets.logout-popup-widget.logout-popup")
 local calendar_widget = require("awesome-wm-widgets.calendar-widget.calendar")
 
 local wibar_height = 30
