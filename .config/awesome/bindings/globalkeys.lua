@@ -190,11 +190,20 @@ local globalkeys = gears.table.join(
     ),
     -- Volume
     awful.key({ }, "XF86AudioRaiseVolume", function()
-        volume_widget:inc(5)
-        volume_popup.launch{}
+        volume_widget:inc(5, function()
+            volume_popup.launch{}
+        end)
     end),
-    awful.key({ }, "XF86AudioLowerVolume", function() volume_widget:dec(5) end),
-    awful.key({ }, "XF86AudioMute", function() volume_widget:toggle() end),
+    awful.key({ }, "XF86AudioLowerVolume", function()
+        volume_widget:dec(5, function()
+            volume_popup.launch{}
+        end)
+    end),
+    awful.key({ }, "XF86AudioMute", function()
+        volume_widget:toggle(function()
+            volume_popup.launch{}
+        end)
+    end),
 
     -- Win+Alt+Left/Right: move client to prev/next tag and switch to it
     awful.key({ modkey, "Mod1" }, "Left",
