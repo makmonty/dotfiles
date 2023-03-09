@@ -39,18 +39,20 @@ local titlebar_extra_button_hover = titlebar_button_hover(theme.primary)
 
 local skin = {}
 
-skin.font          = "sans 10"
+skin.font_face = "sans"
+skin.font_size = "10"
+skin.font          = skin.font_face .. " " .. skin.font_size
 
 skin.bg_normal     = theme.bg
 skin.bg_focus      = theme.bg
 skin.bg_urgent     = theme.danger
 skin.bg_minimize   = theme.bg
-skin.bg_systray    = theme.bg_normal
+skin.bg_systray    = theme.bg
 
 skin.fg_normal     = theme.fg
 skin.fg_focus      = theme.fg
 skin.fg_urgent     = theme.fg
-skin.fg_minimize   = theme.fg
+skin.fg_minimize   = theme.fg_faded
 
 skin.useless_gap   = dpi(0)
 skin.border_width  = 0 --dpi(1)

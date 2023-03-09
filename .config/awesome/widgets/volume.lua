@@ -1,8 +1,8 @@
 local wibox = require("wibox")
 local gears = require("gears")
-local beautiful = require("beautiful")
-local spawn = require("awful.spawn")
-local awesomebuttons = require("awesome-buttons.awesome-buttons")
+local awful = require("awful")
+local theme = require("theme")
+local spawn = awful.spawn
 --local timeout = require("helpers.timer").timeout
 
 local w
@@ -21,7 +21,7 @@ local function get_volume_from_cmd_output(stdout)
     if status == 'off' then return nil end -- Muted
 
     local volume_level = string.match(stdout, "(%d?%d?%d)%%") -- (\d?\d?\d)\%)
-    return string.format("% 3d", volume_level)
+    return tonumber(string.format("% 3d", volume_level))
 end
 
 local function get_volume_async(device, callback)
@@ -35,26 +35,40 @@ local function get_box(args)
     if w then
         return w
     end
+    local box_width = args.width or default_width
+    local box_height = args.height or default_height
 
     w = wibox {
-        bg = beautiful.fg_normal,
+        bg = theme.bg_systray .. '99',
+        fg = '#ffffff',
         max_widget_size = 500,
         ontop = true,
-        height = args.height or default_height,
-        width = args.width or default_width,
+        type = 'notification',
+
+        height = box_height,
+        width = box_width,
         shape = function(cr, width, height)
             gears.shape.rounded_rect(cr, width, height, 8)
         end,
     }
-    w:set_bg('#ffffff33')
+    -- w:set_bg('#66666633')
     return w
 end
 
-
-local function launch(args)
+local function stop_timer()
     if timer ~= nil then
         timer:stop()
     end
+end
+
+local function hide()
+    stop_timer()
+    w.visible = false
+end
+
+local function launch(args)
+    stop_timer()
+
     local box = get_box(args)
     local seconds = args.seconds or 1
 
@@ -63,36 +77,58 @@ local function launch(args)
         local volume_icon
         if volume == nil then
             volume_str = 'Mute'
-            volume_icon = 'volume.svg'
+            volume_icon = 'volume-x.svg'
         else
             volume_str = tostring(volume)
-            volume_icon = 'volume.svg'
+            volume_icon = 'volume-2.svg'
+            if volume == 0 then
+                volume_icon = 'volume-x.svg'
+            elseif volume < 33 then
+                volume_icon = 'volume.svg'
+            elseif volume < 66 then
+                volume_icon = 'volume-1.svg'
+            else
+                volume_icon = 'volume-2.svg'
+            end
         end
+        local screen = awful.screen.focused()
+        local screen_width = screen.geometry.width
+        local screen_height = screen.geometry.height
+
+        box.x = screen_width / 2 - box.width / 2
+        box.y = screen_height / 1.5 - box.height / 2
+
         box:setup {
-            wibox.widget{
-                image = icons_path .. volume_icon,
-                align  = 'center',
-                valign = 'center',
-                widget = wibox.widget.imagebox,
-                forced_height = args.height or default_height,
-                bg = '#ff0000'
+            {
+                wibox.widget{
+                    image = icons_path .. volume_icon,
+                    halign  = 'center',
+                    widget = wibox.widget.imagebox,
+                    bg = '#ff0000'
+                },
+                wibox.widget{
+                    text = tostring(volume_str),
+                    align = "center",
+                    font = theme.font_face .. " normal " .. "14",
+                    widget = wibox.widget.textbox,
+                },
+                align = 'center',
+                layout = wibox.layout.flex.vertical
             },
-            wibox.widget{
-                text = tostring(volume_str),
-                align = "center",
-                widget = wibox.widget.textbox,
-            },
-            layout = wibox.layout.flex.vertical
+            top = 30,
+            widget = wibox.container.margin
         }
         box.visible = true
         timer = gears.timer.start_new(seconds, function()
-            box.visible = false
+            hide()
             return false
         end)
         --timeout(function() box.visible = false end, seconds)
     end)
 end
 
+
 return {
     launch = launch,
+    hide = hide,
 }

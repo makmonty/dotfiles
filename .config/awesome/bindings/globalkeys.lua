@@ -178,13 +178,11 @@ local globalkeys = gears.table.join(
     ),
     -- Music player
     awful.key({ modkey }, "m",
-        --function() awful.util.spawn("rofi -show combi") end,
         function() awful.util.spawn(music_player) end,
         { description = "Music player", group = "launcher"}
     ),
     -- File explorer
     awful.key({ modkey }, "f",
-        --function() awful.util.spawn("rofi -show combi") end,
         function() awful.util.spawn(file_explorer) end,
         { description = "File explorer", group = "launcher"}
     ),

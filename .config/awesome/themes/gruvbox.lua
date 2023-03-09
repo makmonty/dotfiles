@@ -40,6 +40,7 @@ local colors = {
 return {
     bg = colors.dark0,
     fg = colors.light1,
+    fg_faded = colors.light4,
     red = colors.neutral_red,
     green = colors.neutral_green,
     yellow = colors.neutral_yellow,
