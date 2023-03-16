@@ -216,7 +216,7 @@ require('lazy').setup({
     end
   },
   -- Javascript integration
-  { 'pangloss/vim-javascript' },
+  -- { 'pangloss/vim-javascript' },
   -- Vue syntax highlight
   { 'posva/vim-vue' },
   -- Git plugin
