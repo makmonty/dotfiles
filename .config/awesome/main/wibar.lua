@@ -134,6 +134,8 @@ awful.screen.connect_for_each_screen(function(s)
     })
 
     -- Add widgets to the wibox
+    local screen_width = s.geometry.width
+    local screen_height = s.geometry.height
     s.mywibox:setup {
         layout = wibox.layout.align.horizontal,
         spacing = wibar_spacing,
@@ -153,14 +155,14 @@ awful.screen.connect_for_each_screen(function(s)
                 spacing = wibar_spacing,
                 mysystray,
                 --mykeyboardlayout,
-                volume_widget(),
                 wibox.widget.systray(),
+                volume_widget(),
                 mytextclock,
                 s.mylayoutbox,
                 session_widget.widget{
                     bg_color = "#00000033",
-                    width = 1920,
-                    height = 1080,
+                    width = screen_width,
+                    height = screen_height,
                     icon_size = 64,
                     icon_margin = 32,
                     hide_phrase = true
