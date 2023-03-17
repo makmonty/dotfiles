@@ -2,6 +2,8 @@ local wibox = require("wibox")
 local gears = require("gears")
 local awful = require("awful")
 local theme = require("theme")
+local beautiful = require("beautiful")
+local shapes = require("helpers.shapes")
 local spawn = awful.spawn
 --local timeout = require("helpers.timer").timeout
 
@@ -11,8 +13,9 @@ local default_height = 200
 local icons_path = os.getenv("HOME") .. '/.config/awesome/awesome-buttons/icons/'
 
 local timer = nil
+local last_known_volume = 0
 
-local default_device = 'pulse' --args.device or 'pulse'
+local default_device = 'pulse'
 
 local function get_volume_cmd(device) return 'amixer -D ' .. device .. ' sget Master' end
 
@@ -66,6 +69,18 @@ local function hide()
     w.visible = false
 end
 
+local function get_volume_icon(volume)
+    if volume == nil then
+        return 'volume-x.svg'
+    elseif volume < 25 then
+        return 'volume.svg'
+    elseif volume < 75 then
+        return 'volume-1.svg'
+    else
+        return 'volume-2.svg'
+    end
+end
+
 local function launch(args)
     stop_timer()
 
@@ -73,24 +88,12 @@ local function launch(args)
     local seconds = args.seconds or 1
 
     get_volume_async(default_device, function(volume)
-        local volume_str
-        local volume_icon
-        if volume == nil then
-            volume_str = 'Mute'
-            volume_icon = 'volume-x.svg'
-        else
-            volume_str = tostring(volume)
-            volume_icon = 'volume-2.svg'
-            if volume == 0 then
-                volume_icon = 'volume-x.svg'
-            elseif volume < 33 then
-                volume_icon = 'volume.svg'
-            elseif volume < 66 then
-                volume_icon = 'volume-1.svg'
-            else
-                volume_icon = 'volume-2.svg'
-            end
+        if (volume ~= nil) then
+            last_known_volume = volume
         end
+
+        local volume_icon = get_volume_icon(volume)
+
         local screen = awful.screen.focused()
         local screen_width = screen.geometry.width
         local screen_height = screen.geometry.height
@@ -98,24 +101,42 @@ local function launch(args)
         box.x = screen_width / 2 - box.width / 2
         box.y = screen_height / 1.5 - box.height / 2
 
+        local box_margin = 20
+        local item_spacing = 40
+
+        local function get_volume_bar(vol, color)
+            return shapes.pill(color, 10, (box.width - box_margin * 2) * (vol or 0)/100)
+        end
+
         box:setup {
             {
                 wibox.widget{
+                    widget = wibox.widget.imagebox,
                     image = icons_path .. volume_icon,
                     halign  = 'center',
-                    widget = wibox.widget.imagebox,
-                    bg = '#ff0000'
+                    bg = beautiful.bg_normal,
+                    upscale = true,
+                    downscale = true,
+                    forced_height = 100,
+                    stylesheet = 'svg { stroke: '.. beautiful.fg_normal ..'; }',
                 },
+                -- The volume as a bar
                 wibox.widget{
-                    text = tostring(volume_str),
-                    align = "center",
-                    font = theme.font_face .. " normal " .. "14",
-                    widget = wibox.widget.textbox,
+                    widget = wibox.widget.imagebox,
+                    image = volume ~= nil and
+                        get_volume_bar(volume, beautiful.fg_normal) or
+                        get_volume_bar(last_known_volume, beautiful.fg_normal ..'33'),
+                    halign = 'left',
+                    resize = false,
                 },
                 align = 'center',
-                layout = wibox.layout.flex.vertical
+                spacing = item_spacing,
+                layout = wibox.layout.fixed.vertical
             },
-            top = 30,
+            top = box_margin,
+            left = box_margin,
+            right = box_margin,
+            bottom = box_margin,
             widget = wibox.container.margin
         }
         box.visible = true
@@ -123,7 +144,6 @@ local function launch(args)
             hide()
             return false
         end)
-        --timeout(function() box.visible = false end, seconds)
     end)
 end
 
