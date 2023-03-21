@@ -1,0 +1,68 @@
+configuration {
+  show-icons: true;
+  hover-select: true;
+  me-select-entry: "";
+  me-accept-entry: "MousePrimary";
+}
+
+@theme "gruvbox"
+
+* {
+  text-color: @fg;
+  background-color: #00000000;
+  outer-padding: 10px;
+  border: 0;
+  spacing: 0;
+}
+
+window {
+  border-radius: 0px;
+}
+
+mainbox {
+  border-radius: 0px;
+}
+
+inputbar {
+  padding: @outer-padding;
+  background-color: @primary;
+}
+
+prompt {
+  enabled: false;
+}
+
+num-rows {
+  enabled: true;
+  text-color: red;
+  border: 4px;
+  border-color: red;
+}
+
+entry {
+  placeholder: "Search";
+  text-color: @fg-inverted;
+}
+
+listview {
+  background-color: @dark0;
+  scrollbar: true;
+}
+
+scrollbar {
+  width: 4px;
+  handle-width: 4px;
+  handle-color: @primary;
+}
+
+element {
+  orientation: horizontal;
+  spacing: @outer-padding;
+  padding: @outer-padding;
+  cursor: pointer;
+}
+
+element.selected {
+  background-color: @bg-faded;
+}
+
