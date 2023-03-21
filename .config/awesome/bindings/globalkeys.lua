@@ -174,7 +174,7 @@ local globalkeys = gears.table.join(
     awful.key({ "Mod1" }, "space",
         --function() awful.util.spawn("rofi -show combi") end,
         -- function() awful.util.spawn("/home/angel/.config/rofi/bin/launcher_misc") end,
-        function() awful.util.spawn("rofi -config /home/angel/.config/rofi/makmonty.rasi -show drun") end,
+        function() awful.util.spawn("rofi -show drun") end,
 	    { description = "Launch Rofi", group = "launcher"}
     ),
     -- Music player
