@@ -1,0 +1,84 @@
+configuration {
+  hover-select: true;
+  me-select-entry: "";
+  me-accept-entry: "MousePrimary";
+}
+
+@theme "gruvbox"
+
+* {
+  outer-padding: 10px;
+
+  text-color: @fg;
+  background-color: #00000000;
+  border: 0;
+  spacing: 0;
+}
+
+spacer {
+  expand: true;
+}
+
+window {
+  fullscreen: true;
+  background-color: @bg-transparent;
+  children: [ spacer, listview, spacer ];
+}
+
+error-message {
+  background-color: @bg;
+}
+
+error-message textbox {
+  background-color: #00000000;
+}
+
+inputbar {
+  enabled: false;
+  position: center;
+}
+
+num-rows {
+  enabled: false;
+}
+
+container {
+  expand: false;
+  orientation: horizontal;
+  children: [ listview ];
+}
+
+listview {
+  expand: false;
+  layout: horizontal;
+  cycle: true;
+  spacing: 1%;
+  padding: 0 26%;
+}
+
+element {
+  cursor: pointer;
+  border-radius: 1000px;
+  padding: 4% 2.4% 2.2% 2.4%;
+}
+
+element.selected {
+  background-color: @bg-faded;
+}
+
+element-text {
+  cursor: inherit;
+}
+
+element-text.selected {
+  text-color: @primary;
+}
+
+element-icon {
+  cursor: inherit;
+}
+
+element-text {
+  font: "Sans 56";
+  text-color: @fg;
+}

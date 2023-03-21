@@ -62,6 +62,14 @@ element {
   cursor: pointer;
 }
 
+element-text {
+  cursor: inherit;
+}
+
+element-icon {
+  cursor: inherit;
+}
+
 element.selected {
   background-color: @bg-faded;
 }
