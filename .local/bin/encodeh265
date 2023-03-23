@@ -1,0 +1,6 @@
+#!/bin/sh
+ffmpeg -y -i "$1" \
+-c:v libx265 -preset veryfast -crf 27 \
+-profile:v main -g 250 -pix_fmt yuv420p \
+-map 0 \
+-acodec aac -ar 44100 -b:a 320k "$2"
