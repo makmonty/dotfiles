@@ -160,11 +160,14 @@ awful.screen.connect_for_each_screen(function(s)
                 mytextclock,
                 s.mylayoutbox,
                 session_widget.widget{
-                    bg_color = "#00000033",
+                    bg_color = beautiful.bg_transparent,
+                    label_color = beautiful.fg_normal,
+                    accent_color = beautiful.bg_faded,
                     width = screen_width,
                     height = screen_height,
                     icon_size = 64,
                     icon_margin = 32,
+                    icon_spacing = 32,
                     hide_phrase = true
                 },
                 --mysessionwidget

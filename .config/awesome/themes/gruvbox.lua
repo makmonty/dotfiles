@@ -2,6 +2,7 @@ local colors = {
     dark0_hard = "#1d2021",
     dark0 = "#282828",
     dark0_soft = "#32302f",
+    dark0_transparent = '#282828cc',
     dark1 = "#3c3836",
     dark2 = "#504945",
     dark3 = "#665c54",
@@ -39,6 +40,8 @@ local colors = {
 
 return {
     bg = colors.dark0,
+    bg_transparent = colors.dark0_transparent,
+    bg_faded = colors.dark1,
     fg = colors.light1,
     fg_faded = colors.light4,
     red = colors.neutral_red,

@@ -45,6 +45,8 @@ skin.font          = skin.font_face .. " " .. skin.font_size
 
 skin.bg_normal     = theme.bg
 skin.bg_focus      = theme.bg
+skin.bg_faded      = theme.bg_faded
+skin.bg_transparent = theme.bg_transparent
 skin.bg_urgent     = theme.danger
 skin.bg_minimize   = theme.bg
 skin.bg_systray    = theme.bg
