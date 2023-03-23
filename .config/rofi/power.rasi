@@ -1,4 +1,5 @@
 configuration {
+  show-icons: true;
   hover-select: true;
   me-select-entry: "";
   me-accept-entry: "MousePrimary";
@@ -7,9 +8,8 @@ configuration {
 @theme "gruvbox"
 
 * {
-  outer-padding: 10px;
-
   text-color: @fg;
+  color: @fg;
   background-color: #00000000;
   border: 0;
   spacing: 0;
@@ -22,7 +22,11 @@ spacer {
 window {
   fullscreen: true;
   background-color: @bg-transparent;
-  children: [ spacer, listview, spacer ];
+}
+
+mainbox {
+  /* children: [ spacer, container, spacer ]; */
+  children: [ spacer, listview, inputbar, spacer ];
 }
 
 error-message {
@@ -34,8 +38,11 @@ error-message textbox {
 }
 
 inputbar {
-  enabled: false;
-  position: center;
+  children: [ textbox-current-entry ];
+}
+
+textbox-current-entry {
+  text-color: red;
 }
 
 num-rows {
@@ -45,21 +52,27 @@ num-rows {
 container {
   expand: false;
   orientation: horizontal;
-  children: [ listview ];
+  children: [ spacer, listview, spacer ];
 }
 
 listview {
   expand: false;
   layout: horizontal;
-  cycle: true;
+  /* columns: 10; */
+  /* lines: 1; */
+  /* cycle: true; */
   spacing: 1%;
   padding: 0 26%;
 }
 
 element {
   cursor: pointer;
+  padding: 40px;
+  /* background-color: red; */
   border-radius: 1000px;
-  padding: 4% 2.4% 2.2% 2.4%;
+  /* padding: 4% 2.4% 2.2% 2.4%; */
+  children: [ element-icon ];
+  text-color: @fg;
 }
 
 element.selected {
@@ -75,7 +88,14 @@ element-text.selected {
 }
 
 element-icon {
+  enabled: true;
   cursor: inherit;
+  size: 56px;
+  /* squared: true; */
+}
+
+span {
+  background-color: red;
 }
 
 element-text {

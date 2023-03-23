@@ -47,6 +47,8 @@ entry {
 listview {
   background-color: @dark0;
   scrollbar: true;
+  lines: 10;
+  columns: 1;
 }
 
 scrollbar {
