@@ -4,18 +4,20 @@ local awful = require("awful")
 local theme = require("theme")
 local beautiful = require("beautiful")
 local shapes = require("helpers.shapes")
+local maths = require("helpers.maths")
 local spawn = awful.spawn
+local prc2pix = maths.prc2pix
 --local timeout = require("helpers.timer").timeout
 
-local w
-local default_width = 200
-local default_height = 200
+local w = nil
 local icons_path = os.getenv("HOME") .. '/.config/awesome/awesome-buttons/icons/'
 
 local timer = nil
 local last_known_volume = 0
 
 local default_device = 'pulse'
+local default_width = 200
+local default_height = 200
 
 local function get_volume_cmd(device) return 'amixer -D ' .. device .. ' sget Master' end
 
@@ -35,25 +37,25 @@ local function get_volume_async(device, callback)
 end
 
 local function get_box(args)
-    if w then
-        return w
+    if w == nil then
+        w = wibox {}
     end
     local box_width = args.width or default_width
     local box_height = args.height or default_height
 
-    w = wibox {
-        bg = theme.bg_systray .. '99',
-        fg = '#ffffff',
-        max_widget_size = 500,
-        ontop = true,
-        type = 'notification',
+    w.bg = theme.bg_systray .. '99'
+    w.fg = '#ffffff'
+    w.max_widget_size = 500
+    w.ontop = true
+    w.type = 'notification'
 
-        height = box_height,
-        width = box_width,
-        shape = function(cr, width, height)
-            gears.shape.rounded_rect(cr, width, height, 8)
-        end,
-    }
+    w.height = box_height
+    w.width = box_width
+    w.x = args.x
+    w.y = args.y
+    w.shape = function(cr, width, height)
+        gears.shape.rounded_rect(cr, width, height, 8)
+    end
     -- w:set_bg('#66666633')
     return w
 end
@@ -84,7 +86,18 @@ end
 local function launch(args)
     stop_timer()
 
+    local screen = awful.screen.focused()
+    local screen_width = screen.geometry.width
+    local screen_height = screen.geometry.height
+
+    local box_size = prc2pix(11, { screen = screen })
+    args.width = args.width or box_size
+    args.height = args.height or box_size
+    args.x = args.x or screen_width / 2 - args.width / 2
+    args.y = args.y or screen_height / 1.3 - args.height / 2
+
     local box = get_box(args)
+
     local seconds = args.seconds or 1
 
     get_volume_async(default_device, function(volume)
@@ -94,18 +107,12 @@ local function launch(args)
 
         local volume_icon = get_volume_icon(volume)
 
-        local screen = awful.screen.focused()
-        local screen_width = screen.geometry.width
-        local screen_height = screen.geometry.height
-
-        box.x = screen_width / 2 - box.width / 2
-        box.y = screen_height / 1.5 - box.height / 2
-
-        local box_margin = 20
-        local item_spacing = 45
+        local box_margin = prc2pix(1.2, { screen = screen })
 
         local function get_volume_bar(vol, color)
-            return shapes.pill(color, 10, (box.width - box_margin * 2) * (vol or 0)/100)
+            local height = prc2pix(0.6, { screen = screen })
+            local width = (box.width - box_margin * 2) * (vol or 0)/100
+            return shapes.pill(color, height, width)
         end
 
         box:setup {
@@ -118,7 +125,7 @@ local function launch(args)
                     bg = beautiful.bg_normal,
                     upscale = true,
                     downscale = true,
-                    forced_height = 120,
+                    forced_height = prc2pix(6.5, { screen = screen }),
                     stylesheet = 'svg { stroke: '.. beautiful.fg_normal ..'; }',
                 },
                 -- Volume bar
@@ -131,7 +138,6 @@ local function launch(args)
                     resize = false,
                 },
                 align = 'center',
-                -- spacing = item_spacing,
                 layout = wibox.layout.align.vertical
             },
             top = box_margin,
