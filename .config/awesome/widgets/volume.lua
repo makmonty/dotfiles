@@ -74,7 +74,7 @@ local function get_volume_icon(volume)
         return 'volume-x.svg'
     elseif volume < 25 then
         return 'volume.svg'
-    elseif volume < 75 then
+    elseif volume < 50 then
         return 'volume-1.svg'
     else
         return 'volume-2.svg'
@@ -102,7 +102,7 @@ local function launch(args)
         box.y = screen_height / 1.5 - box.height / 2
 
         local box_margin = 20
-        local item_spacing = 40
+        local item_spacing = 45
 
         local function get_volume_bar(vol, color)
             return shapes.pill(color, 10, (box.width - box_margin * 2) * (vol or 0)/100)
@@ -110,28 +110,29 @@ local function launch(args)
 
         box:setup {
             {
-                wibox.widget{
+                -- Icon
+                first = wibox.widget{
                     widget = wibox.widget.imagebox,
                     image = icons_path .. volume_icon,
                     halign  = 'center',
                     bg = beautiful.bg_normal,
                     upscale = true,
                     downscale = true,
-                    forced_height = 100,
+                    forced_height = 120,
                     stylesheet = 'svg { stroke: '.. beautiful.fg_normal ..'; }',
                 },
-                -- The volume as a bar
-                wibox.widget{
+                -- Volume bar
+                third = wibox.widget{
                     widget = wibox.widget.imagebox,
                     image = volume ~= nil and
-                        get_volume_bar(volume, beautiful.fg_normal) or
-                        get_volume_bar(last_known_volume, beautiful.fg_normal ..'33'),
+                        get_volume_bar(volume, beautiful.primary_light) or
+                        get_volume_bar(last_known_volume, beautiful.primary_light..'33'),
                     halign = 'left',
                     resize = false,
                 },
                 align = 'center',
-                spacing = item_spacing,
-                layout = wibox.layout.fixed.vertical
+                -- spacing = item_spacing,
+                layout = wibox.layout.align.vertical
             },
             top = box_margin,
             left = box_margin,

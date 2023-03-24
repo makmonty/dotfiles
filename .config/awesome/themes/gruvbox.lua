@@ -53,5 +53,6 @@ return {
     success = colors.neutral_green,
     warning = colors.neutral_yellow,
     info = colors.neutral_blue,
-    primary = colors.neutral_purple,
+    primary = colors.neutral_green,
+    primary_light = colors.bright_green,
 };

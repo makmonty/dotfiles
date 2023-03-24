@@ -43,6 +43,8 @@ skin.font_face = "sans"
 skin.font_size = "10"
 skin.font          = skin.font_face .. " " .. skin.font_size
 
+skin.primary       = theme.primary
+skin.primary_light = theme.primary_light
 skin.bg_normal     = theme.bg
 skin.bg_focus      = theme.bg
 skin.bg_faded      = theme.bg_faded
