@@ -38,6 +38,9 @@ require('lazy').setup({
   },
   {
     'williamboman/mason-lspconfig.nvim',
+    dependencies = {
+      'willianbomam/mason.nvim',
+    },
     config = function()
       require'mason-lspconfig'.setup{
         ensure_installed = {
@@ -313,7 +316,7 @@ require('lazy').setup({
   -- Underlines the current word and its appearances
   { 'itchyny/vim-cursorword' },
   -- Change easily the surrounding characters
-  { 'tpope/vim-surround' },
+  -- { 'tpope/vim-surround' },
   -- Autoclosing brackets
   { 'jiangmiao/auto-pairs' },
   -- For writers
