@@ -5,6 +5,7 @@ local beautiful = require("beautiful")
 local volume_widget = require("awesome-wm-widgets.volume-widget.volume")
 local session_widget = require("awesome-wm-widgets.logout-popup-widget.logout-popup")
 local calendar_widget = require("awesome-wm-widgets.calendar-widget.calendar")
+local network_widget = require("widgets.wibar.network")
 
 local wibar_height = 30
 local wibar_margin = 5
@@ -157,6 +158,7 @@ awful.screen.connect_for_each_screen(function(s)
                 --mykeyboardlayout,
                 wibox.widget.systray(),
                 volume_widget(),
+                -- network_widget(),
                 mytextclock,
                 s.mylayoutbox,
                 session_widget.widget{

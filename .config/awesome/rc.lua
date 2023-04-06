@@ -21,8 +21,6 @@ pcall(require, "luarocks.loader")
 local gears = require("gears")
 local awful = require("awful")
 require("awful.autofocus")
--- Widget and layout library
-local wibox = require("wibox")
 -- Theme handling library
 local beautiful = require("beautiful")
 -- Enable hotkeys help widget for VIM and other apps
@@ -37,8 +35,6 @@ require("main.error-handling")
 RC = {}
 RC.vars = require("main.user-variables")
 -- Themes define colours, icons, font and wallpapers.
-local theme = require("theme")
-local colors = RC.vars.colors
 beautiful.init(RC.vars.theme_path)
 
 -- Clients titlebar and decoration

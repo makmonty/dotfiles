@@ -50,7 +50,7 @@ skin.bg_focus      = theme.bg
 skin.bg_faded      = theme.bg_faded
 skin.bg_transparent = theme.bg_transparent
 skin.bg_urgent     = theme.danger
-skin.bg_minimize   = theme.bg
+skin.bg_minimize   = theme.bg_faded
 skin.bg_systray    = theme.bg
 
 skin.fg_normal     = theme.fg

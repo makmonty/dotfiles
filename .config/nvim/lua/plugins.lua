@@ -168,13 +168,23 @@ require('lazy').setup({
   },
   -- Color scheme
   {
-    'ellisonleao/gruvbox.nvim',
-    lazy = false,
-    priority = 1000,
+    'catppuccin/nvim',
+    name = 'catppuccin',
     config = function()
-      require'colorscheme'
+      require('catppuccin').setup{
+        flavour = 'mocha'
+      }
+      require('colorscheme')
     end
   },
+  -- {
+  --   'ellisonleao/gruvbox.nvim',
+  --   lazy = false,
+  --   priority = 1000,
+  --   config = function()
+  --     require'colorscheme'
+  --   end
+  -- },
   --{
     --'taphill/gruvbox.nvim',
     --dependencies = 'tjdevries/colorbuddy.nvim'
