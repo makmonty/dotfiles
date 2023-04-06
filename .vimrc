@@ -26,8 +26,9 @@ call plug#end()
 "let g:molokai_original = 1
 "colorscheme molokai
 "colorscheme monokai
-colorscheme srcery
-"hi Normal guibg=NONE ctermbg=NONE
+" colorscheme srcery
+colorscheme catppuccin_mocha
+hi Normal guibg=NONE ctermbg=NONE
 " Solarized (not working)
 "set background=light
 "colorscheme solarized

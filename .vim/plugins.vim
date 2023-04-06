@@ -1,5 +1,5 @@
 " Color scheme
-Plug 'srcery-colors/srcery-vim'
+Plug 'catppuccin/vim', { 'as': 'catppuccin' }
 " Filesystem tree
 Plug 'preservim/nerdtree'
 " Icons for NERDTree
