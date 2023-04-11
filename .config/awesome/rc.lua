@@ -144,7 +144,7 @@ awful.rules.rules = {
         },
         except_any = {
             class = {
-                --"Steam"
+                "Steam"
             }
         },
         properties = { titlebars_enabled = true }
