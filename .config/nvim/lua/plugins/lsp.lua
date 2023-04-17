@@ -135,3 +135,8 @@ setupLsp(lspconfig.tsserver, {
   on_attach = on_attach,
   flags = lsp_flags,
 })
+setupLsp(lspconfig.openscad_lsp, {
+  capabilities = capabilities,
+  on_attach = on_attach,
+  flags = lsp_flags,
+})
