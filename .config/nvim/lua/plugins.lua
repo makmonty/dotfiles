@@ -225,8 +225,6 @@ require('lazy').setup({
       require'plugins.neotree'
     end
   },
-  -- Javascript integration
-  -- { 'pangloss/vim-javascript' },
   -- Vue syntax highlight
   { 'posva/vim-vue' },
   -- Git plugin
