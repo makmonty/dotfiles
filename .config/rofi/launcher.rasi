@@ -1,8 +1,8 @@
 configuration {
   show-icons: true;
-  hover-select: true;
+  /* hover-select: true;
   me-select-entry: "";
-  me-accept-entry: "MousePrimary";
+  me-accept-entry: "MousePrimary"; */
 }
 
 @theme "gruvbox"
