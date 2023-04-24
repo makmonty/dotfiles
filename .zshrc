@@ -143,7 +143,7 @@ ex ()
     fi
 }
 
-nn ()
+nnn ()
 {
     # Block nesting of nnn in subshells
     if [[ "${NNNLVL:-0}" -ge 1 ]]; then
@@ -165,9 +165,12 @@ nn ()
     # stty lwrap undef
     # stty lnext undef
 
+    # Plugin shortcuts
+    export NNN_PLUG='f:finder;o:fzopen;p:preview-tui'
+
     # The backslash allows one to alias n to nnn if desired without making an
     # infinitely recursive alias
-    \nnn -dea "$@"
+    command nnn -earx -P p "$@"
 
     if [ -f "$NNN_TMPFILE" ]; then
             . "$NNN_TMPFILE"
