@@ -4,7 +4,9 @@
   dark0-soft: #32302f;
   dark0-transparent: #282828cc;
   dark1: #3c3836;
+  dark1-transparent: #3c3836cc;
   dark2: #504945;
+  dark2-transparent: #504945cc;
   dark3: #665c54;
   dark4: #7c6f64;
   light0-hard: #f9f5d7;
@@ -38,7 +40,8 @@
   faded-orange: #af3a03;
   gray: #928374;
   bg: @dark0;
-  bg-faded: @dark1;
+  bg-faded: @dark2;
+  bg-faded-transparent: @dark2-transparent;
   bg-inverted: @light1;
   bg-transparent: @dark0-transparent;
   fg: @light1;

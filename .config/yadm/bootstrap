@@ -6,6 +6,24 @@ cd "$HOME"
 
 # Install ZSH
 #sudo apt install -y zsh curl git
+WHICH_ZSH=$(which zsh 2> /dev/null)
+
+if [[ ! -n $WHICH_ZSH ]]; then
+  WHICH_APT=$(which apt 2> /dev/null)
+
+  if [[ -n $WHICH_APT ]]; then
+    sudo apt install -y zsh curl git
+  else
+    WHICH_PACMAN=$(which pacman 2> /dev/null)
+
+    if [[ -n $WHICH_PACMAN ]]; then
+      sudo pacman -Syu zsh curl git
+    else
+      echo "NO SUPPORTED PACKAGE MANAGER FOUND"
+      exit 1
+    fi
+  fi
+fi
 
 # Install oh-my-zsh
 rm -rf ~/.oh-my-zsh
@@ -20,4 +38,4 @@ yadm submodule update --recursive --init
 cp ~/.config/rofi/themes/rofi-themes/themes/* ~/.config/rofi/themes
 
 # Make ZSH the default shell
-chsh -s $(which zsh)
+chsh -s $WHICH_ZSH

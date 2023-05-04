@@ -38,11 +38,18 @@ error-message textbox {
 }
 
 inputbar {
+  orientation: horizontal;
+  children: [ box ];
+}
+
+box {
   children: [ textbox-current-entry ];
 }
 
 textbox-current-entry {
-  text-color: red;
+  text-color: @fg;
+  horizontal-align: 0.5;
+  padding: 5% 0 0 0;
 }
 
 num-rows {
@@ -62,7 +69,8 @@ listview {
   /* lines: 1; */
   /* cycle: true; */
   spacing: 1%;
-  padding: 0 26%;
+  padding: 0 30%;
+  horizontal-align: 0.5;
 }
 
 element {
@@ -76,7 +84,7 @@ element {
 }
 
 element.selected {
-  background-color: @bg-faded;
+  background-color: @bg-faded-transparent;
 }
 
 element-text {
