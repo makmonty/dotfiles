@@ -8,6 +8,7 @@ require('mappings')
 -- Replaced by barbar.nvim
 --require('tabline')
 
+vim.cmd('set termguicolors')
 vim.cmd('set clipboard=unnamedplus')
 vim.cmd('set number')
 vim.cmd('set relativenumber')
