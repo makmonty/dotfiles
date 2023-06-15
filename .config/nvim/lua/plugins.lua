@@ -64,7 +64,15 @@ require('lazy').setup({
     "glepnir/lspsaga.nvim",
     event = "BufRead",
     config = function()
-      require("lspsaga").setup({})
+      require("lspsaga").setup({
+        lightbulb = {
+          enable = true,
+          enable_in_insert = true,
+          sign = true,
+          sign_priority = 40,
+          virtual_text = false,
+        },
+      })
     end,
     dependencies = {
       {"nvim-tree/nvim-web-devicons"},
@@ -296,7 +304,8 @@ require('lazy').setup({
       { 'nvim-lua/plenary.nvim' },
       {
         'nvim-telescope/telescope-fzf-native.nvim',
-        build = 'make',
+        build = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build',
+
       },
     },
     config = function()
