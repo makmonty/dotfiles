@@ -15,12 +15,12 @@ vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup({
   -- Startup
-  {
-    'glepnir/dashboard-nvim',
-    config = function()
-      require'plugins.dashboard'
-    end
-  },
+  -- {
+  --   'glepnir/dashboard-nvim',
+  --   config = function()
+  --     require'plugins.dashboard'
+  --   end
+  -- },
   -- Treesitter for syntax highlighting
   {
     'nvim-treesitter/nvim-treesitter',
@@ -170,10 +170,10 @@ require('lazy').setup({
     'folke/trouble.nvim',
     dependencies = 'nvim-tree/nvim-web-devicons',
   },
-  {
-    'romgrk/barbar.nvim',
-    dependencies = 'nvim-tree/nvim-web-devicons',
-  },
+  -- {
+  --   'romgrk/barbar.nvim',
+  --   dependencies = 'nvim-tree/nvim-web-devicons',
+  -- },
   -- Color scheme
   {
     'catppuccin/nvim',
