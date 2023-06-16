@@ -18,7 +18,7 @@ require('plugins')
 require('mappings')
 --require('commands')
 -- Replaced by barbar.nvim
-require('tabline')
+-- require('tabline')
 
 vim.o.sessionoptions='blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal'
 vim.diagnostic.config {

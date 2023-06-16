@@ -170,6 +170,15 @@ require('lazy').setup({
     'folke/trouble.nvim',
     dependencies = 'nvim-tree/nvim-web-devicons',
   },
+  -- Tab management
+  {
+    'nanozuki/tabby.nvim',
+    config = function()
+      require('tabby.tabline').use_preset('tab_only', {
+        nerdfont = true,
+      })
+    end,
+  },
   -- {
   --   'romgrk/barbar.nvim',
   --   dependencies = 'nvim-tree/nvim-web-devicons',
@@ -422,5 +431,21 @@ require('lazy').setup({
     config = function()
       require'which-key'.setup{}
     end
-  }
+  },
+  -- AI suggestions
+  -- ChatGPT
+  {
+    'jackMort/ChatGPT.nvim',
+    event = 'VeryLazy',
+    config = function()
+      require('chatgpt').setup{
+        api_key_cmd = 'cat /Users/angel/.chatgpt',
+      }
+    end,
+    dependencies = {
+      'MunifTanjim/nui.nvim',
+      'nvim-lua/plenary.nvim',
+      'nvim-telescope/telescope.nvim',
+    },
+  },
 })
