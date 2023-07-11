@@ -22,6 +22,13 @@ require('lazy').setup({
   --   end
   -- },
   -- Treesitter for syntax highlighting
+  -- Startup time
+  {
+    url = 'https://git.sr.ht/~henriquehbr/nvim-startup.lua',
+    config = function()
+      require 'nvim-startup'.setup()
+    end
+  },
   {
     'nvim-treesitter/nvim-treesitter',
     build = function() require('nvim-treesitter.install').update({ with_sync = true }) end,
@@ -439,7 +446,7 @@ require('lazy').setup({
     event = 'VeryLazy',
     config = function()
       require('chatgpt').setup{
-        api_key_cmd = 'cat /Users/angel/.chatgpt',
+        api_key_cmd = 'cat /home/angel/.chatgpt',
       }
     end,
     dependencies = {
