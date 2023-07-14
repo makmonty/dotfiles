@@ -5,8 +5,14 @@
     "width": 1920, // Waybar width
     "spacing": 0, // Gaps between modules (4px)
     // Choose the order of the modules
+
+    // WITH HYPRLAND
     "modules-left": ["wlr/workspaces", "hyprland/submap", "sway/scratchpad", "custom/media"],
     "modules-center": ["hyprland/window"],
+    // WITH WAYFIRE
+    //"modules-left": ["wlr/workspaces" "sway/scratchpad", "custom/media"],
+    //"modules-center": [],
+
     "modules-right": ["mpd", "idle_inhibitor", "pulseaudio", "network", "cpu", "memory", "temperature", "backlight", "tray", "clock"],
     // Modules configuration
     "wlr/workspaces": {
