@@ -1,0 +1,8 @@
+{
+  "include": [
+    "./config"
+  ],
+  // WITH WAYFIRE
+  "modules-left": ["wlr/workspaces", "sway/scratchpad", "custom/media"],
+  "modules-center": [],
+}

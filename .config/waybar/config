@@ -2,55 +2,13 @@
     // "layer": "top", // Waybar at top layer
     // "position": "bottom", // Waybar position (top|bottom|left|right)
     "height": 30, // Waybar height (to be removed for auto height)
-    "width": 1920, // Waybar width
+    //"width": 1920, // Waybar width
     "spacing": 0, // Gaps between modules (4px)
     // Choose the order of the modules
 
-    // WITH HYPRLAND
-    "modules-left": ["wlr/workspaces", "hyprland/submap", "sway/scratchpad", "custom/media"],
-    "modules-center": ["hyprland/window"],
-    // WITH WAYFIRE
-    //"modules-left": ["wlr/workspaces" "sway/scratchpad", "custom/media"],
-    //"modules-center": [],
-
     "modules-right": ["mpd", "idle_inhibitor", "pulseaudio", "network", "cpu", "memory", "temperature", "backlight", "tray", "clock"],
     // Modules configuration
-    "wlr/workspaces": {
-        "on-click": "activate",
-        "format": "{icon}",
-        "format-icons": {
-            "1": "",
-            "2": "",
-            "3": "",
-            "4": "",
-            "5": "",
-            "active": "",
-            "default": ""
-        }
-    },
-    "hyprland/window": {
-        "max-length": 200,
-        "separate-outputs": true
-    },
-    "keyboard-state": {
-        "numlock": true,
-        "capslock": true,
-        "format": "{name} {icon}",
-        "format-icons": {
-            "locked": "",
-            "unlocked": ""
-        }
-    },
-    "hyprland/submap": {
-        "format": "{}"
-    },
-    "sway/scratchpad": {
-        "format": "{icon} {count}",
-        "show-empty": false,
-        "format-icons": ["", ""],
-        "tooltip": true,
-        "tooltip-format": "{app}: {title}"
-    },
+
     "mpd": {
         "format": "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ⸨{songPosition}|{queueLength}⸩ {volume}% ",
         "format-disconnected": "Disconnected ",
