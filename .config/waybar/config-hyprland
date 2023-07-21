@@ -1,6 +1,6 @@
 {
   "include": [
-    "./config"
+    "~/.config/waybar/config"
   ],
   // WITH HYPRLAND
   "modules-left": ["wlr/workspaces", "hyprland/submap"],
