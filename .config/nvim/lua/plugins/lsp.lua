@@ -140,3 +140,8 @@ setupLsp(lspconfig.openscad_lsp, {
   on_attach = on_attach,
   flags = lsp_flags,
 })
+setupLsp(lspconfig.clangd, {
+  capabilities = capabilities,
+  on_attach = on_attach,
+  flags = lsp_flags,
+})
