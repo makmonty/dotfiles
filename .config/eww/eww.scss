@@ -1,3 +1,22 @@
 .topbar {
+  font-size: 14px;
   background: transparent;
+  .topbarbox {
+    padding: 6px;
+  }
+}
+
+.powerbox {
+  background: #333;
+  border-radius: 99999px;
+  padding: 2px 8px;
+
+  button {
+    background: transparent;
+    border: none;
+  }
+
+  .powerbutton {
+    padding: 7px 0px 3px 0px;
+  }
 }

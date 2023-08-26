@@ -15,16 +15,24 @@
 
 (defwidget bar []
   (box
+    :class "topbarbox"
     :orientation "horizontal"
-    :halign "end"
-    :space-evenly false
-    (timewidget)
-    (sessionwidget)
+    :halign "fill"
+    (box
+      :class "powerbox"
+      :orientation "horizontal"
+      :halign "end"
+      :space-evenly false
+      :spacing 5
+      (timewidget)
+      (sessionwidget)
+    )
   )
 )
 
 (defwidget sessionwidget []
   (button
+    :class "powerbutton"
     :onclick "wlogout &"
     "⏻"
   )
