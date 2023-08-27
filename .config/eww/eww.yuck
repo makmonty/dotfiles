@@ -1,16 +1,63 @@
-(defwindow example
-           :geometry (geometry :x "0%"
-                               :y "20px"
-                               :width "90%"
-                               :height "30px"
-                               :anchor "top center")
-           :stacking "fg"
-  (greeter :text "Say hello!"
-           :name "Tim")
+
+
+(defwindow topbar
+          :geometry (geometry :x "0%"
+                              :y "0%"
+                              :width "100%"
+                              :height "30px"
+                              :anchor "top center")
+          :stacking "fg"
+          :focusable false
+          :monitor 0
+          :exclusive true
+  (bar)
+)
+
+(defwidget bar []
+  (box
+    :class "topbarbox"
+    :orientation "horizontal"
+    :halign "fill"
+    (box
+      :class "powerbox"
+      :orientation "horizontal"
+      :halign "end"
+      :space-evenly false
+      :spacing 5
+      (timewidget)
+      (sessionwidget)
+    )
   )
-(defwidget greeter [?text name]
-  (box :orientation "horizontal"
-       :halign "center"
-    text
-    (button :onclick "notify-send 'Hello' 'Hello, ${name}'"
-      "Greet")))
+)
+
+(defwidget sessionwidget []
+  (button
+    :class "powerbutton"
+    :onclick "wlogout &"
+    "⏻"
+  )
+)
+
+(defwidget timewidget []
+  (button
+    :onclick "eww open calendar"
+    time
+  )
+)
+
+(defpoll time :interval "10s"
+  "date '+%H:%M %b %d, %Y'")
+
+(defwindow calendar
+  :geometry (geometry :anchor "top right")
+  :stacking "fg"
+  :focusable true
+  :monitor 0
+  (calendarwidget)
+)
+
+(defwidget calendarwidget []
+  (calendar
+    :onclick "eww close calendar"
+  )
+)
