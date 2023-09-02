@@ -1,6 +1,6 @@
 local autorunCommands =
 {
-    "xrandr --output HDMI-0 --left-of DP-3",
+    "xrandr --output DP-3 --left-of HDMI-0",
     "xsettingsd",
     "lxpolkit",
     "picom --experimental-backends --backend glx -b",
