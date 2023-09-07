@@ -7,4 +7,5 @@ yay -S \
 	wayland \
 	swaylock swayidle waybar wlogout \
 	hyprland-nvidia hyprpaper \
+	xdg-desktop-portal-hyprland \
 	#wayfire wayfire-plugins-extra wcm wf-config wf-shell \
