@@ -3,7 +3,7 @@
     "~/.config/waybar/config"
   ],
   // WITH HYPRLAND
-  "modules-left": ["wlr/workspaces", "hyprland/submap"],
+  "modules-left": ["hyprland/workspaces", "hyprland/submap"],
   "modules-center": ["hyprland/window"],
 
   // Modules configuration
