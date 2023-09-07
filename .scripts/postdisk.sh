@@ -3,7 +3,17 @@
 read -p "New username: " newusername
 read -p "Password: " newuserpassword
 
-pacstrap -K /mnt base linux linux-firmware vim networkmanager man-db man-pages texinfo sudo openssh git base-devel fakeroot make gcc pkg-config gvfs gvfs-mtp gvfs-smb sshfs which grub efibootmgr os-prober zsh xdg-user-dirs pipewire pipewire-audio pipewire-pulse wireplumber bluez bluez-utils neovim
+pacstrap -K /mnt base linux linux-firmware \
+	man-db man-pages texinfo \
+	sudo openssh git base-devel fakeroot make gcc pkg-config \
+	gvfs gvfs-mtp gvfs-smb sshfs \
+	which zsh \
+	grub efibootmgr os-prober \
+	xdg-user-dirs \
+	pipewire pipewire-audio pipewire-pulse wireplumber bluez bluez-utils \
+	vim neovim ripgrep \
+	networkmanager \
+	unzip \
 
 genfstab -U /mnt >> /mnt/etc/fstab
 arch-chroot /mnt << EOF
