@@ -11,7 +11,7 @@ pacstrap -K /mnt base linux linux-firmware \
 	grub efibootmgr os-prober \
 	xdg-user-dirs \
 	pipewire pipewire-audio pipewire-pulse wireplumber bluez bluez-utils \
-	vim neovim ripgrep \
+	vim neovim ripgrep tree-sitter \
 	networkmanager \
 	unzip \
 
