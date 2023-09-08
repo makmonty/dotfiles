@@ -10,6 +10,7 @@ yay -S \
 	gthumb \
 	ttf-meslo ttf-nerd-fonts-symbols \
 	papirus-icon-theme \
+	cups ghostscript \
 
 sudo systemctl enable sddm
 sudo systemctl start sddm
