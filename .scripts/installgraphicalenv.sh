@@ -2,7 +2,7 @@
 
 yay -S \
 	nvidia nvidia-utils vulkan-tools \
-	sddm \
+	sddm chili-sddm-theme \
 	xfce4 awesome-git \
 	xdg-desktop-portal-gtk \
 	network-manager-applet nm-connection-editor \
