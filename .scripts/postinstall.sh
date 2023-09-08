@@ -8,5 +8,5 @@ cd yay
 makepkg -si
 
 # Services
-#sudo systemctl start dhcpcd
+sudo systemctl enable NetworkManager
 sudo systemctl start NetworkManager

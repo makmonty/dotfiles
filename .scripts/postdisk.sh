@@ -39,7 +39,4 @@ useradd -m -G wheel,users -s /bin/zsh $newusername
 passwd $newusername
 $newuserpassword
 $newuserpassword
-
-sudo systemctl enable NetworkManager
-#sudo systemctl enable dhcpcd
 EOF

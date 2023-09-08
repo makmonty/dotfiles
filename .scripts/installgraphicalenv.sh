@@ -8,6 +8,7 @@ yay -S \
 	network-manager-applet nm-connection-editor \
 	kitty blueman polkit lxsession-gtk3 lxappearance firefox \
 	ttf-meslo ttf-nerd-fonts-symbols \
+	papirus-icon-theme \
 
 sudo systemctl enable sddm
 sudo systemctl start sddm
