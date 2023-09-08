@@ -7,6 +7,7 @@ yay -S \
 	xdg-desktop-portal-gtk \
 	network-manager-applet nm-connection-editor \
 	kitty blueman polkit lxsession-gtk3 lxappearance firefox \
+	gthumb \
 	ttf-meslo ttf-nerd-fonts-symbols \
 	papirus-icon-theme \
 
