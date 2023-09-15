@@ -5,7 +5,7 @@ sudo pacman -R nvidia
 yay -S \
 	nvidia-dkms \
 	wayland \
-	swaylock swayidle waybar wlogout \
+	waylock swayidle waybar wlogout \
 	hyprland-nvidia hyprpaper \
 	xdg-desktop-portal-hyprland \
 	xorg-xhost \
