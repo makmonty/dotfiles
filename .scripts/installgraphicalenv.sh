@@ -8,6 +8,7 @@ yay -S \
 	network-manager-applet nm-connection-editor \
 	kitty blueman polkit lxsession-gtk3 lxappearance firefox \
 	gthumb \
+	dunst \
 	ttf-meslo ttf-nerd-fonts-symbols \
 	papirus-icon-theme \
 	cups ghostscript \
