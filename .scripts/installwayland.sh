@@ -9,4 +9,5 @@ yay -S \
 	hyprland-nvidia hyprpaper \
 	xdg-desktop-portal-hyprland \
 	xorg-xhost \
+	wdisplays \
 	#wayfire wayfire-plugins-extra wcm wf-config wf-shell \
