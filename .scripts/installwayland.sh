@@ -10,4 +10,5 @@ yay -S \
 	xdg-desktop-portal-hyprland \
 	xorg-xhost \
 	wdisplays \
+	wl-clipboard \
 	#wayfire wayfire-plugins-extra wcm wf-config wf-shell \
