@@ -10,6 +10,7 @@ yay -S \
 	firefox \
 	gthumb \
 	dunst \
+	system-config-users \
 	ttf-meslo ttf-nerd-fonts-symbols \
 	papirus-icon-theme \
 	cups ghostscript \
