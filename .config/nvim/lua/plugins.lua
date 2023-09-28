@@ -432,8 +432,9 @@ require('lazy').setup({
   -- Indent lines
   {
     'lukas-reineke/indent-blankline.nvim',
+    main = 'ibl',
     config = function()
-      require'indent_blankline'.setup{
+      require'ibl'.setup{
         show_current_context = true,
         show_current_context_start = true
       }
