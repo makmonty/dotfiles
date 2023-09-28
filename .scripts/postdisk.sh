@@ -9,6 +9,7 @@ pacstrap -K /mnt base linux linux-firmware \
 	gvfs gvfs-mtp gvfs-smb sshfs \
 	which zsh \
 	grub efibootmgr os-prober \
+	ntfs-3g \
 	xdg-user-dirs \
 	pipewire pipewire-audio pipewire-pulse wireplumber bluez bluez-utils \
 	vim neovim ripgrep tree-sitter \
@@ -39,7 +40,4 @@ useradd -m -G wheel,users -s /bin/zsh $newusername
 passwd $newusername
 $newuserpassword
 $newuserpassword
-
-sudo systemctl enable NetworkManager
-#sudo systemctl enable dhcpcd
 EOF
