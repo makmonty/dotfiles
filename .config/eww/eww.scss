@@ -22,7 +22,14 @@
 }
 
 .volume_popup {
+  border-radius: 8px;
+  opacity: 0.8;
+
   .icon {
     font-size: 100px;
+  }
+
+  .bar-container {
+    padding: 5px;
   }
 }

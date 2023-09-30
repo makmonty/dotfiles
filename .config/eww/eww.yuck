@@ -67,15 +67,32 @@
 )
 
 (defwindow volume_popup
-  :geometry (geometry :x "50%" :y "50%" :width "200px" :height "200px" :anchor "top center")
+  :geometry (geometry :x "20%" :y "50%" :width "200px" :height "220px" :anchor "top left")
   :stacking "fg"
   :focusable false
   :monitor 0
   (popup
-    (label
-      :class "icon"
-      :text "🔊"
+    (box
+      :orientation "vertical"
+      :space-evenly false
+      (label
+        :class "icon"
+        :vexpand true
+        :text "🔊"
+      )
+      (box
+        :vexpand false
+
+        (progress
+          :value 50
+        )
+      )
+      volume_level
+      close_volume
     )
   )
 )
-(deflisten close_volume "eww close volume_popup")
+
+(deflisten close_volume "sleep 2 && eww close volume_popup")
+
+(deflisten volume_level "pulseaudio-ctl | grep 'Volume level' | grep -o [0-9]\+ %")
