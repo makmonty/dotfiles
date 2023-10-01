@@ -1,0 +1,10 @@
+.volume-container {
+  padding: 15px;
+}
+
+.volume-popup .label {
+  font-size: 100px;
+}
+
+.volume-popup progress {
+}
