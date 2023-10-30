@@ -10,11 +10,12 @@ yay -S \
 	firefox \
 	gthumb \
 	dunst \
+	galculator mousepad \
 	system-config-users \
 	ttf-meslo ttf-nerd-fonts-symbols \
 	papirus-icon-theme \
 	cups ghostscript \
-	gammastep \
+	gammastep
 
 sudo systemctl enable sddm
 sudo systemctl start sddm
