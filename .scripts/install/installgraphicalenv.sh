@@ -4,6 +4,7 @@ yay -S \
 	nvidia nvidia-utils vulkan-tools \
 	sddm chili-sddm-theme \
 	xfce4 awesome-git \
+	thunar thunar-archive-plugin file-roller \
 	xdg-desktop-portal-gtk \
 	network-manager-applet nm-connection-editor \
 	kitty blueman polkit lxsession-gtk3 lxappearance gnome-tweaks \
