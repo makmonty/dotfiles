@@ -1,3 +1,4 @@
+import App from 'resource:///com/github/Aylur/ags/app.js';
 import { volumePopup, volumeTrigger } from './volume.js';
 
 export default {
@@ -7,7 +8,7 @@ export default {
   notificationPopupTimeout: 5000, // milliseconds
   cacheNotificationActions: false,
   maxStreamVolume: 1.0, // float
-  style: ags.App.configDir + '/style.css',
+  style: App.configDir + '/style.css',
   windows: [
     // NOTE: the window will still render, if you don't pass it here
     // but if you don't, the window can't be toggled through ags.App or cli

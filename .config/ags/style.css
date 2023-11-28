@@ -2,6 +2,10 @@
   padding: 15px;
 }
 
+.volume-popup {
+  background-color: @theme_bg_color;
+}
+
 .volume-popup .label {
   font-size: 100px;
 }
