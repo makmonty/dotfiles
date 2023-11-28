@@ -7,6 +7,8 @@ vim.cmd('set termguicolors')
 vim.cmd('set clipboard=unnamedplus')
 vim.cmd('set laststatus=3')
 vim.cmd('set updatetime=100')
+vim.cmd('set ignorecase')
+vim.cmd('set smartcase')
 -- Folds
 vim.cmd('set foldmethod=expr') -- Treesitter folding
 vim.cmd('set foldexpr=nvim_treesitter#foldexpr()')
