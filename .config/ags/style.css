@@ -1,3 +1,13 @@
+progress, highlight {
+  min-height: 8px;
+}
+
+button {
+  background: transparent;
+  border-radius: 99999px;
+  padding: 2px 6px;
+}
+
 .volume-container {
   padding: 16px;
 }
@@ -14,3 +24,51 @@
 .volume-popup .volume-bar.muted progress {
   background: @insensitive_fg_color;
 }
+
+.bar {
+  background: @theme_bg_color;
+}
+
+.bar-container {
+  padding: 4px;
+}
+
+.workspaces button {
+  margin-right: 8px;
+  border: 2px solid transparent;
+}
+
+.workspaces button,
+.media {
+  color: @theme_fg_color;
+}
+
+.workspaces button.focused {
+  border-color: @theme_selected_bg_color;
+}
+
+.bar .volume {
+  margin-right: 8px;
+}
+
+.client-title {
+  margin-left: 1em;
+}
+
+.media {
+  margin-right: 16px;
+}
+
+.notification image {
+  color: yellow;
+  margin-left: 1em;
+}
+
+.battery progressbar {
+  margin: 0 6px;
+}
+
+.clock {
+  min-width: 140px;
+}
+
