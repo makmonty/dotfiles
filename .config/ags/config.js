@@ -1,4 +1,5 @@
 import App from 'resource:///com/github/Aylur/ags/app.js';
+import 'globals';
 import { volumePopup, volumeTrigger } from './volume.js';
 
 export default {

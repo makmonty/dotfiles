@@ -39,7 +39,7 @@ export const volumePopup = Widget.Window({
 
 });
 
-const triggerVolumePopup = () => {
+export const triggerVolumePopup = () => {
   if (volumeTimeout) {
     volumeTimeout.destroy();
   }
@@ -52,18 +52,4 @@ const triggerVolumePopup = () => {
   }, VOLUME_DISPLAY_TIME);
 };
 
-export const volumeTrigger = Widget.Window({
-  name: 'volume-trigger',
-  popup: true,
-  visible: false,
-  className: 'volume-trigger',
-  connections: [
-    [App, (self, windowName, visible) => {
-      if (windowName === 'volume-trigger' && visible) {
-        App.closeWindow('volume-trigger');
-        triggerVolumePopup();
-      }
-    }],
-  ],
-})
 
