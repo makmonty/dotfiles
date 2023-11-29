@@ -16,12 +16,18 @@ import { exec, execAsync } from 'resource:///com/github/Aylur/ags/utils.js';
 const Workspaces = () => Widget.Box({
   className: 'workspaces',
   connections: [[Hyprland.active.workspace, self => {
-    // generate an array [1..10] then make buttons from the index
-    const arr = Hyprland.workspaces;// Array.from({ length: 10 }, (_, i) => i + 1);
+    const arr = Hyprland.workspaces;
     self.children = arr.map(ws => Widget.Button({
       vpack: 'center',
+      vexpand: false,
+      hexpand: false,
+      tooltipText: `Workspace ${ws.name}`,
+      child: Widget.Label({
+        vpack: 'center',
+        hpack: 'center',
+        label: ws.name
+      }),
       onClicked: () => execAsync(`hyprctl dispatch workspace ${ws.id}`),
-      child: Widget.Label(`${ws.name}`),
       className: Hyprland.active.workspace.id == ws.id ? 'focused' : '',
     }));
   }]],
