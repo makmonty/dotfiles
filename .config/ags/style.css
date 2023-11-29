@@ -1,19 +1,16 @@
 .volume-container {
-  padding: 15px;
+  padding: 16px;
 }
 
 .volume-popup {
   background-color: @theme_bg_color;
 }
 
-.volume-popup .label {
+.volume-popup .volume-label {
   font-size: 100px;
+  margin-bottom: 16px;
 }
 
-.volume-popup progress {
-}
-
-.volume-trigger {
-  /* opacity: 0; */
-
+.volume-popup .volume-bar.muted progress {
+  background: @insensitive_fg_color;
 }

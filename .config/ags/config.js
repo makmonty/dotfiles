@@ -1,6 +1,6 @@
 import App from 'resource:///com/github/Aylur/ags/app.js';
-import 'globals';
-import { volumePopup, volumeTrigger } from './volume.js';
+import './globals.js';
+import { volumePopup } from './volume.js';
 
 export default {
   closeWindowDelay: {
@@ -14,6 +14,5 @@ export default {
     // NOTE: the window will still render, if you don't pass it here
     // but if you don't, the window can't be toggled through ags.App or cli
     volumePopup,
-    volumeTrigger,
   ],
 };
