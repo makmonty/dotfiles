@@ -5,7 +5,7 @@ sudo pacman -R nvidia
 yay -S \
 	nvidia-dkms \
 	wayland \
-	waylock swayidle waybar wlogout \
+	swaylock swayidle wlogout \
 	hyprland-nvidia \
 	swww \
 	aylurs-gtk-shell \

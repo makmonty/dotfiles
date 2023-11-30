@@ -1,2 +1,2 @@
-timeout 600 'waylock -c $XDG_CONFIG_HOME/swaylock/config'
+timeout 600 'swaylock -c $XDG_CONFIG_HOME/swaylock/config'
 #timeout 610 'hyprctl dispatch dpms off' resume 'hyprctl dispatch dpms on'
