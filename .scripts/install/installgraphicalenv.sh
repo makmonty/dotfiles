@@ -11,6 +11,7 @@ yay -S \
 	firefox \
 	gthumb \
 	dunst \
+	pavucontrol \
 	galculator mousepad \
 	system-config-users \
 	ttf-meslo ttf-nerd-fonts-symbols \
