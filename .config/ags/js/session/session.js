@@ -1,6 +1,6 @@
 import Widget from 'resource:///com/github/Aylur/ags/widget.js';
-
-const iconsPath = '/home/angel/.config/ags/assets/icons/';
+import { execAsync } from 'resource:///com/github/Aylur/ags/utils.js';
+import { ICONS_PATH } from '../constants.js';
 
 const sessionButtons = [
   {
@@ -53,10 +53,10 @@ export const session = Widget.Window({
     children: sessionButtons.map(button =>
       Widget.Button({
         className: 'session-button',
-        // cursor: 'pointer',
-        onPrimaryClick: () => {},
+        cursor: 'pointer',
+        onPrimaryClick: () => {execAsync(button.command)},
         child: Widget.Icon({
-          icon: iconsPath + button.icon,
+          icon: ICONS_PATH + '/' + button.icon,
         }),
       })
     )

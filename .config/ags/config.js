@@ -1,8 +1,10 @@
 import App from 'resource:///com/github/Aylur/ags/app.js';
-import './globals.js';
-import { volumePopup } from './volume.js';
-import { topBar } from './topbar.js';
-import { session } from './session.js';
+import './js/globals.js';
+import { volumePopup } from './js/volume/volume.js';
+import { topBar } from './js/bar/topbar.js';
+import { session } from './js/session/session.js';
+
+const css = App.configDir + '/styles/style.css';
 
 export default {
   closeWindowDelay: {
@@ -11,7 +13,7 @@ export default {
   notificationPopupTimeout: 5000, // milliseconds
   cacheNotificationActions: false,
   maxStreamVolume: 1.0, // float
-  style: App.configDir + '/style.css',
+  style: css,
   windows: [
     // NOTE: the window will still render, if you don't pass it here
     // but if you don't, the window can't be toggled through ags.App or cli

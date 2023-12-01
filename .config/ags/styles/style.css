@@ -5,13 +5,17 @@ button {
   box-shadow: none;
 }
 
+button:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
 .volume-container {
   padding: 16px;
 }
 
 .volume-popup {
   background-color: @theme_bg_color;
-}
+}n
 
 .volume-popup .volume-label {
   font-size: 100px;
@@ -63,6 +67,14 @@ button {
   margin-right: 16px;
 }
 
+.media.not-playing {
+  opacity: 0.6;
+}
+
+.media.not-playing button {
+  background: transparent;
+}
+
 .notification image {
   color: yellow;
   margin-left: 1em;
@@ -95,8 +107,3 @@ button {
   box-shadow: none;
   padding: 24px;
 }
-
-.session-button:hover {
-  background: rgba(255,255,255,0.15);
-}
-
