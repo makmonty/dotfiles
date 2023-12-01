@@ -1,0 +1,11 @@
+button {
+  background: transparent;
+  border-radius: 99999px;
+  padding: 2px 6px;
+  box-shadow: none;
+}
+
+button:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+

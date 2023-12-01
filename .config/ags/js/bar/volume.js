@@ -1,34 +1,38 @@
 import Audio from 'resource:///com/github/Aylur/ags/service/audio.js';
 import Widget from 'resource:///com/github/Aylur/ags/widget.js';
+import { execAsync } from 'resource:///com/github/Aylur/ags/utils.js';
 
 export const Volume = () => Widget.Box({
   className: 'volume',
   // css: 'min-width: 180px',
   children: [
-    Widget.Stack({
-      items: [
-        // tuples of [string, Widget]
-        ['101', Widget.Icon('audio-volume-overamplified-symbolic')],
-        ['67', Widget.Icon('audio-volume-high-symbolic')],
-        ['34', Widget.Icon('audio-volume-medium-symbolic')],
-        ['1', Widget.Icon('audio-volume-low-symbolic')],
-        ['0', Widget.Icon('audio-volume-muted-symbolic')],
-      ],
-      connections: [[Audio, self => {
-        if (!Audio.speaker)
-          return;
+    Widget.Button({
+      onPrimaryClick: () => execAsync('pavucontrol'),
+      child: Widget.Stack({
+        items: [
+          // tuples of [string, Widget]
+          ['101', Widget.Icon('audio-volume-overamplified-symbolic')],
+          ['67', Widget.Icon('audio-volume-high-symbolic')],
+          ['34', Widget.Icon('audio-volume-medium-symbolic')],
+          ['1', Widget.Icon('audio-volume-low-symbolic')],
+          ['0', Widget.Icon('audio-volume-muted-symbolic')],
+        ],
+        connections: [[Audio, self => {
+          if (!Audio.speaker)
+            return;
 
-        if (Audio.speaker.isMuted) {
-          self.shown = '0';
-          return;
-        }
+          if (Audio.speaker.isMuted) {
+            self.shown = '0';
+            return;
+          }
 
-        const show = [101, 67, 34, 1, 0].find(
-          threshold => threshold <= Audio.speaker.volume * 100);
+          const show = [101, 67, 34, 1, 0].find(
+            threshold => threshold <= Audio.speaker.volume * 100);
 
-        self.shown = `${show}`;
-      }, 'speaker-changed']],
-    }),
+          self.shown = `${show}`;
+        }, 'speaker-changed']],
+      }),
+    })
     // Widget.Slider({
     //   hexpand: true,
     //   drawValue: false,
