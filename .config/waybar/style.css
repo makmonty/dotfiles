@@ -1,7 +1,7 @@
 window#waybar {
     /* background: linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 0)); */
     background: transparent;
-    color: @theme_fg_color;
+    color: @theme_text_color;
     font-family: FontAwesome, Roboto, Helvetica, Arial, sans-serif;
     font-size: 14px;
 }
@@ -98,7 +98,7 @@ window#waybar.solo {
 .modules-right > * > * {
   margin: 0 5px 0 0;
   padding: 3px 12px;
-  background: @theme_bg_color;
+  background: @theme_base_color;
   border-radius: 99999px;
 }
 
