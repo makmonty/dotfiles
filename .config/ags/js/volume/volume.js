@@ -11,6 +11,13 @@ const ICON_VOLUME_MEDIUM = 'volume-level-medium-panel';
 const ICON_VOLUME_LOW = 'volume-level-low-panel';
 const ICON_VOLUME_MUTED = 'volume-level-muted-panel';
 
+// tuples of [string, Widget]
+// ['101', Widget.Icon('audio-volume-overamplified-symbolic')],
+// ['67', Widget.Icon('audio-volume-high-symbolic')],
+// ['34', Widget.Icon('audio-volume-medium-symbolic')],
+// ['1', Widget.Icon('audio-volume-low-symbolic')],
+// ['0', Widget.Icon('audio-volume-muted-symbolic')],
+
 const volume = Variable('0', {});
 const isMuted = Variable(false, {});
 let volumeTimeout;
@@ -41,17 +48,7 @@ export const volumePopup = Widget.Window({
         className: 'volume-label',
         connections: [
           [volume, icon => {
-            if (isMuted.value) {
-              icon.icon = ICON_VOLUME_MUTED;
-            } else if (volume.value > 0.66) {
-              icon.icon = ICON_VOLUME_HIGH;
-            } else if(volume.value > 0.33) {
-              icon.icon = ICON_VOLUME_MEDIUM;
-            } else if(volume.value > 0) {
-              icon.icon = ICON_VOLUME_LOW;
-            } else {
-              icon.icon = ICON_VOLUME_MUTED;
-            }
+            icon.icon = getIconForVolume(volume.value, isMuted.value);
           }]
         ],
       }),
@@ -70,8 +67,20 @@ export const volumePopup = Widget.Window({
       }),
     ]
   }),
-
 });
+
+export const getIconForVolume = (volume, isMuted) => {
+  if (isMuted) {
+    return ICON_VOLUME_MUTED;
+  } else if (volume > 0.66) {
+    return ICON_VOLUME_HIGH;
+  } else if(volume > 0.33) {
+    return ICON_VOLUME_MEDIUM;
+  } else if(volume > 0) {
+    return ICON_VOLUME_LOW;
+  }
+  return ICON_VOLUME_MUTED;
+}
 
 export const triggerVolumePopup = () => {
   if (volumeTimeout) {

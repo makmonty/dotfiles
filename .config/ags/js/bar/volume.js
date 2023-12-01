@@ -1,6 +1,7 @@
 import Audio from 'resource:///com/github/Aylur/ags/service/audio.js';
 import Widget from 'resource:///com/github/Aylur/ags/widget.js';
 import { execAsync } from 'resource:///com/github/Aylur/ags/utils.js';
+import { getIconForVolume } from '../volume/volume.js';
 
 export const Volume = () => Widget.Box({
   className: 'volume',
@@ -8,28 +9,13 @@ export const Volume = () => Widget.Box({
   children: [
     Widget.Button({
       onPrimaryClick: () => execAsync('pavucontrol'),
-      child: Widget.Stack({
-        items: [
-          // tuples of [string, Widget]
-          ['101', Widget.Icon('audio-volume-overamplified-symbolic')],
-          ['67', Widget.Icon('audio-volume-high-symbolic')],
-          ['34', Widget.Icon('audio-volume-medium-symbolic')],
-          ['1', Widget.Icon('audio-volume-low-symbolic')],
-          ['0', Widget.Icon('audio-volume-muted-symbolic')],
-        ],
+      child: Widget.Icon({
+        icon: '',
         connections: [[Audio, self => {
           if (!Audio.speaker)
             return;
 
-          if (Audio.speaker.isMuted) {
-            self.shown = '0';
-            return;
-          }
-
-          const show = [101, 67, 34, 1, 0].find(
-            threshold => threshold <= Audio.speaker.volume * 100);
-
-          self.shown = `${show}`;
+          self.icon = getIconForVolume(Audio.speaker.volume, Audio.speaker.stream.isMuted);
         }, 'speaker-changed']],
       }),
     })
