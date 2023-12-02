@@ -8,6 +8,7 @@ import { Clock } from './clock.js';
 import { Volume } from './volume.js';
 import { SysTray } from './systray.js';
 import { Logout } from './logout.js';
+import { BatteryLabel } from './battery.js';
 
 // layout of the bar
 const Left = () => Widget.Box({
@@ -29,7 +30,7 @@ const Right = () => Widget.Box({
   children: [
     Media(),
     Volume(),
-    // BatteryLabel(),
+    BatteryLabel(),
     SysTray(),
     Clock(),
     Logout(),
