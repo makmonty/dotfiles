@@ -11,42 +11,45 @@ import { Logout } from './logout.js';
 import { BatteryLabel } from './battery.js';
 
 // layout of the bar
-const Left = () => Widget.Box({
+const Left = (options) => Widget.Box({
   children: [
-    Workspaces(),
+    Workspaces(options),
   ],
 });
 
-const Center = () => Widget.Box({
+const Center = (options) => Widget.Box({
   children: [
-    ClientTitle(),
-    // Notification(),
+    ClientTitle(options),
+    // Notification(options),
   ],
 });
 
-const Right = () => Widget.Box({
+const Right = (options) => Widget.Box({
   className: 'bar-right',
   hpack: 'end',
   children: [
-    Media(),
-    Volume(),
-    BatteryLabel(),
-    SysTray(),
-    Clock(),
-    Logout(),
+    Media(options),
+    Volume(options),
+    BatteryLabel(options),
+    SysTray(options),
+    Clock(options),
+    Logout(options),
   ],
 });
 
-export const topBar = ({ monitor } = {}) => Widget.Window({
-  name: `bar-${monitor || 'default'}`, // name has to be unique
-  className: 'bar',
-  monitor,
-  anchor: ['top', 'left', 'right'],
-  exclusivity: 'exclusive',
-  child: Widget.CenterBox({
-    className: 'bar-container',
-    startWidget: Left(),
-    centerWidget: Center(),
-    endWidget: Right(),
-  }),
-})
+export const topBar = (options = {}) => {
+  const { monitor } = options;
+  return Widget.Window({
+    name: `bar-${monitor.name || 'default'}`, // name has to be unique
+    className: 'bar',
+    monitor,
+    anchor: ['top', 'left', 'right'],
+    exclusivity: 'exclusive',
+    child: Widget.CenterBox({
+      className: 'bar-container',
+      startWidget: Left(options),
+      centerWidget: Center(options),
+      endWidget: Right(options),
+    }),
+  });
+}

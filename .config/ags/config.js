@@ -1,10 +1,31 @@
 import App from 'resource:///com/github/Aylur/ags/app.js';
+import Hyprland from 'resource:///com/github/Aylur/ags/service/hyprland.js';
 import './js/globals.js';
 import { volumePopup } from './js/volume/volume.js';
 import { topBar } from './js/bar/topbar.js';
 import { session } from './js/session/session.js';
+import { getMonitors } from './js/utils.js';
 
 const css = App.configDir + '/styles/style.css';
+
+Hyprland.connect('monitor-added', (_, monitorName) => {
+  const monitor = Hyprland.monitors.find(monitor => monitor.name === monitorName);
+  const barId = `bar-${monitorName}`;
+  const existingBar = App.getWindow(barId);
+
+  if (existingBar) {
+    App.removeWindow(barId);
+  }
+  App.addWindow(topBar({ monitor }));
+});
+
+Hyprland.connect('monitor-removed', (_, monitorName) => {
+  App.removeWindow(`bar-${monitorName}`);
+  // const monitor = Hyprland.monitors.find(monitor => monitor.name === newMonitorName);
+  // App.addWindow(topBar({ monitor: monitor.id }));
+});
+
+const monitors = getMonitors();
 
 export default {
   closeWindowDelay: {
@@ -19,9 +40,6 @@ export default {
     // but if you don't, the window can't be toggled through ags.App or cli
     volumePopup,
     session,
-    topBar(),
-    // you can call it, for each monitor
-    // topBar({ monitor: 0 }),
-    // topBar({ monitor: 1 })
+    ...(monitors.map(monitor => topBar({ monitor })))
   ],
 };
