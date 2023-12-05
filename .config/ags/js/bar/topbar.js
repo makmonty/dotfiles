@@ -42,7 +42,7 @@ export const topBar = (options = {}) => {
   return Widget.Window({
     name: `bar-${monitor.name || 'default'}`, // name has to be unique
     className: 'bar',
-    monitor,
+    monitor: monitor.id,
     anchor: ['top', 'left', 'right'],
     exclusivity: 'exclusive',
     child: Widget.CenterBox({

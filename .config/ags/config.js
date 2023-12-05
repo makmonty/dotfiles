@@ -9,13 +9,7 @@ import { getMonitors } from './js/utils.js';
 const css = App.configDir + '/styles/style.css';
 
 Hyprland.connect('monitor-added', (_, monitorName) => {
-  const monitor = Hyprland.monitors.find(monitor => monitor.name === monitorName);
-  const barId = `bar-${monitorName}`;
-  const existingBar = App.getWindow(barId);
-
-  if (existingBar) {
-    App.removeWindow(barId);
-  }
+  const monitor = getMonitors().find(monitor => monitor.name === monitorName);
   App.addWindow(topBar({ monitor }));
 });
 

@@ -1,4 +1,5 @@
 import Gdk from 'gi://Gdk';
+import Hyprland from 'resource:///com/github/Aylur/ags/service/hyprland.js';
 import { exec } from 'resource:///com/github/Aylur/ags/utils.js'
 
 export function range(start, end) {
@@ -10,5 +11,5 @@ export function getNumOfMonitors() {
 }
 
 export function getMonitors() {
-  return JSON.parse(exec('hyprctl monitors -j'));
+  return Hyprland.monitors.length ? Hyprland.monitors : JSON.parse(exec('hyprctl monitors -j'));
 }
