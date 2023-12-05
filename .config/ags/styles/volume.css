@@ -1,3 +1,7 @@
+.volume-icon {
+  margin-left: 0.33em;
+}
+
 .volume-container {
   padding: 16px;
 }
@@ -6,7 +10,7 @@
   background-color: @theme_bg_color;
 }
 
-.volume-popup .volume-label {
+.volume-popup .volume-icon {
   font-size: 100px;
   margin-bottom: 16px;
 }

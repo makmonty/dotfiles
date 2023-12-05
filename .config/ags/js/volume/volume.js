@@ -2,14 +2,13 @@ import App from 'resource:///com/github/Aylur/ags/app.js';
 import Widget from 'resource:///com/github/Aylur/ags/widget.js';
 import Audio from 'resource:///com/github/Aylur/ags/service/audio.js';
 import Variable from 'resource:///com/github/Aylur/ags/variable.js';
-import Service from 'resource:///com/github/Aylur/ags/service.js';
 
 const VOLUME_DISPLAY_TIME = 1000;
 
-const ICON_VOLUME_HIGH = 'volume-level-high-panel';
-const ICON_VOLUME_MEDIUM = 'volume-level-medium-panel';
-const ICON_VOLUME_LOW = 'volume-level-low-panel';
-const ICON_VOLUME_MUTED = 'volume-level-muted-panel';
+const ICON_VOLUME_HIGH = '\udb81\udd7e';
+const ICON_VOLUME_MEDIUM = '\udb81\udd80';
+const ICON_VOLUME_LOW = '\udb81\udd7f';
+const ICON_VOLUME_MUTED = '\udb81\udf5f';
 
 // tuples of [string, Widget]
 // ['101', Widget.Icon('audio-volume-overamplified-symbolic')],
@@ -27,6 +26,17 @@ Audio.connect('speaker-changed', () => {
   volume.setValue(Audio.speaker.volume.toString());
 });
 
+export const volumeIcon = () => Widget.Label({
+  label: ICON_VOLUME_HIGH,
+  xalign: 0,
+  className: 'volume-icon',
+  connections: [
+    [volume, icon => {
+      icon.label = getIconForVolume(volume.value, isMuted.value);
+    }]
+  ],
+});
+
 export const volumePopup = Widget.Window({
   name: 'volume-popup',
   popup: true,
@@ -39,19 +49,7 @@ export const volumePopup = Widget.Window({
     className: 'volume-container',
     vertical: true,
     children: [
-      // Widget.Label({
-      //   label: '🔊',
-      //   className: 'label'
-      // }),
-      Widget.Icon({
-        icon: 'volume-level-high-panel',
-        className: 'volume-label',
-        connections: [
-          [volume, icon => {
-            icon.icon = getIconForVolume(volume.value, isMuted.value);
-          }]
-        ],
-      }),
+      volumeIcon(),
       Widget.ProgressBar({
         className: 'volume-bar',
         connections: [

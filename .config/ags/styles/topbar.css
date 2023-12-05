@@ -27,10 +27,6 @@
   background: @theme_selected_bg_color;
 }
 
-.bar .volume {
-  margin-right: 8px;
-}
-
 .client-title {
   margin-left: 1em;
 }

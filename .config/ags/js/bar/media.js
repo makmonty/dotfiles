@@ -1,8 +1,6 @@
 import Mpris from 'resource:///com/github/Aylur/ags/service/mpris.js';
 import Widget from 'resource:///com/github/Aylur/ags/widget.js';
 
-import { ICONS_PATH } from '../constants.js';
-
 export const Media = () => Widget.Box({
   className: 'media',
   connections: [[Mpris, self => {
@@ -15,25 +13,25 @@ export const Media = () => Widget.Box({
   }]],
   children: [
     Widget.Button({
-      child: Widget.Icon({icon: ICONS_PATH + '/skip-back.svg'}),
+      child: Widget.Label({label: '\udb81\udcab'}),
     }),
     Widget.Button({
-      child: Widget.Icon({
-        icon: ICONS_PATH + '/play.svg',
+      child: Widget.Label({
+        label: '\udb81\udc0a',
         connections: [[Mpris, self => {
           const mpris = Mpris.getPlayer('');
           if (mpris) {
             if (mpris.playBackStatus === 'Playing')
-              self.icon = ICONS_PATH + '/pause.svg';
+              self.label = '\uf04c';
             else
-              self.icon = ICONS_PATH + '/play.svg';
+              self.label = '\udb81\udc0a';
           }
         }]],
       }),
       onPrimaryClick: () => Mpris.getPlayer('')?.playPause(),
     }),
     Widget.Button({
-      child: Widget.Icon({icon: ICONS_PATH + '/skip-forward.svg'}),
+      child: Widget.Label({label: '\udb81\udcac'}),
     }),
   ]
 })

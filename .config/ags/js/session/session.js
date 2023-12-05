@@ -4,32 +4,32 @@ import { ICONS_PATH } from '../constants.js';
 
 const sessionButtons = [
   {
-    icon: 'lock.svg',
+    icon: '\udb80\udf3e',
     label: 'Bloquear',
     command: 'swaylock',
   },
   // {
-  //   icon: 'moon.svg',
+  //   icon: '\udb81\udcb2',
   //   label: 'Hibernar',
   //   command: 'systemctl hibernate',
   // },
   {
-    icon: 'log-out.svg',
+    icon: '\udb81\uddfd',
     label: 'Salir',
     command: 'loginctl terminate-user $USER',
   },
   {
-    icon: 'power.svg',
+    icon: '\udb81\udc25',
     label: 'Apagar',
     command: 'systemctl poweroff',
   },
   {
-    icon: 'moon.svg',
+    icon: '\udb82\udd04',
     label: 'Suspender',
     command: 'systemctl suspend',
   },
   {
-    icon: 'refresh-cw.svg',
+    icon: '\udb81\udf09',
     label: 'Reiniciar',
     command: 'systemctl reboot',
   },
@@ -55,8 +55,8 @@ export const session = Widget.Window({
         className: 'session-button',
         cursor: 'pointer',
         onPrimaryClick: () => {execAsync(button.command)},
-        child: Widget.Icon({
-          icon: ICONS_PATH + '/' + button.icon,
+        child: Widget.Label({
+          label: button.icon,
         }),
       })
     )
