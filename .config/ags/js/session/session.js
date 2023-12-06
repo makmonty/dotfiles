@@ -53,21 +53,25 @@ export const session = Widget.Window({
     children: [
       Widget.Box({
         children: [
-          ...sessionButtons.map(button =>
-            Widget.Button({
+          ...sessionButtons.map(button => {
+            const setLabel = (self) => {
+              const label = self.parent.parent.children[1];
+              label.label = button.label;
+            }
+            return Widget.Button({
               className: 'session-button',
               cursor: 'pointer',
               onClicked: () =>
                 execAsync(['bash', '-c', button.command]),
-              onHover: (self) => {
-                const label = self.parent.parent.children[1];
-                label.label = button.label;
-              },
+              onHover: setLabel,
               child: Widget.Label({
                 label: button.icon,
               }),
-            })
-          ),
+              connections: [
+                ['focus', setLabel],
+              ],
+            });
+          }),
         ]
       }),
       Widget.Label({
