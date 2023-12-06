@@ -27,7 +27,7 @@ export const calendarPopup = Widget.Window({
       //   className: '',
       // }),
       new Gtk.Calendar({
-        showDayNames: false,
+        showDayNames: true,
         showHeading: true,
       }),
     ],
