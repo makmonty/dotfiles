@@ -13,7 +13,7 @@ const sessionButtons = [
   //   command: 'systemctl hibernate',
   // },
   {
-    icon: '\udb81\uddfd',
+    icon: '\udb80\udf43',
     label: 'Salir',
     command: 'loginctl terminate-user $USER',
   },
@@ -48,16 +48,32 @@ export const session = Widget.Window({
   child: Widget.Box({
     hpack: 'center',
     vpack: 'center',
+    vertical: true,
     className: 'session-container',
-    children: sessionButtons.map(button =>
-      Widget.Button({
-        className: 'session-button',
-        cursor: 'pointer',
-        onPrimaryClick: () => {execAsync(button.command)},
-        child: Widget.Label({
-          label: button.icon,
-        }),
+    children: [
+      Widget.Box({
+        children: [
+          ...sessionButtons.map(button =>
+            Widget.Button({
+              className: 'session-button',
+              cursor: 'pointer',
+              onClicked: () =>
+                execAsync(['bash', '-c', button.command]),
+              onHover: (self) => {
+                const label = self.parent.parent.children[1];
+                label.label = button.label;
+              },
+              child: Widget.Label({
+                label: button.icon,
+              }),
+            })
+          ),
+        ]
+      }),
+      Widget.Label({
+        className: 'session-label',
+        label: ''
       })
-    )
-  }),
+    ]
+  })
 });

@@ -1,20 +1,27 @@
 .session-popup {
   /* background: rgba(0,0,0,0.6); */
   background-color: @theme_bg_color;
-  font-size: 96px;
-  padding: 16px;
+  /* padding: 16px; */
 }
 
 .session-button:not(:last-child) {
-  margin-right: 18px;
+  margin-right: 24px;
 
 }
 
 .session-button {
+  font-size: 6em;
   border: none;
   background: none;
   outline: none;
   box-shadow: none;
-  padding: 24px;
+  /* padding: 24px 32px; */
+  min-width: 160px;
+  min-height: 160px;
 }
 
+
+.session-label {
+  margin-top: 24px;
+  font-size: 2em;
+}
