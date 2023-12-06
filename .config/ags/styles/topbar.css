@@ -55,3 +55,7 @@
 .clock {
   min-width: 140px;
 }
+
+.clock-label {
+  margin: 0 6px;
+}
