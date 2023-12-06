@@ -1,39 +1,9 @@
-local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not vim.loop.fs_stat(lazypath) then
-  vim.fn.system({
-    "git",
-    "clone",
-    "--filter=blob:none",
-    "https://github.com/folke/lazy.nvim.git",
-    "--branch=stable", -- latest stable release
-    lazypath,
-  })
-end
-vim.opt.rtp:prepend(lazypath)
-
---vim.cmd("let g:coq_settings = { 'auto_start': 'shut-up' }")
-
-require('lazy').setup({
-  -- Startup
-  -- {
-  --   'glepnir/dashboard-nvim',
-  --   config = function()
-  --     require'plugins.dashboard'
-  --   end
-  -- },
-  -- Treesitter for syntax highlighting
+return {
   -- Startup time
   {
     url = 'https://git.sr.ht/~henriquehbr/nvim-startup.lua',
     config = function()
       require 'nvim-startup'.setup()
-    end
-  },
-  {
-    'nvim-treesitter/nvim-treesitter',
-    build = function() require('nvim-treesitter.install').update({ with_sync = true }) end,
-    config = function()
-      require'plugins.treesitter'
     end
   },
   -- LSP
@@ -60,12 +30,6 @@ require('lazy').setup({
         automatic_installation = true,
       }
     end
-  },
-  {
-    'neovim/nvim-lspconfig',
-    config = function()
-      --require'plugins.lsp'
-    end,
   },
   {
     "glepnir/lspsaga.nvim",
@@ -163,16 +127,6 @@ require('lazy').setup({
     --branch = '3p'
   --}
   { 'neovim/nvim-lspconfig' },
-  { 'hrsh7th/cmp-nvim-lsp' },
-  { 'hrsh7th/cmp-buffer' },
-  { 'hrsh7th/cmp-path' },
-  { 'hrsh7th/cmp-cmdline' },
-  {
-    'hrsh7th/nvim-cmp',
-    config = function()
-      require'plugins.cmp'
-    end
-  },
   { 'L3MON4D3/LuaSnip' },
   { 'saadparwaiz1/cmp_luasnip' },
 
@@ -237,19 +191,6 @@ require('lazy').setup({
         auto_save_enabled = true,
         auto_restore_enabled = false
       }
-    end
-  },
-  -- Filesystem tree
-  {
-    'nvim-neo-tree/neo-tree.nvim',
-    branch = 'v2.x',
-    dependencies = {
-      'nvim-lua/plenary.nvim',
-      'nvim-tree/nvim-web-devicons', -- not strictly required, but recommended
-      'MunifTanjim/nui.nvim',
-    },
-    config = function()
-      require'plugins.neotree'
     end
   },
   -- Vue syntax highlight
@@ -461,4 +402,5 @@ require('lazy').setup({
   --     'nvim-telescope/telescope.nvim',
   --   },
   -- },
-})
+
+}
