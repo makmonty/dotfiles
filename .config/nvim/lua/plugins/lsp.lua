@@ -1,4 +1,7 @@
 return {
+  { 'neovim/nvim-lspconfig' },
+  { 'L3MON4D3/LuaSnip' },
+  { 'saadparwaiz1/cmp_luasnip' },
   {
     'neovim/nvim-lspconfig',
     config = function()
@@ -150,5 +153,25 @@ return {
         flags = lsp_flags,
       })
     end,
+  },
+  {
+    "glepnir/lspsaga.nvim",
+    event = "BufRead",
+    config = function()
+      require("lspsaga").setup({
+        lightbulb = {
+          enable = true,
+          enable_in_insert = true,
+          sign = true,
+          sign_priority = 40,
+          virtual_text = false,
+        },
+      })
+    end,
+    dependencies = {
+      {"nvim-tree/nvim-web-devicons"},
+      --Please make sure you install markdown and markdown_inline parser
+      {"nvim-treesitter/nvim-treesitter"}
+    }
   },
 }

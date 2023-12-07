@@ -1,4 +1,20 @@
 return {
+  -- Completion
+  --{
+    --'ms-jpq/coq_nvim',
+    --branch = 'coq',
+    --config = function()
+      --require'plugins.lsp'
+    --end,
+  --}
+  --{
+    --'ms-jpq/coq.artifacts',
+    --branch = 'artifacts'
+  --}
+  --{
+    --'ms-jpq/coq.thirdparty',
+    --branch = '3p'
+  --}
   { 'hrsh7th/cmp-nvim-lsp' },
   { 'hrsh7th/cmp-buffer' },
   { 'hrsh7th/cmp-path' },
