@@ -53,7 +53,7 @@ return {
   },
   -- Null LSP
   {
-    'jose-elias-alvarez/null-ls.nvim',
+    'nvimtools/none-ls.nvim',
     dependencies = { 'nvim-lua/plenary.nvim' },
     config = function()
       local nullls = require('null-ls')
