@@ -1,2 +1,2 @@
 #!/bin/sh
-grim -g "$(slurp)" - | swappy -f -
+grim -g "$(slurp -b#00000066 -c#ff0000 -d -w1)" - | swappy -f -
