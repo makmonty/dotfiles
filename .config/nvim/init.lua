@@ -33,6 +33,7 @@ vim.opt.rtp:prepend(lazypath)
 --vim.cmd("let g:coq_settings = { 'auto_start': 'shut-up' }")
 
 require('lazy').setup('plugins')
+require('colorscheme')
 
 require('mappings')
 --require('commands')
