@@ -1,8 +1,8 @@
 * {
-  dark0-hard: #1d2021;
-  dark0: #222222;
-  dark0-soft: #333333;
-  dark0-transparent: #222222cc;
+  dark0-hard: #090909;
+  dark0: #191919;
+  dark0-soft: #292929;
+  dark0-transparent: #191919cc;
   dark1: #444444;
   dark1-transparent: #444444cc;
   dark2: #555555;
