@@ -13,3 +13,7 @@ export function getNumOfMonitors() {
 export function getMonitors() {
   return Hyprland.monitors.length ? Hyprland.monitors : JSON.parse(exec('hyprctl monitors -j'));
 }
+
+export function getWorkspaces() {
+  return Hyprland.workspaces.length ? Hyprland.workspaces : JSON.parse(exec('hyprctl workspaces -j'));
+}

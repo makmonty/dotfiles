@@ -16,7 +16,11 @@
   font-size: 0;
   background: rgba(255, 255, 255, 0.2);
   padding: 6px;
+  min-width: 0px;
   border-radius: 99999px;
+  transition-property: all;
+  transition-duration: 0.2s;
+  transition-timing-function: ease-in-out;
 }
 
 .workspaces button:hover label {
@@ -25,6 +29,10 @@
 
 .workspaces button.focused label {
   background: @theme_selected_bg_color;
+}
+
+.workspaces button.active label {
+  min-width: 16px;
 }
 
 .client-title {
