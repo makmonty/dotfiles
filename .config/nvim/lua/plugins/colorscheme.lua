@@ -1,17 +1,29 @@
+local copy_table = require('helpers.table').copy_table
+
 return {
   -- Color scheme
-  {
-    'jzelinskie/monokai-soda.vim',
-    dependencies = {
-      'tjdevries/colorbuddy.vim'
-    }
-  },
   -- {
-  --   'tanvirtin/monokai.nvim',
-  --   config = function()
-  --     require('monokai').setup({ palette = require('monokai').soda })
-  --   end
+  --   'jzelinskie/monokai-soda.vim',
+  --   dependencies = {
+  --     'tjdevries/colorbuddy.vim'
+  --   }
   -- },
+  {
+    'tanvirtin/monokai.nvim',
+    config = function()
+      local monokai = require('monokai')
+      local soda = copy_table(monokai.soda)
+      soda.base0 = "#191919"
+      monokai.setup({
+        palette = soda,
+        custom_hlgroups = {
+          Normal = {
+            bg = soda.base0
+          }
+        }
+      })
+    end
+  },
   -- {
   --   'catppuccin/nvim',
   --   name = 'catppuccin',
