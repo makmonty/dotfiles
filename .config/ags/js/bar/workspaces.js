@@ -22,10 +22,18 @@ const removeWorkspace = (ws, parent) => {
   delete monitors[ws.monitor][ws.id];
 }
 
-export const Workspace = ws => {
-  const monitor = getMonitors().find(monitor => monitor.name === ws.monitor);
-  monitors[monitor.name] ||= {};
+const removeEmptyWorkspaces = (parent, monitor) => {
+  const workspaces = getWorkspaces();
+  Object.values(monitors[monitor.name]).forEach(({ws}) => {
+    const isGone = !workspaces.some(workspace => workspace.id === ws.id);
 
+    if (isGone) {
+      removeWorkspace(ws, parent);
+    }
+  })
+}
+
+export const Workspace = ws => {
   const widget = Widget.Button({
     vpack: 'center',
     vexpand: false,
@@ -50,35 +58,29 @@ export const Workspace = ws => {
       }],
     ]
   });
-  monitors[monitor.name][ws.id] = {widget, ws};
   return widget;
 }
 
 export const Workspaces = ({ monitor }) => {
   return Widget.Box({
     className: 'workspaces',
-    children: getWorkspaces()
-        .filter(ws => ws.monitor === monitor.name)
-        .map(Workspace),
+    // children: getWorkspaces()
+    //     .filter(ws => ws.monitor === monitor.name)
+    //     .map(Workspace),
 
     connections: [[Hyprland, self => {
       const workspaces = getWorkspaces();
-      workspaces.forEach(ws => {
-        const isNew = ws.monitor === monitor.name && !monitors[monitor.name][ws.id];
-        if (isNew) {
-          addWorkspace(ws, self);
-        }
-      });
-
-      Object.values(monitors).forEach(monitor =>
-        Object.values(monitor).forEach(({ws}) => {
-          const isGone = !workspaces.some(workspace => workspace.id === ws.id);
-
-          if (isGone) {
-            removeWorkspace(ws, self);
+      workspaces
+        .filter(ws => ws.monitor === monitor.name)
+        .forEach(ws => {
+          const isNew = !monitors[monitor.name]?.[ws.id];
+          if (isNew) {
+            addWorkspace(ws, self);
           }
-        })
-      );
+
+          removeEmptyWorkspaces(self, monitor);
+        });
+
     }]],
   });
 }
