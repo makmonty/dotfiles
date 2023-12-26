@@ -101,7 +101,6 @@ let g:blamer_delay = 500
 
 "" CoC
 let g:coc_global_extensions = [
-    \ 'coc-ember',
     \ 'coc-json',
     \ 'coc-snippets',
     \ 'coc-tsserver',
