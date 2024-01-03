@@ -30,6 +30,7 @@
   "nvim-treesitter": { "branch": "master", "commit": "e49f1e8ef3e8450a8446cb1f2bbb53c919f60b6d" },
   "nvim-web-devicons": { "branch": "master", "commit": "808627b8d412b2a6b6fc6eed816fec3557198b01" },
   "plenary.nvim": { "branch": "master", "commit": "55d9fe89e33efd26f532ef20223e5f9430c8b0c0" },
+  "prettierrc.nvim": { "branch": "master", "commit": "4183699d40388eabc1895df28b7da1cc1946a495" },
   "rainbow_parentheses.vim": { "branch": "master", "commit": "27e7cd73fec9d1162169180399ff8ea9fa28b003" },
   "srcery": { "branch": "master", "commit": "d6037f87842753a85e4cd855a2ca4206ac04db7e" },
   "tabby.nvim": { "branch": "main", "commit": "9806ab6f1ca2af9a134c5e7174522388c31a9552" },
