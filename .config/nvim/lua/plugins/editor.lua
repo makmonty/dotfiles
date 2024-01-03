@@ -1,6 +1,8 @@
 return {
   -- Editorconfig integration
   { 'editorconfig/editorconfig-vim' },
+  -- Prettier configuration
+  { 'numToStr/prettierrc.nvim' },
   -- Show css colors inline
   { 'ap/vim-css-color' },
   -- Underlines the current word and its appearances
