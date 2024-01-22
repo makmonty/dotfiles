@@ -10,7 +10,12 @@ return {
   -- Change easily the surrounding characters
   { 'tpope/vim-surround' },
   -- Autoclosing brackets
-  { 'jiangmiao/auto-pairs' },
+  -- { 'jiangmiao/auto-pairs' },
+  {
+    'windwp/nvim-autopairs',
+    event = "InsertEnter",
+    opts = {},
+  },
   -- Make multiline changes
   { 'mg979/vim-visual-multi' },
   -- Comment easily
