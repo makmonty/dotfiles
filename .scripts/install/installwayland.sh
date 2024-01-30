@@ -15,5 +15,6 @@ yay -S \
 	wdisplays \
 	wl-clipboard \
 	grim slurp swappy \
+	nwg-look \
 	#hyprpaper \
 	#wayfire wayfire-plugins-extra wcm wf-config wf-shell \
