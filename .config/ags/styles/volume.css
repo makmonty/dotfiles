@@ -15,6 +15,10 @@
   margin-bottom: 16px;
 }
 
+.volume-popup .volume-bar progress {
+  background: @theme_accent;
+}
+
 .volume-popup .volume-bar.muted progress {
   background: @insensitive_fg_color;
 }

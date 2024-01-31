@@ -28,7 +28,7 @@
 }
 
 .workspaces button.focused label {
-  background: #bd93f9;
+  background: @theme_accent;
 }
 
 .workspaces button.active label {
