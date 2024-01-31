@@ -8,6 +8,7 @@ const monitors = {};
 const addWorkspace = (ws, parent) => {
   const widget = Workspace(ws);
   parent.add(widget);
+  parent.reorder_child(widget, ws.id - 1)
   parent.notify('children');
   parent.show_all();
   monitors[ws.monitor] ||= {};

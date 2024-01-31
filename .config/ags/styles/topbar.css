@@ -28,7 +28,7 @@
 }
 
 .workspaces button.focused label {
-  background: @theme_selected_bg_color;
+  background: #bd93f9;
 }
 
 .workspaces button.active label {
