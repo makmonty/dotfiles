@@ -1,6 +1,7 @@
 local copy_table = require('helpers.table').copy_table
 
 return {
+  'Mofiqul/dracula.nvim',
   {
     "folke/tokyonight.nvim",
     lazy = false,
