@@ -10,6 +10,9 @@ return {
           enable = true,
         }
       }
+      vim.filetype.add({
+        pattern = {[".*/hyprland%.conf"] = "hyprlang"}
+      })
     end
   },
 }
