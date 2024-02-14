@@ -7,7 +7,7 @@ yay -S \
 	wayland \
 	swaylock-effects swayidle wlogout \
 	hyprland-nvidia \
-	swww waypaper \
+	swww waypaper-engine \
 	aylurs-gtk-shell \
 	xdg-desktop-portal-hyprland \
 	xorg-xhost \
