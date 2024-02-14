@@ -16,5 +16,6 @@ yay -S \
 	wl-clipboard \
 	grim slurp swappy \
 	nwg-look \
+	emote \
 	#hyprpaper \
 	#wayfire wayfire-plugins-extra wcm wf-config wf-shell \
