@@ -9,6 +9,7 @@ vim.cmd('set laststatus=3')
 vim.cmd('set updatetime=100')
 vim.cmd('set ignorecase')
 vim.cmd('set smartcase')
+vim.cmd('set conceallevel=1')
 -- Folds
 vim.cmd('set foldmethod=expr') -- Treesitter folding
 vim.cmd('set foldexpr=nvim_treesitter#foldexpr()')
