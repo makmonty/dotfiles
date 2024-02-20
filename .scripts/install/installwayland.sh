@@ -6,7 +6,7 @@ yay -S \
 	nvidia-dkms \
 	wayland \
 	swaylock-effects swayidle wlogout \
-	hyprland-nvidia \
+	hyprland \
 	swww waypaper-engine \
 	aylurs-gtk-shell \
 	xdg-desktop-portal-hyprland \
