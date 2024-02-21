@@ -7,7 +7,7 @@
 }
 
 .volume-popup {
-  background-color: @theme_bg_color;
+  background-color: @theme_bg_color_transparent;
 }
 
 .volume-popup .volume-icon {

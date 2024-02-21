@@ -1,6 +1,6 @@
 .session-popup {
   /* background: rgba(0,0,0,0.6); */
-  background-color: @theme_bg_color;
+  background-color: @theme_bg_color_transparent;
   /* padding: 16px; */
 }
 
