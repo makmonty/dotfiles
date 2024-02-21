@@ -26,8 +26,8 @@ export default {
   closeWindowDelay: {
     // 'volume-popup': 500, // milliseconds
   },
-  notificationPopupTimeout: 5000, // milliseconds
-  cacheNotificationActions: false,
+  // notificationPopupTimeout: 5000, // milliseconds
+  // cacheNotificationActions: false,
   maxStreamVolume: 1.0, // float
   style: css,
   windows: [

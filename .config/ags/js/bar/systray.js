@@ -3,14 +3,19 @@ import Widget from 'resource:///com/github/Aylur/ags/widget.js';
 
 export const SysTray = () => Widget.Box({
   className: 'systray',
-  connections: [[SystemTray, self => {
-    self.children = SystemTray.items.map(item => Widget.Button({
-      vpack: 'center',
-      child: Widget.Icon({ binds: [['icon', item, 'icon']] }),
-      onPrimaryClick: (_, event) => item.activate(event),
-      onSecondaryClick: (_, event) => item.openMenu(event),
-      binds: [['tooltip-markup', item, 'tooltip-markup']],
-    }));
-  }]],
+  setup: self => self.hook(
+    SystemTray,
+    self => {
+      self.children = SystemTray.items.map(item => Widget.Button({
+        vpack: 'center',
+        child: Widget.Icon({
+          setup: self => self.bind('icon', item, 'icon'),
+        }),
+        onPrimaryClick: (_, event) => item.activate(event),
+        onSecondaryClick: (_, event) => item.openMenu(event),
+        setup: self => self.bind('tooltip-markup', item, 'tooltip-markup'),
+      }));
+    }
+  ),
 });
 

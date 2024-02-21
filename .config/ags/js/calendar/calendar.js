@@ -9,7 +9,7 @@ export const calendarPopup = Widget.Window({
   visible: false,
   anchor: ['top', 'right'],
   // margins: [0, 0],
-  focusable: true,
+  keymode: 'on-demand',
   className: 'calendar-popup',
   // layer: 'overlay',
   // hpack: 'fill',

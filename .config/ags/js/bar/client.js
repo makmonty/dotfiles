@@ -3,7 +3,5 @@ import Widget from 'resource:///com/github/Aylur/ags/widget.js';
 
 export const ClientTitle = () => Widget.Label({
   className: 'client-title',
-  binds: [
-    ['label', Hyprland.active.client, 'title'],
-  ],
+  setup: self => self.bind('label', Hyprland.active.client, 'title')
 });

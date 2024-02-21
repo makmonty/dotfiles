@@ -8,15 +8,12 @@ export const Clock = () => Widget.Button({
   child: Widget.Label({
     className: 'clock-label',
     hpack: 'start',
-    connections: [
-      // this is bad practice, since exec() will block the main event loop
-      // in the case of a simple date its not really a problem
-      // [1000, self => self.label = exec('date "+%H:%M:%S %b %e."')],
-
-      // this is what you should do
-      [1000, self => execAsync(['date', '+%a %e %b, %H:%M:%S'])
-        .then(date => self.label = date).catch(console.error)],
-    ],
+    setup: self => self.poll(
+      1000,
+      () => execAsync(['date', '+%a %e %b, %H:%M:%S'])
+        .then(date => self.label = date)
+        .catch(console.error)
+    ),
   })
 });
 

@@ -46,8 +46,9 @@ export const Workspace = ws => {
       label: ws.name
     }),
     onClicked: () => execAsync(`hyprctl dispatch workspace ${ws.id}`),
-    connections: [
-      [Hyprland, self => {
+    setup: self => self.hook(
+      Hyprland,
+      self => {
         const classes = [];
         if (Hyprland.active.workspace.id === ws.id) {
           classes.push('focused');
@@ -56,8 +57,8 @@ export const Workspace = ws => {
           classes.push('active');
         }
         self.className = classes.join(' ');
-      }],
-    ]
+      },
+    ),
   });
   return widget;
 }
@@ -69,19 +70,21 @@ export const Workspaces = ({ monitor }) => {
     //     .filter(ws => ws.monitor === monitor.name)
     //     .map(Workspace),
 
-    connections: [[Hyprland, self => {
-      const workspaces = getWorkspaces();
-      workspaces
-        .filter(ws => ws.monitor === monitor.name)
-        .forEach(ws => {
-          const isNew = !monitors[monitor.name]?.[ws.id];
-          if (isNew) {
-            addWorkspace(ws, self);
-          }
+    setup: self => self.hook(
+      Hyprland,
+      box => {
+        const workspaces = getWorkspaces();
+        workspaces
+          .filter(ws => ws.monitor === monitor.name)
+          .forEach(ws => {
+            const isNew = !monitors[monitor.name]?.[ws.id];
+            if (isNew) {
+              addWorkspace(ws, box);
+            }
 
-          removeEmptyWorkspaces(self, monitor);
-        });
-
-    }]],
+            removeEmptyWorkspaces(box, monitor);
+          });
+      }
+    ),
   });
 }

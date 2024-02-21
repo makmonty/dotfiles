@@ -3,14 +3,17 @@ import Widget from 'resource:///com/github/Aylur/ags/widget.js';
 
 export const Media = () => Widget.Box({
   className: 'media',
-  connections: [[Mpris, self => {
-    const mpris = Mpris.getPlayer('');
-    // mpris player can be undefined
-    if (mpris)
-      self.className = self.className.replace('not-playing', '')
-    else
-      self.className += ' not-playing'
-  }]],
+  setup: self => self.hook(
+    Mpris,
+    self => {
+      const mpris = Mpris.getPlayer('');
+      // mpris player can be undefined
+      if (mpris)
+        self.className = self.className.replace('not-playing', '')
+      else
+        self.className += ' not-playing'
+    }
+  ),
   children: [
     Widget.Button({
       child: Widget.Label({label: '\udb81\udcab'}),
@@ -18,15 +21,18 @@ export const Media = () => Widget.Box({
     Widget.Button({
       child: Widget.Label({
         label: '\udb81\udc0a',
-        connections: [[Mpris, self => {
-          const mpris = Mpris.getPlayer('');
-          if (mpris) {
-            if (mpris.playBackStatus === 'Playing')
-              self.label = '\uf04c';
-            else
-              self.label = '\udb81\udc0a';
+        setup: self => self.hook(
+          Mpris,
+          self => {
+            const mpris = Mpris.getPlayer('');
+            if (mpris) {
+              if (mpris.playBackStatus === 'Playing')
+                self.label = '\uf04c';
+              else
+                self.label = '\udb81\udc0a';
+            }
           }
-        }]],
+        )
       }),
       onPrimaryClick: () => Mpris.getPlayer('')?.playPause(),
     }),

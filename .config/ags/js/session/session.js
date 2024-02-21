@@ -40,7 +40,7 @@ export const session = Widget.Window({
   visible: false,
   anchor: ['top', 'bottom', 'left', 'right'],
   margins: [0, 0],
-  focusable: true,
+  keymode: 'on-demand',
   className: 'session-popup',
   layer: 'overlay',
   hpack: 'fill',
@@ -67,9 +67,7 @@ export const session = Widget.Window({
               child: Widget.Label({
                 label: button.icon,
               }),
-              connections: [
-                ['focus', setLabel],
-              ],
+              setup: self => self.on('focus', setLabel),
             });
           }),
         ]

@@ -30,11 +30,9 @@ export const volumeIcon = () => Widget.Label({
   label: ICON_VOLUME_HIGH,
   xalign: 0,
   className: 'volume-icon',
-  connections: [
-    [volume, icon => {
-      icon.label = getIconForVolume(volume.value, isMuted.value);
-    }]
-  ],
+  setup: self => self.hook(volume,  icon =>
+    icon.label = getIconForVolume(volume.value, isMuted.value)
+  ),
 });
 
 export const volumePopup = Widget.Window({
@@ -52,18 +50,16 @@ export const volumePopup = Widget.Window({
       volumeIcon(),
       Widget.ProgressBar({
         className: 'volume-bar',
-        connections: [
-          [volume, widget => {
-            if (isMuted.value) {
-              widget.className += ' muted';
-            } else {
-              widget.className = widget.className.replace('muted', '');
-            }
-            widget.value = parseFloat(volume.value);
-          }]
-        ],
+        setup: self => self.hook(volume, widget => {
+          if (isMuted.value) {
+            widget.className += ' muted';
+          } else {
+            widget.className = widget.className.replace('muted', '');
+          }
+          widget.value = parseFloat(volume.value);
+        }),
       }),
-    ]
+    ],
   }),
 });
 
