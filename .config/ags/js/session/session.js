@@ -65,6 +65,8 @@ export const session = Widget.Window({
                 execAsync(['bash', '-c', button.command]),
               onHover: setLabel,
               child: Widget.Label({
+                className: 'session-button-label',
+                hpack: 'center',
                 label: button.icon,
               }),
               setup: self => self.on('focus', setLabel),
