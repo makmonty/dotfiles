@@ -2,7 +2,7 @@ import Mpris from 'resource:///com/github/Aylur/ags/service/mpris.js';
 import Widget from 'resource:///com/github/Aylur/ags/widget.js';
 
 export const Media = () => Widget.Box({
-  className: 'media',
+  className: 'media bar-module',
   setup: self => self.hook(
     Mpris,
     self => {

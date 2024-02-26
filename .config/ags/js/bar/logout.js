@@ -2,7 +2,7 @@ import App from 'resource:///com/github/Aylur/ags/app.js';
 import Widget from 'resource:///com/github/Aylur/ags/widget.js';
 
 export const Logout = () => Widget.Box({
-  className: 'logout',
+  className: 'logout bar-module',
   children: [
     Widget.Button({
       child: Widget.Label({

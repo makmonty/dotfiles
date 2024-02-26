@@ -2,7 +2,7 @@ import SystemTray from 'resource:///com/github/Aylur/ags/service/systemtray.js';
 import Widget from 'resource:///com/github/Aylur/ags/widget.js';
 
 export const SysTray = () => Widget.Box({
-  className: 'systray',
+  className: 'systray bar-module',
   setup: self => self.hook(
     SystemTray,
     self => {

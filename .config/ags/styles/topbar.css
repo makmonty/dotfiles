@@ -1,15 +1,29 @@
 .bar {
-  background: @theme_bg_color;
+  /* background: @theme_bg_color_transparent; */
 }
 
 .bar-container {
-  padding: 4px;
+  padding: 8px;
+  padding-bottom: 0;
+}
+
+.bar-module {
+  background: @theme_bg_color_transparent;
+  padding: 0 8px;
+  border-radius: 9999px;
+}
+
+.bar-module:not(:last-child) {
+  margin-right: 8px;
 }
 
 .workspaces button {
   padding: 0;
-  margin-right: 8px;
   background: none;
+}
+
+.workspaces button:not(:last-child) {
+  margin-right: 8px;
 }
 
 .workspaces button label {

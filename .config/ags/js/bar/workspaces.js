@@ -65,7 +65,7 @@ export const Workspace = ws => {
 
 export const Workspaces = ({ monitor }) => {
   return Widget.Box({
-    className: 'workspaces',
+    className: 'workspaces bar-module',
     // children: getWorkspaces()
     //     .filter(ws => ws.monitor === monitor.name)
     //     .map(Workspace),
