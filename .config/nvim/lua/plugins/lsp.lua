@@ -13,7 +13,7 @@ return {
 
       -- Mappings. https://github.com/neovim/nvim-lspconfig
       -- See `:help vim.diagnostic.*` for documentation on any of the below functions
-      local opts = { noremap=true, silent=true }
+      local opts = { noremap = true, silent = true }
       vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
       vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
       vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
@@ -28,7 +28,7 @@ return {
         client.server_capabilities.documentFormattingProvider = true
         -- Mappings.
         -- See `:help vim.lsp.*` for documentation on any of the below functions
-        local bufopts = { noremap=true, silent=true, buffer=bufnr }
+        local bufopts = { noremap = true, silent = true, buffer = bufnr }
         vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
         vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
         vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
@@ -43,7 +43,6 @@ return {
         vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, bufopts)
         vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
         vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
-        -- vim.keymap.set('n', '<space>f', vim.lsp.buf.format, bufopts)
 
         --autocmds
         -- vim.cmd('autocmd CursorHold * silent! lua vim.diagnostic.open_float({focus = false, source = true})')
@@ -82,25 +81,26 @@ return {
       setupLsp(lspconfig.eslint, {
         capabilities = capabilities,
         flags = lsp_flags,
-        on_attach = function(client, bufnr)
-          on_attach(client, bufnr)
-          --if client.server_capabilities.documentFormattingProvider then
-            --local au_lsp = vim.api.nvim_create_augroup("eslint_lsp", { clear = true })
-            --vim.api.nvim_create_autocmd("BufWritePre", {
-              --pattern = "*",
-              --callback = function()
-                --vim.lsp.buf.format()
-              --end,
-              --group = au_lsp,
-            --})
-          --end
-        end,
-        --cmd = { 'eslint_d', "--stdio" },
+        on_attach = on_attach,
+        -- on_attach = function(client, bufnr)
+        --   on_attach(client, bufnr)
+        --   if client.server_capabilities.documentFormattingProvider then
+        --     local au_lsp = vim.api.nvim_create_augroup("eslint_lsp", { clear = true })
+        --     vim.api.nvim_create_autocmd("BufWritePre", {
+        --       pattern = "*",
+        --       callback = function()
+        --         vim.lsp.buf.format()
+        --       end,
+        --       group = au_lsp,
+        --     })
+        --   end
+        -- end,
+        -- cmd = { 'eslint_d', "--stdio" },
         --settings = {
-          --codeActionOnSave = {
-            --enabled = true,
-            --mode = 'all',
-          --},
+        --codeActionOnSave = {
+        --enabled = true,
+        --mode = 'all',
+        --},
         --},
       })
       setupLsp(lspconfig.volar, {
@@ -108,12 +108,6 @@ return {
         on_attach = on_attach,
         flags = lsp_flags,
         filetypes = { 'vue' }
-      })
-      setupLsp(lspconfig.ember, {
-        capabilities = capabilities,
-        on_attach = on_attach,
-        flags = lsp_flags,
-        root_dir = util.root_pattern('ember-cli-build.js'),
       })
       setupLsp(lspconfig.cssls, {
         capabilities = capabilities,
@@ -128,9 +122,9 @@ return {
         flags = lsp_flags,
       })
       --setupLsp(lspconfig.stylelint_lsp, {
-        --capabilities = capabilities,
-        --on_attach = on_attach,
-        --flags = lsp_flags,
+      --capabilities = capabilities,
+      --on_attach = on_attach,
+      --flags = lsp_flags,
       --})
       setupLsp(lspconfig.jsonls, {
         capabilities = capabilities,
@@ -169,9 +163,9 @@ return {
       })
     end,
     dependencies = {
-      {"nvim-tree/nvim-web-devicons"},
+      { "nvim-tree/nvim-web-devicons" },
       --Please make sure you install markdown and markdown_inline parser
-      {"nvim-treesitter/nvim-treesitter"}
+      { "nvim-treesitter/nvim-treesitter" }
     }
   },
 }

@@ -15,7 +15,7 @@ return {
     "nvim-lua/plenary.nvim",
     "hrsh7th/nvim-cmp",
     "nvim-telescope/telescope.nvim",
-    "nnvim-treesitter/nvim-treesitter",
+    "nvim-treesitter/nvim-treesitter",
   },
   opts = {
     workspaces = {
