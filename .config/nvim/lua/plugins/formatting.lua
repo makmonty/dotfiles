@@ -20,8 +20,8 @@ return {
       formatters_by_ft = {
         lua = { "stylua" },
         python = { "isort", "black" },
-        javascript = { { "eslint_d", "eslint", "prettierd", "prettier" } },
-        typescript = { { "eslint_d", "eslint", "prettierd", "prettier" } },
+        javascript = { { "eslint_custom", "eslint", "prettierd", "prettier" } },
+        typescript = { { "eslint_custom", "eslint", "prettierd", "prettier" } },
       },
       -- Set up format-on-save
       format_on_save = { timeout_ms = 1000, lsp_fallback = true },
@@ -30,10 +30,10 @@ return {
         shfmt = {
           prepend_args = { "-i", "2" },
         },
-        -- eslint_d = {
-        --   command = "eslint_d",
-        --   args = { "--stdin", "--fix-to-stdout", "--stdin-filename", "$FILENAME" }
-        -- }
+        eslint_custom = {
+          command = "eslint_d",
+          args = { "--cache", "--stdin", '--fix-to-stdout', '--stdin-filename', '$FILENAME' }
+        }
       },
     },
     log_level = vim.log.levels.TRACE,
