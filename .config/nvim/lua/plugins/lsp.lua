@@ -1,11 +1,12 @@
 return {
-  { 'neovim/nvim-lspconfig' },
-  { 'L3MON4D3/LuaSnip' },
-  { 'saadparwaiz1/cmp_luasnip' },
+  { "neovim/nvim-lspconfig" },
+  { "L3MON4D3/LuaSnip" },
+  { "saadparwaiz1/cmp_luasnip" },
   {
-    'neovim/nvim-lspconfig',
+    "neovim/nvim-lspconfig",
     config = function()
-      local lspconfig = require('lspconfig')
+      local lspconfig = require("lspconfig")
+      local mason_registry = require("mason-registry")
       local util = lspconfig.util
       --local coq = require("coq")
       local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -14,42 +15,42 @@ return {
       -- Mappings. https://github.com/neovim/nvim-lspconfig
       -- See `:help vim.diagnostic.*` for documentation on any of the below functions
       local opts = { noremap = true, silent = true }
-      vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
-      vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
-      vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
-      vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
+      vim.keymap.set("n", "<space>e", vim.diagnostic.open_float, opts)
+      vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
+      vim.keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
+      vim.keymap.set("n", "<space>q", vim.diagnostic.setloclist, opts)
 
       -- Use an on_attach function to only map the following keys
       -- after the language server attaches to the current buffer
       local on_attach = function(client, bufnr)
         -- Enable completion triggered by <c-x><c-o>
-        vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+        vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
         --client.server_capabilities.documentFormattingProvider = true
         client.server_capabilities.documentFormattingProvider = true
         -- Mappings.
         -- See `:help vim.lsp.*` for documentation on any of the below functions
         local bufopts = { noremap = true, silent = true, buffer = bufnr }
-        vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
-        vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
-        vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
-        vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
-        vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
-        vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, bufopts)
-        vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, bufopts)
-        vim.keymap.set('n', '<space>wl', function()
+        vim.keymap.set("n", "gD", vim.lsp.buf.declaration, bufopts)
+        vim.keymap.set("n", "gd", vim.lsp.buf.definition, bufopts)
+        vim.keymap.set("n", "K", vim.lsp.buf.hover, bufopts)
+        vim.keymap.set("n", "gi", vim.lsp.buf.implementation, bufopts)
+        vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, bufopts)
+        vim.keymap.set("n", "<space>wa", vim.lsp.buf.add_workspace_folder, bufopts)
+        vim.keymap.set("n", "<space>wr", vim.lsp.buf.remove_workspace_folder, bufopts)
+        vim.keymap.set("n", "<space>wl", function()
           print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
         end, bufopts)
-        vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, bufopts)
-        vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, bufopts)
-        vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
-        vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
+        vim.keymap.set("n", "<space>D", vim.lsp.buf.type_definition, bufopts)
+        vim.keymap.set("n", "<space>rn", vim.lsp.buf.rename, bufopts)
+        vim.keymap.set("n", "<space>ca", vim.lsp.buf.code_action, bufopts)
+        vim.keymap.set("n", "gr", vim.lsp.buf.references, bufopts)
 
         --autocmds
         -- vim.cmd('autocmd CursorHold * silent! lua vim.diagnostic.open_float({focus = false, source = true})')
         --vim.cmd('autocmd CursorHoldI * silent! lua vim.lsp.buf.signature_help()')
-        local diagnosticGroup = vim.api.nvim_create_augroup('Line diagnostics', { clear = true })
-        vim.api.nvim_create_autocmd('CursorHold', {
-          command = 'Lspsaga show_cursor_diagnostics ++unfocus',
+        local diagnosticGroup = vim.api.nvim_create_augroup("Line diagnostics", { clear = true })
+        vim.api.nvim_create_autocmd("CursorHold", {
+          command = "Lspsaga show_cursor_diagnostics ++unfocus",
           group = diagnosticGroup,
         })
         -- vim.cmd('autocmd CursorHold * silent! Lspsaga show_cursor_diagnostics')
@@ -71,9 +72,9 @@ return {
         settings = {
           Lua = {
             diagnostics = {
-              globals = { 'vim' }
-            }
-          }
+              globals = { "vim" },
+            },
+          },
         },
         on_attach = on_attach,
         flags = lsp_flags,
@@ -107,7 +108,7 @@ return {
         capabilities = capabilities,
         on_attach = on_attach,
         flags = lsp_flags,
-        filetypes = { 'vue' }
+        filetypes = { "vue" },
       })
       setupLsp(lspconfig.cssls, {
         capabilities = capabilities,
@@ -131,10 +132,23 @@ return {
         on_attach = on_attach,
         flags = lsp_flags,
       })
+
+      local vue_language_server_path = mason_registry.get_package("vue-language-server"):get_install_path()
+        .. "/node_modules/@vue/language-server"
       setupLsp(lspconfig.tsserver, {
         capabilities = capabilities,
         on_attach = on_attach,
         flags = lsp_flags,
+        filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" },
+        init_options = {
+          plugins = {
+            {
+              name = "@vue/typescript-plugin",
+              location = vue_language_server_path,
+              languages = { "vue" },
+            },
+          },
+        },
       })
       setupLsp(lspconfig.openscad_lsp, {
         capabilities = capabilities,
@@ -165,7 +179,7 @@ return {
     dependencies = {
       { "nvim-tree/nvim-web-devicons" },
       --Please make sure you install markdown and markdown_inline parser
-      { "nvim-treesitter/nvim-treesitter" }
-    }
+      { "nvim-treesitter/nvim-treesitter" },
+    },
   },
 }
