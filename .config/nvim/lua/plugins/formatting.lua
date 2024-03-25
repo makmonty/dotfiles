@@ -39,14 +39,17 @@ return {
   --   -- end,
   -- }
   {
-    'mhartington/formatter.nvim',
+    "mhartington/formatter.nvim",
 
     config = function()
       -- Utilities for creating configurations
-      local util = require "formatter.util"
+      local util = require("formatter.util")
 
       -- Provides the Format, FormatWrite, FormatLock, and FormatWriteLock commands
-      require("formatter").setup {
+      local defaults = require("formatter.defaults")
+
+      local vueformatter = util.withl(defaults.eslint_d, "vue")
+      require("formatter").setup({
         -- Enable or disable logging
         logging = true,
         -- Set the log level
@@ -60,43 +63,45 @@ return {
             -- "lua" filetype
             require("formatter.filetypes.lua").stylua,
 
-            -- You can also define your own configuration
-            function()
-              -- Supports conditional formatting
-              if util.get_current_buffer_file_name() == "special.lua" then
-                return nil
-              end
-
-              -- Full specification of configurations is down below and in Vim help
-              -- files
-              return {
-                exe = "stylua",
-                args = {
-                  "--search-parent-directories",
-                  "--stdin-filepath",
-                  util.escape_path(util.get_current_buffer_file_path()),
-                  "--",
-                  "-",
-                },
-                stdin = true,
-              }
-            end
+            -- -- You can also define your own configuration
+            -- function()
+            --   -- Supports conditional formatting
+            --   if util.get_current_buffer_file_name() == "special.lua" then
+            --     return nil
+            --   end
+            --
+            --   -- Full specification of configurations is down below and in Vim help
+            --   -- files
+            --   return {
+            --     exe = "stylua",
+            --     args = {
+            --       "--search-parent-directories",
+            --       "--stdin-filepath",
+            --       util.escape_path(util.get_current_buffer_file_path()),
+            --       "--",
+            --       "-",
+            --     },
+            --     stdin = true,
+            --   }
+            -- end,
           },
           javascript = {
             require("formatter.filetypes.javascript").eslint_d,
-            function()
-              return {
-                try_node_modules = true
-              }
-            end
           },
           javascriptreact = {
             require("formatter.filetypes.javascriptreact").eslint_d,
-            function()
-              return {
-                try_node_modules = true
-              }
-            end
+          },
+          typescript = {
+            require("formatter.filetypes.typescript").eslint_d,
+          },
+          typescriptreact = {
+            require("formatter.filetypes.typescriptreact").eslint_d,
+          },
+          vue = {
+            -- vueformatter,
+            require("formatter.filetypes.javascript").eslint_d,
+            -- require("formatter.defaults.eslint_d"),
+            -- require("formatter.filetypes.vue").prettier,
           },
 
           -- Use the special "*" filetype for defining formatter configurations on
@@ -104,10 +109,18 @@ return {
           ["*"] = {
             -- "formatter.filetypes.any" defines default configurations for any
             -- filetype
-            require("formatter.filetypes.any").remove_trailing_whitespace
-          }
-        }
-      }
-    end
-  }
+            require("formatter.filetypes.any").remove_trailing_whitespace,
+          },
+        },
+      })
+
+      local augroup = vim.api.nvim_create_augroup
+      local autocmd = vim.api.nvim_create_autocmd
+      augroup("__formatter__", { clear = true })
+      autocmd("BufWritePost", {
+        group = "__formatter__",
+        command = ":FormatWrite",
+      })
+    end,
+  },
 }
