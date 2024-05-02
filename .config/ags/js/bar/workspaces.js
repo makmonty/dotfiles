@@ -50,6 +50,9 @@ export const Workspace = ws => {
       Hyprland,
       self => {
         const classes = [];
+        if (ws.name === 'special') {
+          classes.push('special');
+        }
         if (Hyprland.active.workspace.id === ws.id) {
           classes.push('focused');
         }

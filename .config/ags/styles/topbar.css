@@ -44,6 +44,10 @@
   background: @theme_accent;
 }
 
+.workspaces button.special label {
+  background: @theme_secondary;
+}
+
 .workspaces button.active label {
   min-width: 16px;
 }
