@@ -1,60 +1,61 @@
 return {
   -- Startup time
   {
-    url = 'https://git.sr.ht/~henriquehbr/nvim-startup.lua',
+    url = "https://git.sr.ht/~henriquehbr/nvim-startup.lua",
     config = function()
-      require 'nvim-startup'.setup()
-    end
+      require("nvim-startup").setup()
+    end,
   },
   {
-    'folke/trouble.nvim',
-    dependencies = 'nvim-tree/nvim-web-devicons',
+    "folke/trouble.nvim",
+    opts = {},
+    cmd = "Trouble",
   },
   -- Scroll
   {
-    'karb94/neoscroll.nvim',
-    config = function ()
-      require'neoscroll'.setup()
-    end
+    "karb94/neoscroll.nvim",
+    config = function()
+      require("neoscroll").setup()
+    end,
   },
   -- Sessions
   {
-    'rmagatti/auto-session',
+    "rmagatti/auto-session",
     config = function()
-      require'auto-session'.setup{
+      require("auto-session").setup({
         auto_save_enabled = true,
-        auto_restore_enabled = false
-      }
-    end
+        auto_restore_enabled = false,
+      })
+    end,
   },
   -- Per-project config files
   {
-    'MunifTanjim/exrc.nvim',
+    "MunifTanjim/exrc.nvim",
     dependencies = {
-      'MunifTanjim/nui.nvim',
+      "MunifTanjim/nui.nvim",
     },
     config = function()
-      require'exrc'.setup{
+      require("exrc").setup({
         files = {
-          '.vimrc',
-          '.lvimrc',
-          '.nvimrc',
-          '.exrc',
-          '.nvimrc.lua',
-          '.exrc.lua',
-        }
-      }
-    end
+          ".vimrc",
+          ".lvimrc",
+          ".nvimrc",
+          ".exrc",
+          ".nvimrc.lua",
+          ".exrc.lua",
+        },
+      })
+    end,
   },
   -- Find and replace
   {
-    'nvim-pack/nvim-spectre',
-    dependencies = { 'nvim-lua/plenary.nvim' },
+    "nvim-pack/nvim-spectre",
+    dependencies = { "nvim-lua/plenary.nvim" },
   },
   {
-    'folke/which-key.nvim',
+    "folke/which-key.nvim",
     config = function()
-      require'which-key'.setup{}
-    end
+      require("which-key").setup({})
+    end,
   },
 }
