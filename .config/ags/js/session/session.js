@@ -5,7 +5,7 @@ const sessionButtons = [
   {
     icon: '\udb80\udf3e',
     label: 'Bloquear',
-    command: 'swaylock',
+    command: 'loginctl lock-session',
   },
   // {
   //   icon: '\udb81\udcb2',
