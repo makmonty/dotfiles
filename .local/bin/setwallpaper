@@ -1,0 +1,9 @@
+#!/bin/sh
+rm $HOME/.config/wallpapers/current || true
+ABSOLUTE_PATH=$(readlink -f $1)
+CURRENT=$HOME/.config/wallpapers/current
+CURRENT_SDDM=/usr/share/sddm/themes/makmonty/assets/current
+ln -s $ABSOLUTE_PATH $CURRENT
+cp $ABSOLUTE_PATH $CURRENT_SDDM # Chili sddm theme doesn't support symlinks
+swww img $ABSOLUTE_PATH
+wal -i $ABSOLUTE_PATH --saturate 0.8 --backend colorz
