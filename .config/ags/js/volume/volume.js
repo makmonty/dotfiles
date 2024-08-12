@@ -37,7 +37,6 @@ export const volumeIcon = () => Widget.Label({
 
 export const volumePopup = Widget.Window({
   name: 'volume-popup',
-  popup: true,
   visible: false,
   className: 'volume-popup',
   layer: 'overlay',
@@ -51,11 +50,7 @@ export const volumePopup = Widget.Window({
       Widget.ProgressBar({
         className: 'volume-bar',
         setup: self => self.hook(volume, widget => {
-          if (isMuted.value) {
-            widget.className += ' muted';
-          } else {
-            widget.className = widget.className.replace('muted', '');
-          }
+          widget.toggleClassName('muted', !!isMuted.value)
           widget.value = parseFloat(volume.value);
         }),
       }),
@@ -88,5 +83,3 @@ export const triggerVolumePopup = () => {
     volumeTimeout = null;
   }, VOLUME_DISPLAY_TIME);
 };
-
-

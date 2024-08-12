@@ -49,17 +49,9 @@ export const Workspace = ws => {
     setup: self => self.hook(
       Hyprland,
       self => {
-        const classes = [];
-        if (ws.name === 'special') {
-          classes.push('special');
-        }
-        if (Hyprland.active.workspace.id === ws.id) {
-          classes.push('focused');
-        }
-        if (getMonitors().some(monitor => monitor.activeWorkspace.id === ws.id)) {
-          classes.push('active');
-        }
-        self.className = classes.join(' ');
+        self.toggleClassName('special', ws.name === 'special');
+        self.toggleClassName('focused', Hyprland.active.workspace.id === ws.id);
+        self.toggleClassName('active', getMonitors().some(monitor => monitor.activeWorkspace.id === ws.id));
       },
     ),
   });

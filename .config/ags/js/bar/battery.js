@@ -1,19 +1,38 @@
-import Battery from 'resource:///com/github/Aylur/ags/service/battery.js';
 import Widget from 'resource:///com/github/Aylur/ags/widget.js';
+const battery = await Service.import('battery');
 
 export const BatteryLabel = () => Widget.Box({
-  className: 'battery',
+  className: 'battery bar-button',
   setup: self => self.hook(
-    Battery,
-    self => self.visible = Battery.available,
+    battery,
+    self => {
+      self.visible = battery.available;
+    }
   ),
   children: [
     Widget.Icon({
+      className: '',
       setup: self => self.hook(
-        Battery,
+        battery,
         self => {
-          if (Battery.available)
-            self.icon = `battery-level-${Math.floor(Battery.percent / 10) * 10}-symbolic`;
+          if (battery.available) {
+            let icon = 'battery-level';
+            if (battery.charged) {
+              icon += '-100-charged';
+            } else {
+              icon += `-${Math.floor(battery.percent / 10) * 10}`;
+            }
+
+            if (battery.charging) {
+              icon += '-charging';
+            }
+
+            self.icon = icon + '-symbolic';
+
+            self.toggleClassName('battery-charged', battery.charged);
+            self.toggleClassName('battery-charging', battery.charging);
+            self.toggleClassName('battery-danger', battery.percent <= 20);
+          }
         }
       )
     }),

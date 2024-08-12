@@ -1,0 +1,7 @@
+.battery .battery-danger{
+  color: @theme_danger;
+}
+
+.battery .battery-charging {
+  color: @theme_success;
+}

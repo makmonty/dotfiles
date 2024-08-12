@@ -36,7 +36,6 @@ const sessionButtons = [
 
 export const session = Widget.Window({
   name: 'session-popup',
-  popup: true,
   visible: false,
   anchor: ['top', 'bottom', 'left', 'right'],
   margins: [0, 0],
@@ -45,6 +44,7 @@ export const session = Widget.Window({
   layer: 'overlay',
   hpack: 'fill',
   vpack: 'fill',
+  setup: self => self.keybind('Escape', () => App.closeWindow('session-popup')),
   child: Widget.Box({
     hpack: 'center',
     vpack: 'center',

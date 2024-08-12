@@ -1,3 +1,4 @@
+/*Dracula*/
 @define-color grey0	#282a36;
 @define-color grey1 #44475a;
 @define-color grey2 #44475a;
@@ -12,4 +13,6 @@
 @define-color yellow #f1fa8c;
 @define-color theme_accent @purple;
 @define-color theme_secondary @pink;
+@define-color theme_danger @red;
+@define-color theme_success @green;
 @define-color theme_bg_color_transparent rgba(40, 42, 54, 0.5);

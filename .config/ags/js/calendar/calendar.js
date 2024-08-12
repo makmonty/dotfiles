@@ -5,7 +5,6 @@ import Gtk from 'gi://Gtk';
 
 export const calendarPopup = Widget.Window({
   name: 'calendar-popup',
-  popup: true,
   visible: false,
   anchor: ['top', 'right'],
   // margins: [0, 0],
@@ -14,6 +13,7 @@ export const calendarPopup = Widget.Window({
   // layer: 'overlay',
   // hpack: 'fill',
   // vpack: 'fill',
+  setup: self => self.keybind('Escape', () => App.closeWindow('calendar-popup')),
   child: Widget.Box({
     hpack: 'center',
     vpack: 'center',

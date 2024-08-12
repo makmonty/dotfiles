@@ -5,10 +5,10 @@ import { Media } from './media.js';
 import { Workspaces } from './workspaces.js';
 import { ClientTitle } from './client.js';
 import { Clock } from './clock.js';
-import { Volume } from './volume.js';
+// import { Volume } from './volume.js';
 import { SysTray } from './systray.js';
 import { Logout } from './logout.js';
-import { BatteryLabel } from './battery.js';
+// import { BatteryLabel } from './battery.js';
 
 // layout of the bar
 const Left = (options) => Widget.Box({
@@ -29,8 +29,8 @@ const Right = (options) => Widget.Box({
   hpack: 'end',
   children: [
     Media(options),
-    Volume(options),
-    BatteryLabel(options),
+    // Volume(options),
+    // BatteryLabel(options),
     SysTray(options),
     Clock(options),
     Logout(options),

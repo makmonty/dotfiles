@@ -22,7 +22,7 @@ Hyprland.connect('monitor-removed', (_, monitorName) => {
 
 const monitors = getMonitors();
 
-export default {
+App.config({
   closeWindowDelay: {
     // 'volume-popup': 500, // milliseconds
   },
@@ -38,4 +38,4 @@ export default {
     session,
     ...(monitors.map(monitor => topBar({ monitor })))
   ],
-};
+});

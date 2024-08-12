@@ -8,10 +8,7 @@ export const Media = () => Widget.Box({
     self => {
       const mpris = Mpris.getPlayer('');
       // mpris player can be undefined
-      if (mpris)
-        self.className = self.className.replace('not-playing', '')
-      else
-        self.className += ' not-playing'
+      self.toggleClassName('not-playing', !mpris)
     }
   ),
   children: [
@@ -57,4 +54,3 @@ export const Media = () => Widget.Box({
 //     }]],
 //   }),
 // });
-

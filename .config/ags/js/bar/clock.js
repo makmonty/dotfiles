@@ -8,6 +8,7 @@ export const Clock = () => Widget.Button({
   child: Widget.Label({
     className: 'clock-label',
     hpack: 'start',
+    maxWidthChars: 24,
     setup: self => self.poll(
       1000,
       () => execAsync(['date', '+%a %e %b, %H:%M:%S'])
@@ -16,4 +17,3 @@ export const Clock = () => Widget.Button({
     ),
   })
 });
-
