@@ -3,5 +3,11 @@ import Widget from 'resource:///com/github/Aylur/ags/widget.js';
 
 export const ClientTitle = () => Widget.Label({
   className: 'client-title bar-module',
-  setup: self => self.bind('label', Hyprland.active.client, 'title')
+  setup: self => {
+    self.hook(Hyprland.active.client, () => {
+      const client = Hyprland.clients.find(client => client.address === Hyprland.active.client.address);
+      self.label = client?.initialTitle || '';
+      self.visible = !!self.label;
+    })
+  }
 });
