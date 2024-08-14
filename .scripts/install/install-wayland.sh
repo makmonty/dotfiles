@@ -1,9 +1,6 @@
 #!/bin/sh
 
-sudo pacman -R nvidia
-
 yay -S \
-	nvidia-dkms \
 	wayland \
 	hyprland \
 	hyprlock hypridle wlogout \
@@ -17,5 +14,6 @@ yay -S \
 	grim slurp swappy \
 	nwg-look \
 	emote \
+	brightnessctl \
 	#hyprpaper \
 	#wayfire wayfire-plugins-extra wcm wf-config wf-shell \
