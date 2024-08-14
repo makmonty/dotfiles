@@ -1,24 +1,24 @@
-.volume-icon {
-  margin-left: 0.33em;
-}
-
-.volume-container {
+.osd-container {
   padding: 16px;
 }
 
-.volume-popup {
+.osd-popup {
   background-color: @theme_bg_color_transparent;
 }
 
-.volume-popup .volume-icon {
+.osd-popup .osd-icon {
   font-size: 100px;
   margin-bottom: 16px;
 }
 
-.volume-popup .volume-bar progress {
+.osd-popup .osd-bar progress {
   background: @theme_accent;
 }
 
-.volume-popup .volume-bar.muted progress {
+.osd-popup .osd-bar.muted progress {
   background: @insensitive_fg_color;
+}
+
+.volume-icon {
+  margin-left: 0.33em;
 }

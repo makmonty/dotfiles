@@ -1,6 +1,6 @@
 @import './variables.css';
 @import './global.css';
-@import './volume.css';
+@import './osd.css';
 @import './topbar.css';
 @import './battery.css';
 @import './session.css';

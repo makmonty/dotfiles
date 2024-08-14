@@ -1,7 +1,7 @@
 import Audio from 'resource:///com/github/Aylur/ags/service/audio.js';
 import Widget from 'resource:///com/github/Aylur/ags/widget.js';
 import { execAsync } from 'resource:///com/github/Aylur/ags/utils.js';
-import { getIconForVolume, volumeIcon } from '../volume/volume.js';
+import { getIconForVolume, volumeIcon } from '../osd/volume.js';
 
 export const Volume = () => Widget.Box({
   className: 'volume',
@@ -30,4 +30,3 @@ export const Volume = () => Widget.Box({
     // }),
   ],
 });
-

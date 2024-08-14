@@ -29,26 +29,26 @@ Audio.connect('speaker-changed', () => {
 export const volumeIcon = () => Widget.Label({
   label: ICON_VOLUME_HIGH,
   xalign: 0,
-  className: 'volume-icon',
+  className: 'volume-icon osd-icon',
   setup: self => self.hook(volume,  icon =>
     icon.label = getIconForVolume(volume.value, isMuted.value)
   ),
 });
 
 export const volumePopup = Widget.Window({
-  name: 'volume-popup',
+  name: 'osd-popup-volume',
   visible: false,
-  className: 'volume-popup',
+  className: 'osd-popup-volume osd-popup',
   layer: 'overlay',
   anchor: ['bottom'],
   margins: [0, 0, 128, 0],
   child: Widget.Box({
-    className: 'volume-container',
+    className: 'volume-container osd-container',
     vertical: true,
     children: [
       volumeIcon(),
       Widget.ProgressBar({
-        className: 'volume-bar',
+        className: 'volume-bar osd-bar',
         setup: self => self.hook(volume, widget => {
           widget.toggleClassName('muted', !!isMuted.value)
           widget.value = parseFloat(volume.value);
@@ -76,10 +76,10 @@ export const triggerVolumePopup = () => {
     volumeTimeout.destroy();
   }
 
-  App.openWindow('volume-popup');
+  App.openWindow('osd-popup-volume');
 
   volumeTimeout = setTimeout(() => {
-    App.closeWindow('volume-popup');
+    App.closeWindow('osd-popup-volume');
     volumeTimeout = null;
   }, VOLUME_DISPLAY_TIME);
 };
