@@ -15,7 +15,8 @@ const sessionButtons = [
   {
     icon: '\udb80\udf43',
     label: 'Salir',
-    command: 'loginctl terminate-user $USER',
+    // command: 'loginctl terminate-user $USER',
+    command: 'hyprctl dispatch exit'
   },
   {
     icon: '\udb81\udc25',
