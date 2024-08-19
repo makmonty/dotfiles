@@ -183,6 +183,8 @@ nnn ()
 
 alias notes='nvim ~/Nextcloud/Documentos/Obsidian'
 
+source <(fzf --zsh)
+
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -r ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
