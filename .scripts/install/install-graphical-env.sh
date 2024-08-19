@@ -9,7 +9,6 @@ yay -S \
 	kitty blueman polkit lxsession-gtk3 lxappearance gnome-tweaks \
 	firefox \
 	gthumb \
-	dunst \
 	pavucontrol \
 	galculator mousepad \
 	system-config-users \
