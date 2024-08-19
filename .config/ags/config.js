@@ -7,6 +7,7 @@ import { calendarPopup } from './js/calendar/calendar.js';
 import { topBar } from './js/bar/topbar.js';
 import { session } from './js/session/session.js';
 import { getMonitors } from './js/utils.js';
+import { NotificationPopups } from './js/notifications/notifications.js';
 
 const css = App.configDir + '/styles/style.css';
 
@@ -38,6 +39,7 @@ App.config({
     brightnessPopup,
     calendarPopup,
     session,
+    NotificationPopups(),
     ...(monitors.map(monitor => topBar({ monitor })))
   ],
 });
