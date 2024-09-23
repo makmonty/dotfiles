@@ -49,10 +49,12 @@ return {
         -- vim.cmd('autocmd CursorHold * silent! lua vim.diagnostic.open_float({focus = false, source = true})')
         --vim.cmd('autocmd CursorHoldI * silent! lua vim.lsp.buf.signature_help()')
         local diagnosticGroup = vim.api.nvim_create_augroup("Line diagnostics", { clear = true })
-        vim.api.nvim_create_autocmd("CursorHold", {
-          command = "Lspsaga show_cursor_diagnostics ++unfocus",
-          group = diagnosticGroup,
-        })
+        -- Commenting out to debug the config
+        -- vim.api.nvim_create_autocmd("CursorHold", {
+        --   command = "Lspsaga show_cursor_diagnostics ++unfocus",
+        --   group = diagnosticGroup,
+        -- })
+
         -- vim.cmd('autocmd CursorHold * silent! Lspsaga show_cursor_diagnostics')
       end
 
@@ -135,7 +137,7 @@ return {
 
       local vue_language_server_path = mason_registry.get_package("vue-language-server"):get_install_path()
         .. "/node_modules/@vue/language-server"
-      setupLsp(lspconfig.tsserver, {
+      setupLsp(lspconfig.ts_ls, {
         capabilities = capabilities,
         on_attach = on_attach,
         flags = lsp_flags,
@@ -145,7 +147,7 @@ return {
             {
               name = "@vue/typescript-plugin",
               location = vue_language_server_path,
-              languages = { "vue" },
+              languages = { "javascript", "typescript", "vue" },
             },
           },
         },

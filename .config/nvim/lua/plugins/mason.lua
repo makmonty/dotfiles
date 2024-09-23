@@ -16,7 +16,7 @@ return {
           'html',
           'jsonls',
           --'eslint_d',
-          'tsserver',
+          'ts_ls',
           'volar',
         },
         automatic_installation = true,
