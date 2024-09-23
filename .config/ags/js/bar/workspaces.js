@@ -11,21 +11,21 @@ const addWorkspace = (ws, parent) => {
   parent.reorder_child(widget, ws.id - 1)
   parent.notify('children');
   parent.show_all();
-  monitors[ws.monitor] ||= {};
-  monitors[ws.monitor][ws.id] = {widget, ws};
+  monitors[ws.monitorID] ||= {};
+  monitors[ws.monitorID][ws.id] = {widget, ws};
 }
 
 const removeWorkspace = (ws, parent) => {
-  const widget = monitors[ws.monitor][ws.id].widget;
+  const widget = monitors[ws.monitorID][ws.id].widget;
   parent.remove(widget);
   parent.notify('children');
   parent.show_all();
-  delete monitors[ws.monitor][ws.id];
+  delete monitors[ws.monitorID][ws.id];
 }
 
 const removeEmptyWorkspaces = (parent, monitor) => {
   const workspaces = getWorkspaces();
-  Object.values(monitors[monitor.name]).forEach(({ws}) => {
+  Object.values(monitors[monitor.id]).forEach(({ws}) => {
     const isGone = !workspaces.some(workspace => workspace.id === ws.id);
 
     if (isGone) {
@@ -70,10 +70,11 @@ export const Workspaces = ({ monitor }) => {
       box => {
         const workspaces = getWorkspaces();
         workspaces
-          .filter(ws => ws.monitor === monitor.name)
+          .filter(ws => ws.monitorID === monitor.id)
           .forEach(ws => {
-            const isNew = !monitors[monitor.name]?.[ws.id];
+            const isNew = !monitors[monitor.id]?.[ws.id];
             if (isNew) {
+              console.log(monitor.id, monitor.name, ws.monitorID)
               addWorkspace(ws, box);
             }
 
