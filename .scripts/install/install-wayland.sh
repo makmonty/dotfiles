@@ -15,5 +15,6 @@ yay -S \
 	nwg-look \
 	emote \
 	brightnessctl \
+	rofi-wayland \
 	#hyprpaper \
 	#wayfire wayfire-plugins-extra wcm wf-config wf-shell \
