@@ -1,13 +1,20 @@
-local copy_table = require('helpers.table').copy_table
+local copy_table = require("helpers.table").copy_table
 
 return {
-  'Mofiqul/dracula.nvim',
-  {
-    "folke/tokyonight.nvim",
-    lazy = false,
-    priority = 1000,
-    opts = {},
-  },
+  "Mofiqul/dracula.nvim",
+  -- {
+  --   "folke/tokyonight.nvim",
+  --   lazy = false,
+  --   priority = 1000,
+  --   opts = {},
+  -- },
+  -- {
+  --   "AlphaTechnolog/pywal.nvim",
+  --   name = "pywal",
+  --   config = function()
+  --     require("pywal").setup()
+  --   end,
+  -- },
   -- Color scheme
   -- {
   --   'jzelinskie/monokai-soda.vim',
@@ -50,13 +57,13 @@ return {
   --   end
   -- },
   --{
-    --'taphill/gruvbox.nvim',
-    --dependencies = 'tjdevries/colorbuddy.nvim'
+  --'taphill/gruvbox.nvim',
+  --dependencies = 'tjdevries/colorbuddy.nvim'
   --}
-  {
-    'srcery-colors/srcery-vim',
-    name = 'srcery',
-    lazy = false,
-    priority = 1000,
-  },
+  -- {
+  --   "srcery-colors/srcery-vim",
+  --   name = "srcery",
+  --   lazy = false,
+  --   priority = 1000,
+  -- },
 }
