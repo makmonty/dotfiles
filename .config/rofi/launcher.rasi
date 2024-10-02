@@ -5,7 +5,7 @@ configuration {
   me-accept-entry: "MousePrimary"; */
 }
 
-@theme "monokai_soda"
+@theme "dracula"
 
 * {
   text-color: @fg;
@@ -16,7 +16,7 @@ configuration {
 }
 
 window {
-  border-radius: 0px;
+  border-radius: 6px;
 }
 
 mainbox {
@@ -75,4 +75,3 @@ element-icon {
 element.selected {
   background-color: @bg-faded;
 }
-
