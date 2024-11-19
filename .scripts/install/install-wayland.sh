@@ -4,7 +4,7 @@ yay -S \
 	wayland \
 	hyprland \
 	hyprlock hypridle wlogout \
-	swww waypaper-engine \
+	swww \
 	aylurs-gtk-shell \
 	xdg-desktop-portal-hyprland \
 	xorg-xhost \
