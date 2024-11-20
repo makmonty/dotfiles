@@ -1,3 +1,5 @@
+@import '../../styles/variables.scss';
+
 .bar {
   /* background: @theme_bg_color_transparent; */
 }
@@ -7,7 +9,7 @@
 }
 
 .bar-module {
-  background: @theme_bg_color_transparent;
+  background: #{$theme_bg_color_transparent};
   padding: 0 8px;
   border-radius: 9999px;
 }
@@ -37,15 +39,15 @@
 }
 
 .workspaces button:hover label {
-  background: @insensitive_fg_color;
+  background: red;
 }
 
 .workspaces button.focused label {
-  background: @theme_accent;
+  background: #{$theme_accent};
 }
 
 .workspaces button.special label {
-  background: @theme_secondary;
+  background: #{$theme_secondary};
 }
 
 .workspaces button.active label {
