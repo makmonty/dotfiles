@@ -6,7 +6,7 @@ yay -S \
 	thunar thunar-archive-plugin file-roller \
 	xdg-desktop-portal-gtk \
 	network-manager-applet nm-connection-editor \
-	kitty blueman polkit lxsession-gtk3 lxappearance gnome-tweaks \
+	kitty foot blueman polkit lxsession-gtk3 lxappearance gnome-tweaks \
 	firefox \
 	gthumb \
 	pavucontrol \
