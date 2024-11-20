@@ -12,7 +12,7 @@ pacstrap -K /mnt base linux linux-firmware \
 	ntfs-3g \
 	xdg-user-dirs \
 	pipewire pipewire-audio pipewire-pulse wireplumber bluez bluez-utils \
-	vim neovim ripgrep tree-sitter \
+	vim neovim ripgrep fzf tree-sitter \
 	networkmanager \
 	unzip \
 
