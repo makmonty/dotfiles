@@ -1,6 +1,7 @@
-import { App, Astal, Gdk } from 'astal/gtk3'
+import { App, Astal, Gdk, Gtk } from 'astal/gtk3'
 import Binding from "astal/binding"
 import { Workspaces } from './Workspaces'
+import { Systray } from './Systray'
 
 export function BarModule({ child, children }: {
   child?: JSX.Element | Binding<JSX.Element> | Binding<Array<JSX.Element>>
@@ -30,6 +31,13 @@ export function Bar(gdkmonitor: Gdk.Monitor, monitorIndex: number) {
               gdkMonitor={gdkmonitor}
               monitorIndex={monitorIndex}
             />
+          </BarModule>
+        </box>
+      }
+      endWidget={
+        <box halign={Gtk.Align.END}>
+          <BarModule>
+            <Systray />
           </BarModule>
         </box>
       }
