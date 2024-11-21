@@ -13,10 +13,11 @@ export function BarModule({ child, children }: {
   </box>
 }
 
-export function Bar(gdkmonitor: Gdk.Monitor, monitorIndex: number) {
+export function Bar(gdkMonitor: Gdk.Monitor, monitorIndex: number) {
   return <window
+    name="bar"
     className="bar"
-    gdkmonitor={gdkmonitor}
+    gdkmonitor={gdkMonitor}
     exclusivity={Astal.Exclusivity.EXCLUSIVE}
     anchor={Astal.WindowAnchor.TOP
       | Astal.WindowAnchor.LEFT
@@ -28,7 +29,7 @@ export function Bar(gdkmonitor: Gdk.Monitor, monitorIndex: number) {
         <box>
           <BarModule>
             <Workspaces
-              gdkMonitor={gdkmonitor}
+              gdkMonitor={gdkMonitor}
               monitorIndex={monitorIndex}
             />
           </BarModule>

@@ -3,7 +3,7 @@
 }
 
 .osd-popup {
-  background-color: @theme_bg_color_transparent;
+  background: #{$theme_bg_color_transparent};
 }
 
 .osd-popup .osd-icon {
@@ -12,11 +12,12 @@
 }
 
 .osd-popup .osd-bar progress {
-  background: @theme_accent;
+  background: #{$theme_accent};
 }
 
 .osd-popup .osd-bar.muted progress {
-  background: @insensitive_fg_color;
+  /* background: @insensitive_fg_color; */
+  background: red;
 }
 
 .volume-icon {
