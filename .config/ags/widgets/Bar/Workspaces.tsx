@@ -1,4 +1,4 @@
-import { Gdk } from "astal/gtk3"
+import { Gdk, Gtk } from "astal/gtk3"
 import Hyprland from "gi://AstalHyprland";
 import GObject from 'astal/gobject'
 import { execAsync } from 'astal'
@@ -40,6 +40,7 @@ export function Workspace({ ws }: { ws: Hyprland.Workspace }) {
   return <button
     vexpand={false}
     hexpand={false}
+    valign={Gtk.Align.CENTER}
     tooltipText={`Workspace ${ws.name}`}
     onClicked={() => execAsync(`hyprctl dispatch workspace ${ws.id}`)}
     setup={self => self.hook(
@@ -48,7 +49,10 @@ export function Workspace({ ws }: { ws: Hyprland.Workspace }) {
       self => {
         self.toggleClassName('special', ws.name === 'special');
         self.toggleClassName('focused', hyprland.get_focused_workspace().id === ws.id);
-        self.toggleClassName('active', hyprland.get_monitors().some(monitor => monitor.activeWorkspace.id === ws.id));
+        // TODO: ws.get_monitor().get_active_workspace() is returning always the same workspace
+        // Use the second implementation when it's fixed
+        self.toggleClassName('active', hyprland.get_focused_workspace().id === ws.id);
+        // self.toggleClassName('active', ws.get_monitor().get_active_workspace().id === ws.id);
       },
     )}
   >
@@ -58,33 +62,32 @@ export function Workspace({ ws }: { ws: Hyprland.Workspace }) {
   </button>
 }
 
-export const Workspaces = ({ monitorIndex }: { gdkMonitor: Gdk.Monitor, monitorIndex: number }) => {
+export function Workspaces ({ monitorIndex }: { gdkMonitor: Gdk.Monitor, monitorIndex: number }) {
   const monitor = hyprland.get_monitor(monitorIndex)
 
+  const setWorkspaces = (box: GObject.Object) => {
+    const workspaces = hyprland.get_workspaces();
+    workspaces
+      .filter(ws => ws.monitor?.id === monitor.id)
+      .forEach(ws => {
+        const isNew = !monitors[monitor.id]?.[ws.id];
+        if (isNew) {
+          addWorkspace(ws, box);
+        }
+
+        removeEmptyWorkspaces(box, monitor);
+      });
+  }
+
   return <box
-    className="workspaces bar-module"
-    // children: getWorkspaces()
-    //     .filter(ws => ws.monitor === monitor.name)
-    //     .map(Workspace),
-
-    setup={self => self.hook(
-      hyprland,
-      'event',
-      box => {
-        const workspaces = hyprland.get_workspaces();
-        console.log(workspaces)
-        workspaces
-          .filter(ws => ws.monitor.id === monitor.id)
-          .forEach(ws => {
-            const isNew = !monitors[monitor.id]?.[ws.id];
-            if (isNew) {
-              console.log(monitor.id, monitor.name, ws.monitor.id)
-              addWorkspace(ws, box);
-            }
-
-            removeEmptyWorkspaces(box, monitor);
-          });
-      }
-    )}
+    className="workspaces"
+    setup={self => {
+      setWorkspaces(self);
+      self.hook(
+        hyprland,
+        'event',
+        setWorkspaces
+      );
+    }}
   />
 }
