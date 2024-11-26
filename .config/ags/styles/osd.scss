@@ -4,6 +4,7 @@
 
 .osd-popup {
   background: #{$theme_bg_color_transparent};
+  border-radius: 6px;
 }
 
 .osd-popup .osd-icon {
@@ -21,5 +22,11 @@
 }
 
 .osd-popup-volume {
-  min-width: 200px;
+  .volume-container {
+    min-width: 140px;
+  }
+
+  .volume-icon-container {
+    min-width: 80px;
+  }
 }

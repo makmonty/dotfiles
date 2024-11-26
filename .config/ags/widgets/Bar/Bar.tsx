@@ -2,6 +2,7 @@ import { App, Astal, Gdk, Gtk } from 'astal/gtk3'
 import Binding from "astal/binding"
 import { Workspaces } from './Workspaces'
 import { Systray } from './Systray'
+import { Clock } from './Clock'
 
 export function BarModule({ child, children }: {
   child?: JSX.Element | Binding<JSX.Element> | Binding<Array<JSX.Element>>
@@ -22,7 +23,8 @@ export function Bar(gdkMonitor: Gdk.Monitor, monitorIndex: number) {
     anchor={Astal.WindowAnchor.TOP
       | Astal.WindowAnchor.LEFT
       | Astal.WindowAnchor.RIGHT}
-    application={App}>
+    application={App}
+  >
     <centerbox
       className="bar-container"
       startWidget={
@@ -39,6 +41,7 @@ export function Bar(gdkMonitor: Gdk.Monitor, monitorIndex: number) {
         <box halign={Gtk.Align.END}>
           <BarModule>
             <Systray />
+            <Clock gdkMonitor={gdkMonitor} />
           </BarModule>
         </box>
       }

@@ -3,6 +3,7 @@ import css from './styles/style.scss'
 import { Bar } from './widgets/Bar/Bar'
 import { showVolumePopup } from './widgets/Volume/VolumePopup'
 import { Session } from './widgets/Session/Session'
+import { CalendarPopup } from './widgets/Calendar/CalendarPopup'
 
 App.start({
   css,

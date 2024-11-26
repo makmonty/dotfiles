@@ -45,10 +45,12 @@ export function Session(gdkMonitor: Gdk.Monitor) {
     className="session-popup"
     layer={Astal.Layer.OVERLAY}
     valign={Gtk.Align.FILL}
+    exclusivty={Astal.Exclusivity.IGNORE}
     halign={Gtk.Align.FILL}
-    setup={self => self.connect('key-press-event', (_, event: Gdk.Event) => {
+    application={App}
+    setup={(self: Astal.Window) => self.connect('key-press-event', (_: any, event: Gdk.Event) => {
       if (event.get_keycode()[1] === 9) {
-        self.destroy()
+        App.get_windows().forEach(w => w.name === 'session-popup' ? w.destroy() : null);
       }
     })}
   >

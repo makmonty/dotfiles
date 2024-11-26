@@ -1,4 +1,4 @@
-import { Astal } from 'astal/gtk3'
+import { Astal, Gdk } from 'astal/gtk3'
 import Tray from 'gi://AstalTray'
 // import { Variable } from 'astal'
 
@@ -10,7 +10,7 @@ const tray = Tray.get_default()
 function SystrayItem({ item }: { item: Tray.TrayItem }) {
   // console.log(item.title, item.icon_name, item.gicon)
   return <button
-    onClick={(_, event) => {
+    onClick={(_, event: Gdk.Event) => {
       if (event.button === Astal.MouseButton.PRIMARY) {
         item.activate(event.x, event.y)
       } else if (event.button === Astal.MouseButton.SECONDARY) {

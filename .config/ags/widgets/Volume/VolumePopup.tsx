@@ -22,7 +22,10 @@ const ICON_VOLUME_MUTED = '\udb81\udf5f';
 
 const volume = Variable(0);
 const isMuted = Variable(false);
+const speaker = Variable.derive([volume, isMuted], (vol, muted) => muted ? null : vol)
 let volumeTimeout: AstalIO.Time | null;
+
+let volumePopup: Astal.Window = null
 
 export const getIconForVolume = (volume: number, isMuted: boolean) => {
   if (isMuted) {
@@ -56,18 +59,19 @@ export const showVolumePopup = () => {
 };
 
 export function VolumeIcon() {
-  return <box halign={Gtk.Align.CENTER}>
-    {volume(vol =>
+  return <box className="volume-icon-container" halign={Gtk.Align.CENTER}>
+    {speaker(vol =>
       <label
         className="volume-icon osd-icon"
-        label={getIconForVolume(vol, isMuted.get())}
+        label={getIconForVolume(volume.get(), isMuted.get())}
+        halign={Gtk.Align.START}
       />
     )}
   </box>
 }
 
 export function VolumePopup(gdkMonitor: Gdk.Monitor) {
-  return <Popup
+  volumePopup = <Popup
     gdkMonitor={gdkMonitor}
     name="volume-popup"
     className="osd-popup-volume"
@@ -78,9 +82,11 @@ export function VolumePopup(gdkMonitor: Gdk.Monitor) {
       halign={Gtk.Align.CENTER}
     >
       <VolumeIcon />
-      {volume(vol => <levelbar className="volume-bar osd-bar" value={vol} />)}
+      {speaker(() => <levelbar className="volume-bar osd-bar" value={volume.get()} />)}
     </box>
   </Popup>
+
+  return volumePopup;
 }
 
 
