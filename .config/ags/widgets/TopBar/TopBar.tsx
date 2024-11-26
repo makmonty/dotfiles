@@ -42,9 +42,9 @@ export function TopBar(gdkMonitor: Gdk.Monitor, monitorIndex: number) {
         <box halign={Gtk.Align.END}>
           <BarModule>
             <Systray />
-            <Clock gdkMonitor={gdkMonitor} />
           </BarModule>
           <BarModule>
+            <Clock gdkMonitor={gdkMonitor} />
             <LogoutButton />
           </BarModule>
         </box>
