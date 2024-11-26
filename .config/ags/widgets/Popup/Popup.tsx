@@ -1,5 +1,5 @@
-import { App, Astal, Gdk, Gtk } from 'astal/gtk3'
-import Binding from "astal/binding"
+import { App, Astal, Gdk } from 'astal/gtk3'
+import Binding from 'astal/binding'
 
 export function Popup({ gdkMonitor, name, className = '', child, children }: {
   gdkMonitor: Gdk.Monitor,

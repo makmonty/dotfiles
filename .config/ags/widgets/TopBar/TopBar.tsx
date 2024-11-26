@@ -1,5 +1,5 @@
 import { App, Astal, Gdk, Gtk } from 'astal/gtk3'
-import Binding from "astal/binding"
+import Binding from 'astal/binding'
 import { Workspaces } from './Workspaces'
 import { Systray } from './Systray'
 import { Clock } from './Clock'
@@ -14,7 +14,7 @@ export function BarModule({ child, children }: {
   </box>
 }
 
-export function Bar(gdkMonitor: Gdk.Monitor, monitorIndex: number) {
+export function TopBar(gdkMonitor: Gdk.Monitor, monitorIndex: number) {
   return <window
     name="bar"
     className="bar"

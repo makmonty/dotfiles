@@ -1,7 +1,8 @@
 /*Dracula*/
 $grey0:	#282a36;
 $grey1: #44475a;
-$grey2: #44475a;
+$grey2: #64677a;
+$white: #f8f8f2;
 $cyan: #8be9fd;
 $green: #50fa7b;
 $orange: #ffb86c;
@@ -9,10 +10,12 @@ $pink: #ff79c6;
 $purple: #bd93f9;
 $red: #ff5555;
 $yellow: #f1fa8c;
-$foreground: #f8f8f2;
-$comment: #6272a4;
+
+$theme_fg: #{$white};
 $theme_accent: #{$purple};
 $theme_secondary: #{$pink};
 $theme_danger: #{$red};
 $theme_success: #{$green};
 $theme_bg_color_transparent: rgba(40, 42, 54, 0.5);
+$theme_fg_muted: $grey2;
+$theme_fg_very_muted: $grey1;

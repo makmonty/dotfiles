@@ -2,7 +2,7 @@ import { App, Astal, Gdk, Gtk } from 'astal/gtk3'
 import { Variable } from 'astal'
 import { CalendarPopup } from '../Calendar/CalendarPopup'
 
-const time = Variable('').poll(1000, ['date', '+%a %e %b, %H:%M:%S'])
+const systemDate = Variable('').poll(1000, ['date', '+%a %e %b, %H:%M:%S'])
 
 export function Clock({ gdkMonitor }: { gdkMonitor: Gdk.Monitor }) {
   return <button
@@ -12,9 +12,8 @@ export function Clock({ gdkMonitor }: { gdkMonitor: Gdk.Monitor }) {
         CalendarPopup(gdkMonitor)
       }
     }}
-    // onPrimaryClick={() => App.toggleWindow('calendar-popup')}
   >
-    {time((value) =>
+    {systemDate((value) =>
       <label
         className="clock-label"
         halign={Gtk.Align.CENTER}

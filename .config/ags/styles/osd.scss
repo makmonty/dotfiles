@@ -5,21 +5,41 @@
 .osd-popup {
   background: #{$theme_bg_color_transparent};
   border-radius: 6px;
+
+  .osd-icon {
+    font-size: 100px;
+    margin-bottom: 16px;
+  }
+
+  .osd-bar {
+    border-radius: 99999px;
+    border: none;
+
+    trough {
+      background: #{$theme_fg_muted};
+      border: none;
+      border-radius: 99999px;
+      padding: 0;
+    }
+
+    block {
+      background: #{$theme_accent};
+      border: none;
+      border-radius: 99999px;
+      min-height: 8px;
+
+      &.empty {
+        border: none;
+        background: #{$theme_fg_very_muted};
+      }
+    }
+
+    &.muted trough block.filled {
+      background: #{$theme_fg_muted};
+    }
+  }
 }
 
-.osd-popup .osd-icon {
-  font-size: 100px;
-  margin-bottom: 16px;
-}
-
-.osd-popup .osd-bar progress {
-  background: #{$theme_accent};
-}
-
-.osd-popup .osd-bar.muted progress {
-  /* background: @insensitive_fg_color; */
-  background: red;
-}
 
 .osd-popup-volume {
   .volume-container {

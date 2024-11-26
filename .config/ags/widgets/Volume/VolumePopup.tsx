@@ -1,8 +1,8 @@
 import { App, Astal, Gdk, Gtk } from 'astal/gtk3'
-import { AstalIO, Variable } from "astal"
-import Wp from "gi://AstalWp"
-import { timeout } from "astal/time"
-import { Popup } from "../Popup/Popup";
+import { AstalIO, Variable } from 'astal'
+import Wp from 'gi://AstalWp'
+import { timeout } from 'astal/time'
+import { Popup } from '../Popup/Popup';
 
 const audio = Wp.get_default()?.audio
 
@@ -46,13 +46,11 @@ export const showVolumePopup = () => {
   isMuted.set(audio?.get_default_speaker()?.mute || false);
   volume.set(audio?.get_default_speaker()?.volume || 0);
 
-  if (!App.get_window('volume-popup')) {
+  if (!App.get_windows().some((w: Astal.Window) => w.name === 'volume-popup')) {
     App.get_monitors().map(VolumePopup);
   }
 
   volumeTimeout = timeout(VOLUME_DISPLAY_TIME, () => {
-    // get_windows() is showing duplicated windows,
-    // so I have to run through all of them to destroy the right one
     App.get_windows().forEach(w => w.name === 'volume-popup' ? w.destroy() : null);
     volumeTimeout = null;
   });
@@ -60,7 +58,7 @@ export const showVolumePopup = () => {
 
 export function VolumeIcon() {
   return <box className="volume-icon-container" halign={Gtk.Align.CENTER}>
-    {speaker(vol =>
+    {speaker(() =>
       <label
         className="volume-icon osd-icon"
         label={getIconForVolume(volume.get(), isMuted.get())}
@@ -82,33 +80,9 @@ export function VolumePopup(gdkMonitor: Gdk.Monitor) {
       halign={Gtk.Align.CENTER}
     >
       <VolumeIcon />
-      {speaker(() => <levelbar className="volume-bar osd-bar" value={volume.get()} />)}
+      {speaker(() => <levelbar className={`volume-bar osd-bar ${isMuted.get() ? 'muted' : ''}`} value={volume.get()} />)}
     </box>
   </Popup>
 
   return volumePopup;
 }
-
-
-// export const volumePopup = Widget.Window({
-//   name: 'osd-popup-volume',
-//   visible: false,
-//   className: 'osd-popup-volume osd-popup',
-//   layer: 'overlay',
-//   anchor: ['bottom'],
-//   margins: [0, 0, 128, 0],
-//   child: Widget.Box({
-//     className: 'volume-container osd-container',
-//     vertical: true,
-//     children: [
-//       volumeIcon(),
-//       Widget.ProgressBar({
-//         className: 'volume-bar osd-bar',
-//         setup: self => self.hook(volume, widget => {
-//           widget.toggleClassName('muted', !!isMuted.value)
-//           widget.value = parseFloat(volume.value);
-//         }),
-//       }),
-//     ],
-//   }),
-// });

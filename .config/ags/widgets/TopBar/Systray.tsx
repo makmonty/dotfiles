@@ -10,18 +10,20 @@ const tray = Tray.get_default()
 function SystrayItem({ item }: { item: Tray.TrayItem }) {
   // console.log(item.title, item.icon_name, item.gicon)
   return <button
-    onClick={(_, event: Gdk.Event) => {
+    onClick={(self: Astal.Button, event: Gdk.Event) => {
       if (event.button === Astal.MouseButton.PRIMARY) {
         item.activate(event.x, event.y)
       } else if (event.button === Astal.MouseButton.SECONDARY) {
         item.secondary_activate(event.x, event.y)
       }
     }}
-    setup={self => item.bind_property('tooltip-markup', self, 'tooltip-markup', null)}
+    setup={(self: Astal.Button) => {
+      item.bind_property('tooltip-markup', self, 'tooltip-markup', null)
+    }}
   >
     <icon
       gicon={item.gicon}
-      setup={self => {
+      setup={(self: Astal.Icon) => {
         item.bind_property('gicon', self, 'gicon', null);
       }}
     />
@@ -30,8 +32,8 @@ function SystrayItem({ item }: { item: Tray.TrayItem }) {
 
 export function Systray() {
   return <box
-    setup={self => {
-      const setItems = () => self.set_children(tray.get_items().map(item => SystrayItem({item})));
+    setup={(self: Astal.Box) => {
+      const setItems = () => self.set_children(tray.get_items().map((item: Tray.TrayItem) => SystrayItem({item})));
       self.hook(tray, 'item-added', setItems);
       self.hook(tray, 'item-removed', setItems);
     }}
