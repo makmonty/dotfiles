@@ -1,15 +1,15 @@
 import { Astal, Gdk } from 'astal/gtk3'
 import Tray from 'gi://AstalTray'
-// import { Variable } from 'astal'
+import { Variable } from 'astal'
 
 const tray = Tray.get_default()
 
-// const items = Variable([])
-// items.bind(tray.get_items)
-
 function SystrayItem({ item }: { item: Tray.TrayItem }) {
-  // console.log(item.title, item.icon_name, item.gicon)
+  const itemVar = Variable(item)
+  itemVar.observe(item, 'changed', (item: Tray.TrayItem) => item)
+
   return <button
+    onDestroy={() => itemVar.drop()}
     onClick={(self: Astal.Button, event: Gdk.Event) => {
       if (event.button === Astal.MouseButton.PRIMARY) {
         item.activate(event.x, event.y)
@@ -21,12 +21,7 @@ function SystrayItem({ item }: { item: Tray.TrayItem }) {
       item.bind_property('tooltip-markup', self, 'tooltip-markup', null)
     }}
   >
-    <icon
-      gicon={item.gicon}
-      setup={(self: Astal.Icon) => {
-        item.bind_property('gicon', self, 'gicon', null);
-      }}
-    />
+    {itemVar((value) => <icon gicon={value.gicon} />)}
   </button>
 }
 
