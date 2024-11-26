@@ -40,7 +40,7 @@
     }
 
     &:hover label {
-      background: red;
+      background: #{$theme_accent};
     }
 
     &.focused label {
