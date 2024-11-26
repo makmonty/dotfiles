@@ -56,7 +56,7 @@ export const showVolumePopup = () => {
 };
 
 export function VolumeIcon() {
-  return <box>
+  return <box halign={Gtk.Align.CENTER}>
     {volume(vol =>
       <label
         className="volume-icon osd-icon"
