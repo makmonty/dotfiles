@@ -1,5 +1,5 @@
 .notification {
   padding: 16px;
-  background-color: @theme_bg_color_transparent;
+  background-color: #{$theme_bg_color_transparent};
   min-width: 200px;
 }
