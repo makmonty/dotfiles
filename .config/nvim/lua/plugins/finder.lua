@@ -22,7 +22,17 @@ return {
           cache_picker = {
             num_pickers = -1,
             limit_entries = 50,
-          }
+          },
+          vimgrep_arguments = {
+            'rg',
+            '--color=never',
+            '--no-heading',
+            '--with-filename',
+            '--line-number',
+            '--column',
+            '--smart-case',
+            '--hidden',
+          },
         },
         pickers = {
           buffers = {
