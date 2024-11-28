@@ -37,7 +37,7 @@ const sessionButtons = [
 ];
 
 export function Session(gdkMonitor: Gdk.Monitor) {
-  return <window
+  const sessionWindow = <window
     name="session-popup"
     gdkmonitor={gdkMonitor}
     anchor={Astal.WindowAnchor.TOP | Astal.WindowAnchor.BOTTOM | Astal.WindowAnchor.LEFT | Astal.WindowAnchor.RIGHT}
@@ -47,7 +47,9 @@ export function Session(gdkMonitor: Gdk.Monitor) {
     valign={Gtk.Align.FILL}
     exclusivty={Astal.Exclusivity.IGNORE}
     halign={Gtk.Align.FILL}
+    marginTop={-48} // Hack to cover the top bar
     application={App}
+    fullscreen={true}
     setup={(self: Astal.Window) => self.connect('key-press-event', (_: any, event: Gdk.Event) => {
       if (event.get_keycode()[1] === 9) {
         App.get_windows().forEach(w => w.name === 'session-popup' ? w.destroy() : null);
@@ -84,4 +86,6 @@ export function Session(gdkMonitor: Gdk.Monitor) {
       <label className="session-label" label="" />
     </box>
   </window>
+
+  return sessionWindow
 }
