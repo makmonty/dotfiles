@@ -1,4 +1,4 @@
-import { App, Astal, Gdk, Gtk } from 'astal/gtk3'
+import { Astal, Gdk, Gtk } from 'astal/gtk3'
 import { Variable } from 'astal'
 import { CalendarPopup } from '../Calendar/CalendarPopup'
 
@@ -16,7 +16,7 @@ export function Clock({ gdkMonitor }: { gdkMonitor: Gdk.Monitor }) {
     {systemDate((value) =>
       <label
         className="clock-label"
-        halign={Gtk.Align.CENTER}
+        halign={Gtk.Align.START}
         maxWidthChars="24"
         label={value}
       />
