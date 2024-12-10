@@ -1,3 +1,5 @@
+@use 'variables';
+
 .bar {
   /* background: @theme_bg_color_transparent; */
 }
@@ -7,7 +9,7 @@
 }
 
 .bar-module {
-  background: #{$theme_bg_color_transparent};
+  background: variables.$theme_bg_color_transparent;
   border-radius: 9999px;
 }
 
@@ -40,15 +42,15 @@
     }
 
     &:hover label {
-      background: #{$theme_accent};
+      background: variables.$theme_accent;
     }
 
     &.focused label {
-      background: #{$theme_accent};
+      background: variables.$theme_accent;
     }
 
     &.special label {
-      background: #{$theme_secondary};
+      background: variables.$theme_secondary;
     }
 
     &.active label {

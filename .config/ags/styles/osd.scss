@@ -1,9 +1,11 @@
+@use 'variables';
+
 .osd-container {
   padding: 16px;
 }
 
 .osd-popup {
-  background: #{$theme_bg_color_transparent};
+  background: variables.$theme_bg_color_transparent;
   border-radius: 6px;
 
   .osd-icon {
@@ -16,26 +18,26 @@
     border: none;
 
     trough {
-      background: #{$theme_fg_muted};
+      background: variables.$theme_fg_muted;
       border: none;
       border-radius: 99999px;
       padding: 0;
     }
 
     block {
-      background: #{$theme_accent};
+      background: variables.$theme_accent;
       border: none;
       border-radius: 99999px;
       min-height: 8px;
 
       &.empty {
         border: none;
-        background: #{$theme_fg_very_muted};
+        background: variables.$theme_fg_very_muted;
       }
     }
 
     &.muted trough block.filled {
-      background: #{$theme_fg_muted};
+      background: variables.$theme_fg_muted;
     }
   }
 }

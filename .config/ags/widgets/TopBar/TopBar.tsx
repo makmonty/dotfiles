@@ -4,6 +4,7 @@ import { Workspaces } from './Workspaces'
 import { Systray } from './Systray'
 import { Clock } from './Clock'
 import { LogoutButton } from './Logout'
+import { BatteryIcon } from './Battery'
 
 export function BarModule({ child, children }: {
   child?: JSX.Element | Binding<JSX.Element> | Binding<Array<JSX.Element>>
@@ -41,6 +42,7 @@ export function TopBar(gdkMonitor: Gdk.Monitor, monitorIndex: number) {
       endWidget={
         <box halign={Gtk.Align.END}>
           <BarModule>
+            <BatteryIcon />
             <Systray />
           </BarModule>
           <BarModule>

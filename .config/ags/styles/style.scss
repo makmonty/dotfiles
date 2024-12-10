@@ -1,8 +1,8 @@
-@import './variables.scss';
-@import './global.scss';
-@import './osd.scss';
-@import './topbar.scss';
-/* @import './battery.scss'; */
-@import './session.scss';
-@import './notifications.scss';
-@import './calendar.scss';
+@use './variables.scss';
+@use './global.scss';
+@use './osd.scss';
+@use './topbar.scss';
+@use './battery.scss';
+@use './session.scss';
+@use './notifications.scss';
+@use './calendar.scss';

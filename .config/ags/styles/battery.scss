@@ -1,7 +1,9 @@
+@use 'variables';
+
 .battery .battery-danger{
-  color: @theme_danger;
+  color: variables.$theme_danger;
 }
 
 .battery .battery-charging {
-  color: @theme_success;
+  color: variables.$theme_success;
 }

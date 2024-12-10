@@ -1,6 +1,8 @@
+@use 'variables';
+
 .session-popup {
   /* background: rgba(0,0,0,0.6); */
-  background: #{$theme_bg_color_transparent};
+  background: variables.$theme_bg_color_transparent;
   /* padding: 16px; */
 }
 
