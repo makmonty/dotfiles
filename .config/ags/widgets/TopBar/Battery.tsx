@@ -5,13 +5,11 @@ import { Variable } from 'astal'
 const battery = Battery.get_default()
 
 export function BatteryIcon() {
-  const batteryLevel = Variable(0)
   return <box
     className="battery bar-button"
-    visible={battery.available}
+    visible={battery.get_is_present()}
   >
     {bind(battery, 'percentage').as(percentage => {
-      console.log('percentage', percentage, battery.batteryIconName)
       return <icon
         className=""
         icon={battery.batteryIconName}
