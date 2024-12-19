@@ -1,16 +1,38 @@
 return {
   { "neovim/nvim-lspconfig" },
   { "L3MON4D3/LuaSnip" },
-  { "saadparwaiz1/cmp_luasnip" },
+  -- { "saadparwaiz1/cmp_luasnip" },
   {
     "neovim/nvim-lspconfig",
+    dependencies = { "saghen/blink.cmp" },
+    opts = {
+      snippets = {
+        expand = function(snippet)
+          require("luasnip").lsp_expand(snippet)
+        end,
+        active = function(filter)
+          if filter and filter.direction then
+            return require("luasnip").jumpable(filter.direction)
+          end
+          return require("luasnip").in_snippet()
+        end,
+        jump = function(direction)
+          require("luasnip").jump(direction)
+        end,
+      },
+      sources = {
+        default = { "lsp", "path", "luasnip", "buffer" },
+      },
+    },
     config = function()
       local lspconfig = require("lspconfig")
       local mason_registry = require("mason-registry")
-      local util = lspconfig.util
+      -- local util = lspconfig.util
       --local coq = require("coq")
-      local capabilities = vim.lsp.protocol.make_client_capabilities()
-      capabilities.textDocument.completion.completionItem.snippetSupport = true
+      -- local capabilities = vim.lsp.protocol.make_client_capabilities()
+      -- capabilities.textDocument.completion.completionItem.snippetSupport = true
+
+      local blink = require("blink.cmp")
 
       -- Mappings. https://github.com/neovim/nvim-lspconfig
       -- See `:help vim.diagnostic.*` for documentation on any of the below functions
@@ -32,10 +54,10 @@ return {
         local bufopts = { noremap = true, silent = true, buffer = bufnr }
         vim.keymap.set("n", "gD", vim.lsp.buf.declaration, bufopts)
         -- vim.keymap.set("n", "gd", vim.lsp.buf.definition, bufopts)
-        vim.keymap.set("n", "gd", ":Telescope lsp_definitions<CR>", bufopts)
+        vim.keymap.set("n", "gd", ":FzfLua lsp_definitions<CR>", bufopts)
         vim.keymap.set("n", "K", vim.lsp.buf.hover, bufopts)
         -- vim.keymap.set("n", "gi", vim.lsp.buf.implementation, bufopts)
-        vim.keymap.set("n", "gi", ":Telescope lsp_implementations<CR>", bufopts)
+        vim.keymap.set("n", "gi", ":FzfLua lsp_implementations<CR>", bufopts)
         vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, bufopts)
         vim.keymap.set("n", "<space>wa", vim.lsp.buf.add_workspace_folder, bufopts)
         vim.keymap.set("n", "<space>wr", vim.lsp.buf.remove_workspace_folder, bufopts)
@@ -47,7 +69,7 @@ return {
         vim.keymap.set("n", "<space>rn", vim.lsp.buf.rename, bufopts)
         vim.keymap.set("n", "<space>ca", vim.lsp.buf.code_action, bufopts)
         -- vim.keymap.set("n", "gr", vim.lsp.buf.references, bufopts)
-        vim.keymap.set("n", "gr", ":Telescope lsp_references<CR>", bufopts)
+        vim.keymap.set("n", "gr", ":FzfLua lsp_references<CR>", bufopts)
 
         --autocmds
         -- vim.cmd('autocmd CursorHold * silent! lua vim.diagnostic.open_float({focus = false, source = true})')
@@ -64,11 +86,12 @@ return {
 
       local lsp_flags = {
         -- This is the default in Nvim 0.7+
-        debounce_text_changes = 150,
+        -- debounce_text_changes = 150,
       }
 
       local setupLsp = function(lsp, options)
         --lsp.setup(coq.lsp_ensure_capabilities(options))
+        options.capabilities = blink.get_lsp_capabilities(options.capabilities)
         lsp.setup(options)
       end
 
