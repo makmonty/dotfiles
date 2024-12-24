@@ -5,6 +5,7 @@ import { showVolumePopup } from './widgets/Volume/VolumePopup'
 import { showBrightnessPopup } from './widgets/Brightness/BrightnessPopup'
 import { Session } from './widgets/Session/Session'
 import { CalendarPopup } from './widgets/Calendar/CalendarPopup'
+import { Notifications, connectNotifications } from './widgets/Notifications/Notifications'
 
 App.start({
   css,
@@ -23,5 +24,7 @@ App.start({
   },
   main() {
     App.get_monitors().map(TopBar);
+    App.get_monitors().map(Notifications);
+    connectNotifications()
   },
 })
