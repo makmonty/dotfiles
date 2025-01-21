@@ -13,7 +13,7 @@ pacstrap -K /mnt base linux linux-firmware \
 	xdg-user-dirs \
 	pipewire pipewire-audio pipewire-pulse wireplumber alsa-utils bluez bluez-utils \
 	vim neovim ripgrep fzf tree-sitter \
-	networkmanager \
+	networkmanager ntp \
 	unzip \
 
 genfstab -U /mnt >> /mnt/etc/fstab
