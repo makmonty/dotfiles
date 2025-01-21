@@ -1,11 +1,11 @@
 return {
   -- Startup time
-  {
-    url = "https://git.sr.ht/~henriquehbr/nvim-startup.lua",
-    config = function()
-      require("nvim-startup").setup()
-    end,
-  },
+  -- {
+  --   url = "https://git.sr.ht/~henriquehbr/nvim-startup.lua",
+  --   config = function()
+  --     require("nvim-startup").setup()
+  --   end,
+  -- },
   {
     "folke/trouble.nvim",
     opts = {},
