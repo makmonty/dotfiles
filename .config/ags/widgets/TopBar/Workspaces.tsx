@@ -37,8 +37,10 @@ const findWorkspacePosition = (ws: Hyprland.Workspace) => {
 }
 
 const removeWorkspace = (ws: Hyprland.Workspace, parent: any) => {
-  const widget = monitors[ws.monitor.id][ws.id].widget;
-  parent.remove(widget);
+  const widget = monitors[ws.monitor.id][ws.id]?.widget;
+  if (widget) {
+    parent.remove(widget);
+  }
   parent.notify('children');
   parent.show_all();
   delete monitors[ws.monitor.id][ws.id];
@@ -69,8 +71,8 @@ export function Workspace({ ws }: { ws: Hyprland.Workspace }) {
       'event',
       self => {
         self.toggleClassName('special', ws.name === 'special');
-        self.toggleClassName('focused', hyprland.get_focused_workspace().id === ws.id);
-        self.toggleClassName('active', ws.get_monitor().get_active_workspace().id === ws.id);
+        self.toggleClassName('focused', hyprland.get_focused_workspace()?.id === ws.id);
+        self.toggleClassName('active', ws.get_monitor().get_active_workspace()?.id === ws.id);
       },
     )}
   >

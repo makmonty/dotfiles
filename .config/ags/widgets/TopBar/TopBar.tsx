@@ -1,10 +1,30 @@
 import { App, Astal, Gdk, Gtk } from 'astal/gtk3'
 import Binding from 'astal/binding'
+import { bind, Variable } from 'astal'
+import Hyprland from 'gi://AstalHyprland';
 import { Workspaces } from './Workspaces'
 import { Systray } from './Systray'
 import { Clock } from './Clock'
 import { LogoutButton } from './Logout'
 import { BatteryIcon } from './Battery'
+
+const hyprland = Hyprland.get_default()
+
+export function startBars() {
+  App.get_monitors().map(TopBar);
+
+  // bind(hyprland, 'monitor-added').subscribe((m) => {
+  //   console.log('monitor added', m)
+  // });
+  // bind(hyprland, 'monitor-removed').subscribe((m) => {
+  //   console.log('monitor removed', m)
+  // });
+  // const monitors = Variable(bind(App, 'monitors'))
+  // monitors.subscribe(m => console.log('subscribeeee'))
+  // monitors((m) => {
+  //   console.log('waaa', m)
+  // })
+}
 
 export function BarModule({ child, children }: {
   child?: JSX.Element | Binding<JSX.Element> | Binding<Array<JSX.Element>>

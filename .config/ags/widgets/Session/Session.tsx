@@ -36,6 +36,10 @@ const sessionButtons = [
   },
 ];
 
+const closeAllSessionWindows = () => {
+  App.get_windows().forEach(w => w.name === 'session-popup' ? w.destroy() : null);
+}
+
 export function Session(gdkMonitor: Gdk.Monitor) {
   const sessionWindow = <window
     name="session-popup"
@@ -52,7 +56,7 @@ export function Session(gdkMonitor: Gdk.Monitor) {
     fullscreen={true}
     setup={(self: Astal.Window) => self.connect('key-press-event', (_: any, event: Gdk.Event) => {
       if (event.get_keycode()[1] === 9) {
-        App.get_windows().forEach(w => w.name === 'session-popup' ? w.destroy() : null);
+        closeAllSessionWindows()
       }
     })}
   >
@@ -71,9 +75,17 @@ export function Session(gdkMonitor: Gdk.Monitor) {
           return <button
             className="session-button"
             cursor="pointer"
-            onClicked={() =>
-              execAsync(['bash', '-c', button.command])
-            }
+            onClicked={() => {
+              closeAllSessionWindows();
+              switch(typeof button.command) {
+                case 'string':
+                  execAsync(['bash', '-c', button.command]);
+                  break;
+                case 'function':
+                  button.command();
+                  break;
+              }
+            }}
             onHover={setLabel}
           >
             <label
