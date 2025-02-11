@@ -7,6 +7,7 @@ export function AudioPopup(gdkMonitor: Gdk.Monitor) {
     name="audio-popup"
     className="audio-popup"
     gdkMonitor={gdkMonitor}
+    anchor={Astal.WindowAnchor.TOP | Astal.WindowAnchor.RIGHT}
   >
     <box
       hpack="center"
