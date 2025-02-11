@@ -15,8 +15,7 @@ class GtkCalendar extends astalify(Gtk.Calendar) {
 export function CalendarPopup(gdkMonitor: Gdk.Monitor) {
   return <window
     name="calendar-popup"
-    gdkMonitor={gdkMonitor}
-    visible={false}
+    gdkmonitor={gdkMonitor}
     anchor={Astal.WindowAnchor.TOP | Astal.WindowAnchor.RIGHT}
     // margins=[0, 0],
     keymode={Astal.Keymode.ON_DEMAND}

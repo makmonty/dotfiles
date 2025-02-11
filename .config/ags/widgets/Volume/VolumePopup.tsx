@@ -4,8 +4,8 @@ import Wp from 'gi://AstalWp'
 import { timeout } from 'astal/time'
 import { Popup } from '../Popup/Popup';
 
-const audio = Wp.get_default()?.audio
-
+const wp = Wp.get_default()
+const audio = wp?.audio
 const VOLUME_DISPLAY_TIME = 1000;
 
 const ICON_VOLUME_HIGH = '\udb81\udd7e';
@@ -25,7 +25,7 @@ const isMuted = Variable(false);
 const speaker = Variable.derive([volume, isMuted], (vol, muted) => muted ? null : vol)
 let volumeTimeout: AstalIO.Time | null;
 
-let volumePopup: Astal.Window = null
+let volumePopup: Astal.Window | null = null
 
 export const getIconForVolume = (volume: number, isMuted: boolean) => {
   if (isMuted) {
@@ -54,6 +54,15 @@ export const showVolumePopup = () => {
     App.get_windows().forEach(w => w.name === 'volume-popup' ? w.destroy() : null);
     volumeTimeout = null;
   });
+
+  // console.log('endpoints')
+  // wp?.get_endpoints()?.forEach(ep => console.log(ep.name))
+  // console.log('devices')
+  // wp?.get_devices()?.forEach(d => console.log(d.get_device_type(), d.id, d.description))
+  // console.log('audio.devices')
+  // audio?.get_devices()?.forEach(d => console.log(d.get_device_type(), d.id, d.description))
+  // console.log(Wp.DeviceType.AUDIO)
+  // console.log(Wp.DeviceType.VIDEO)
 };
 
 export function VolumeIcon() {

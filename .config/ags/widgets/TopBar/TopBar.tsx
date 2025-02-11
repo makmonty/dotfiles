@@ -7,6 +7,7 @@ import { Systray } from './Systray'
 import { Clock } from './Clock'
 import { LogoutButton } from './Logout'
 import { BatteryIcon } from './Battery'
+import { Audio } from './Audio';
 
 const hyprland = Hyprland.get_default()
 
@@ -61,6 +62,9 @@ export function TopBar(gdkMonitor: Gdk.Monitor, monitorIndex: number) {
       }
       endWidget={
         <box halign={Gtk.Align.END}>
+          <BarModule>
+            <Audio gdkMonitor={gdkMonitor} />
+          </BarModule>
           <BarModule>
             <BatteryIcon />
             <Systray />

@@ -5,11 +5,17 @@ import { CalendarPopup } from '../Calendar/CalendarPopup'
 const systemDate = Variable('').poll(1000, ['date', '+%a %e %b, %H:%M:%S'])
 
 export function Clock({ gdkMonitor }: { gdkMonitor: Gdk.Monitor }) {
+  let popup: Gtk.Widget | null = null
   return <button
     className="clock"
     onClick={(_, event: Gdk.Event) => {
       if (event.button === Astal.MouseButton.PRIMARY) {
-        CalendarPopup(gdkMonitor)
+        if (popup) {
+          popup.destroy()
+          popup = null
+        } else {
+          popup = CalendarPopup(gdkMonitor)
+        }
       }
     }}
   >
