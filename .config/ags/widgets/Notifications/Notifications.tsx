@@ -18,23 +18,27 @@ export function connectNotifications() {
     const items = [...notifications.get(), n];
     notifications.set(items);
     timeout(NOTIFICATION_DISPLAY_TIMEOUT, () => {
-      const newItems = [...notifications.get()];
-      const index = newItems.findIndex(item => item.id === n.id);
-      newItems.splice(index, 1);
-      notifications.set(newItems);
+      removeNotification(n)
     });
   })
 }
 
+export function removeNotification(notification: Notifd.Notification) {
+  const newItems = [...notifications.get()];
+  const index = newItems.findIndex(item => item.id === notification.id);
+  newItems.splice(index, 1);
+  notifications.set(newItems);
+}
+
 export function NotificationBox({notification}: {notification: Notifd.Notification}) {
-  return <box className="osd-popup notification">
+  return <button className="osd-popup notification" onClick={() => removeNotification(notification)}>
     {notification.icon && <icon gIcon={notification.icon} />}
     {notification.image && <Gtk.Image gIcon={notification.image} />}
     <box vertical>
       <label label={notification.summary} />
       <label label={notification.body} />
     </box>
-  </box>
+  </button>
 }
 
 export function Notifications(gdkMonitor: Gdk.Monitor) {
