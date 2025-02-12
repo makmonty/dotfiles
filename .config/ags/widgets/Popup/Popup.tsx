@@ -4,7 +4,7 @@ import Binding from 'astal/binding'
 export function Popup({ gdkMonitor, name, className = '', anchor = Astal.WindowAnchor.NONE, child, children }: {
   gdkMonitor: Gdk.Monitor,
   name: string,
-  anchor: Astal.WindowAnchor
+  anchor?: Astal.WindowAnchor
   className?: string,
   child?: JSX.Element | Binding<JSX.Element> | Binding<Array<JSX.Element>>
   children?: Array<JSX.Element> | Binding<Array<JSX.Element>>

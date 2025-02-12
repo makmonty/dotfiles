@@ -51,7 +51,7 @@ export const showVolumePopup = () => {
   }
 
   volumeTimeout = timeout(VOLUME_DISPLAY_TIME, () => {
-    App.get_windows().forEach(w => w.name === 'volume-popup' ? w.destroy() : null);
+    App.get_windows().forEach((w: Astal.Window) => w.name === 'volume-popup' ? w.destroy() : null);
     volumeTimeout = null;
   });
 

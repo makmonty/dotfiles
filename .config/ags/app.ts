@@ -1,4 +1,4 @@
-import { App } from 'astal/gtk3'
+import { App, Astal } from 'astal/gtk3'
 import css from './styles/style.scss'
 import { startBars } from './widgets/TopBar/TopBar'
 import { showVolumePopup } from './widgets/Volume/VolumePopup'

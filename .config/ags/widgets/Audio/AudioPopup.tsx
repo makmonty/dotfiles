@@ -17,22 +17,22 @@ export function AudioPopup(gdkMonitor: Gdk.Monitor) {
       <label label="probando" />
     </box>
   </Popup>
-  return <window
-    name="audio-popup"
-    gdkmonitor={gdkMonitor}
-    anchor={Astal.WindowAnchor.TOP | Astal.WindowAnchor.RIGHT}
-    // margins=[0, 0],
-    keymode={Astal.Keymode.ON_DEMAND}
-    className="audio-popup"
-    application={App}
-    // layer="overlay",
-    // hpack="fill",
-    // vpack="fill",
-    // setup={(self: Astal.Window) => self.connect('key-press-event', (_: any, event: Gdk.Event) => {
-    //   if (event.get_keycode()[1] === 9) {
-    //     self.destroy()
-    //   }
-    // })}
-  >
-  </window>
+  // return <window
+  //   name="audio-popup"
+  //   gdkmonitor={gdkMonitor}
+  //   anchor={Astal.WindowAnchor.TOP | Astal.WindowAnchor.RIGHT}
+  //   // margins=[0, 0],
+  //   keymode={Astal.Keymode.ON_DEMAND}
+  //   className="audio-popup"
+  //   application={App}
+  //   // layer="overlay",
+  //   // hpack="fill",
+  //   // vpack="fill",
+  //   // setup={(self: Astal.Window) => self.connect('key-press-event', (_: any, event: Gdk.Event) => {
+  //   //   if (event.get_keycode()[1] === 9) {
+  //   //     self.destroy()
+  //   //   }
+  //   // })}
+  // >
+  // </window>
 }
