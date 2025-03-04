@@ -105,7 +105,10 @@ return {
       -- your own keymap.
       keymap = {
         preset = "enter",
-        cmdline = {
+      },
+
+      cmdline = {
+        keymap = {
           preset = "super-tab",
         },
       },
