@@ -49,7 +49,7 @@ export function Notifications(gdkMonitor: Gdk.Monitor) {
     application={App}
     anchor={Astal.WindowAnchor.TOP | Astal.WindowAnchor.RIGHT}
   >
-    <box vertical>
+    <box vertical className="notification-list">
       {notifications(items => items.map(item =>
           <NotificationBox notification={item} />
         )
