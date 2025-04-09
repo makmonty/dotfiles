@@ -1,7 +1,5 @@
 import { App, Astal, Gdk, Gtk } from 'astal/gtk3'
 import Binding from 'astal/binding'
-import { bind, Variable } from 'astal'
-import Hyprland from 'gi://AstalHyprland';
 import { Workspaces } from './Workspaces'
 import { Systray } from './Systray'
 import { Clock } from './Clock'
@@ -9,22 +7,20 @@ import { LogoutButton } from './Logout'
 import { BatteryIcon } from './Battery'
 import { Audio } from './Audio';
 
-const hyprland = Hyprland.get_default()
-
 export function startBars() {
-  App.get_monitors().map(TopBar);
+  const bars = new Map<Gdk.Monitor, Gtk.Widget>()
 
-  // bind(hyprland, 'monitor-added').subscribe((m) => {
-  //   console.log('monitor added', m)
-  // });
-  // bind(hyprland, 'monitor-removed').subscribe((m) => {
-  //   console.log('monitor removed', m)
-  // });
-  // const monitors = Variable(bind(App, 'monitors'))
-  // monitors.subscribe(m => console.log('subscribeeee'))
-  // monitors((m) => {
-  //   console.log('waaa', m)
-  // })
+  App.get_monitors().forEach((gdkMonitor: Gdk.Monitor) => {
+    bars.set(gdkMonitor, TopBar(gdkMonitor))
+  })
+
+  App.connect('monitor-added', (_: any, gdkMonitor: Gdk.Monitor) => {
+    bars.set(gdkMonitor, TopBar(gdkMonitor))
+  })
+  App.connect('monitor-removed', (_: any, gdkMonitor: Gdk.Monitor) => {
+    bars.get(gdkMonitor)?.destroy()
+    bars.delete(gdkMonitor)
+  })
 }
 
 export function BarModule({ child, children }: {
@@ -37,7 +33,7 @@ export function BarModule({ child, children }: {
   </box>
 }
 
-export function TopBar(gdkMonitor: Gdk.Monitor, monitorIndex: number) {
+export function TopBar(gdkMonitor: Gdk.Monitor) {
   return <window
     name="bar"
     className="bar"
@@ -55,7 +51,6 @@ export function TopBar(gdkMonitor: Gdk.Monitor, monitorIndex: number) {
           <BarModule>
             <Workspaces
               gdkMonitor={gdkMonitor}
-              monitorIndex={monitorIndex}
             />
           </BarModule>
         </box>

@@ -1,4 +1,4 @@
-import { Gdk, Gtk } from 'astal/gtk3'
+import { App, Gdk, Gtk } from 'astal/gtk3'
 import Hyprland from 'gi://AstalHyprland';
 import GObject from 'astal/gobject'
 import { execAsync } from 'astal'
@@ -82,7 +82,11 @@ export function Workspace({ ws }: { ws: Hyprland.Workspace }) {
   </button>
 }
 
-export function Workspaces ({ monitorIndex }: { gdkMonitor: Gdk.Monitor, monitorIndex: number }) {
+export function Workspaces ({ gdkMonitor }: { gdkMonitor: Gdk.Monitor }) {
+  // This way of identifying which Gdk.Monitor matches which Hyprland monitor
+  // doesn't work always. If you have three monitors, unplug the second and plug it
+  // back, the indexes will be different. But there's no other way AFAIK
+  const monitorIndex = App.get_monitors().findIndex((mon: Gdk.Monitor) => mon === gdkMonitor)
   const monitor = hyprland.get_monitor(monitorIndex)
 
   const setWorkspaces = (box: GObject.Object) => {
