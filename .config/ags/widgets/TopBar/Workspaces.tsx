@@ -60,9 +60,12 @@ const removeEmptyWorkspaces = (parent: any, monitor: Hyprland.Monitor) => {
 }
 
 export function Workspace({ ws }: { ws: Hyprland.Workspace }) {
+  const className = ws.name === 'special:special' ? 'special' : ''
+
   return <button
     vexpand={false}
     hexpand={false}
+    className={className}
     valign={Gtk.Align.CENTER}
     tooltipText={`Workspace ${ws.name}`}
     onClicked={() => execAsync(`hyprctl dispatch workspace ${ws.id}`)}
@@ -70,7 +73,6 @@ export function Workspace({ ws }: { ws: Hyprland.Workspace }) {
       hyprland,
       'event',
       self => {
-        self.toggleClassName('special', ws.name === 'special');
         self.toggleClassName('focused', hyprland.get_focused_workspace()?.id === ws.id);
         self.toggleClassName('active', ws.get_monitor().get_active_workspace()?.id === ws.id);
       },
