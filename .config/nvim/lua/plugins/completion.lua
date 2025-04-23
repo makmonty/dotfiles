@@ -108,9 +108,15 @@ return {
       },
 
       cmdline = {
+        enabled = true,
         keymap = {
           preset = "super-tab",
         },
+        completion = {
+          menu = {
+            auto_show = true
+          }
+        }
       },
 
       appearance = {
@@ -121,6 +127,15 @@ return {
         -- Set to 'mono' for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
         -- Adjusts spacing to ensure icons are aligned
         nerd_font_variant = "mono",
+      },
+
+      fuzzy = {
+        implementation = "prefer_rust_with_warning",
+        sorts = {
+          "exact",
+          "score",
+          "sort_text",
+        }
       },
 
       -- default list of enabled providers defined so that you can extend it
