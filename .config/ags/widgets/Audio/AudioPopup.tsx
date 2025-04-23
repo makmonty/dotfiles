@@ -1,4 +1,4 @@
-import {  Astal, Gdk } from 'astal/gtk3'
+import { Astal, Gdk } from 'astal/gtk3'
 import { OsdPopup } from '../Osd/Popup'
 
 export function AudioPopup(gdkMonitor: Gdk.Monitor) {
