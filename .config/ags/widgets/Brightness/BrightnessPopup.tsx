@@ -2,7 +2,8 @@ import { App, Astal, Gdk, Gtk } from 'astal/gtk3'
 import { AstalIO, Variable } from 'astal'
 import { exec } from "astal/process"
 import { timeout } from 'astal/time'
-import { Popup } from '../Popup/Popup';
+import { OsdPopup } from '../Osd/Popup';
+import { OsdLevelBar } from '../Osd/LevelBar';
 
 const BRIGHTNESS_DISPLAY_TIME = 1000;
 
@@ -11,7 +12,7 @@ const ICON_BRIGHTNESS_LOW = '\uD83D\uDD05'
 
 const brightness = Variable(0);
 let brightnessTimeout: AstalIO.Time | null;
-let brightnessPopup: Astal.Window = null
+let brightnessPopup: Astal.Window | null = null
 
 export const getIconForBrightness = (brightness: number) => {
   if (brightness > 0.5) {
@@ -49,20 +50,20 @@ export const BrightnessIcon = () =>
   />
 
 export function BrightnessPopup(gdkMonitor: Gdk.Monitor) {
-  brightnessPopup = <Popup
+  brightnessPopup = <OsdPopup
     gdkMonitor={gdkMonitor}
     name="brightness-popup"
-    className="osd-popup-brightness osd-popup"
+    className="osd-popup-brightness"
   >
     <box
-      className="volume-container osd-container"
+      className="volume-container"
       vertical={true}
       halign={Gtk.Align.CENTER}
     >
       <BrightnessIcon />
-      {brightness((value) => <levelbar className="brightness-bar osd-bar" value={value} />)}
+      {brightness((value) => <OsdLevelBar value={value} />)}
     </box>
-  </Popup>
+  </OsdPopup>
 
   return brightnessPopup;
 }

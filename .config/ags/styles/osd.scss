@@ -1,49 +1,47 @@
 @use 'variables';
 
-.osd-container {
-  padding: 16px;
-}
-
 .osd-popup {
-  background: variables.$theme_bg_color_transparent;
-  border-radius: 6px;
+  .osd-container {
+    padding: 16px;
+    background: variables.$theme_bg_color_transparent;
+    border-radius: 6px;
+  }
 
   .osd-icon {
     font-size: 100px;
     margin-bottom: 16px;
   }
+}
 
-  .osd-bar {
-    border-radius: 99999px;
+.osd-level-bar {
+  border-radius: 99999px;
+  border: none;
+
+  trough {
+    background: variables.$theme_fg_muted;
     border: none;
+    border-radius: 99999px;
+    padding: 0;
+  }
 
-    trough {
-      background: variables.$theme_fg_muted;
+  block {
+    background: variables.$theme_accent;
+    border: none;
+    border-radius: 99999px;
+    min-height: 8px;
+
+    &.empty {
       border: none;
-      border-radius: 99999px;
-      padding: 0;
+      background: variables.$theme_fg_very_muted;
     }
+  }
 
-    block {
-      background: variables.$theme_accent;
-      border: none;
-      border-radius: 99999px;
-      min-height: 8px;
-
-      &.empty {
-        border: none;
-        background: variables.$theme_fg_very_muted;
-      }
-    }
-
-    &.muted trough block.filled {
-      background: variables.$theme_fg_muted;
-    }
+  &.disabled trough block.filled {
+    background: variables.$theme_fg_muted;
   }
 }
 
-
-.osd-popup-volume {
+.volume-popup {
   .volume-container {
     min-width: 140px;
   }
