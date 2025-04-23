@@ -47,12 +47,12 @@ export const showVolumePopup = () => {
   isMuted.set(audio?.get_default_speaker()?.mute || false);
   volume.set(audio?.get_default_speaker()?.volume || 0);
 
-  if (!App.get_windows().some((w: Astal.Window) => w.name === 'volume-popup')) {
+  if (!App.get_windows().some((w: Gtk.Window) => w.name === 'volume-popup')) {
     App.get_monitors().map(VolumePopup);
   }
 
   volumeTimeout = timeout(VOLUME_DISPLAY_TIME, () => {
-    App.get_windows().forEach((w: Astal.Window) => w.name === 'volume-popup' ? w.destroy() : null);
+    App.get_windows().forEach((w: Gtk.Window) => w.name === 'volume-popup' ? w.destroy() : null);
     volumeTimeout = null;
   });
 
