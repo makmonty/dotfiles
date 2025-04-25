@@ -86,7 +86,7 @@ export function Workspace({ ws }: { ws: Hyprland.Workspace }) {
 
 export function Workspaces ({ gdkMonitor }: { gdkMonitor: Gdk.Monitor }) {
   // This way of identifying which Gdk.Monitor matches which Hyprland monitor
-  // doesn't work always. If you have three monitors, unplug the second and plug it
+  // doesn't always work. If you have three monitors, unplug the second and plug it
   // back, the indexes will be different. But there's no other way AFAIK
   const monitorIndex = App.get_monitors().findIndex((mon: Gdk.Monitor) => mon === gdkMonitor)
   const monitor = hyprland.get_monitor(monitorIndex)

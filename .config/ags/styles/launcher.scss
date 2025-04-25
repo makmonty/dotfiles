@@ -1,0 +1,39 @@
+@use 'variables';
+
+.launcher-popup {
+  font-size: 1.2em;
+
+  .osd-container {
+    padding: 0;
+    min-width: 500px;
+  }
+
+  entry {
+    padding: 8px;
+    border: none;
+    background: variables.$theme_accent;
+    color: variables.$theme_bg;
+    caret-color: variables.$theme_bg;
+    border-radius: 6px;
+  }
+
+  &:not(.empty) entry {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+}
+
+.launcher-app-item {
+  padding: 8px;
+  /* font-size: 0.8em; */
+
+  &.selected {
+    background: variables.$theme_bg_muted;
+    color: variables.$theme_accent;
+  }
+
+  icon {
+    margin-right: 8px;
+    font-size: 1.4em;
+  }
+}
