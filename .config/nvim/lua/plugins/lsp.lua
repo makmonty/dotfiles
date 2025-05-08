@@ -29,7 +29,7 @@ return {
       local mason_registry = require("mason-registry")
       -- local util = lspconfig.util
       --local coq = require("coq")
-      -- local capabilities = vim.lsp.protocol.make_client_capabilities()
+      local capabilities = vim.lsp.protocol.make_client_capabilities()
       -- capabilities.textDocument.completion.completionItem.snippetSupport = true
 
       local blink = require("blink.cmp")
@@ -112,6 +112,11 @@ return {
         capabilities = capabilities,
         flags = lsp_flags,
         on_attach = on_attach,
+        settings = {
+          experimental = {
+            useFlatConfig = true,
+          },
+        },
         -- on_attach = function(client, bufnr)
         --   on_attach(client, bufnr)
         --   if client.server_capabilities.documentFormattingProvider then
@@ -162,8 +167,8 @@ return {
         flags = lsp_flags,
       })
 
-      local vue_language_server_path = mason_registry.get_package("vue-language-server"):get_install_path()
-        .. "/node_modules/@vue/language-server"
+      local vue_language_server_path =
+        vim.fn.expand("$MASON/packages/vue-language-server/node_modules/@vue/language-server")
       setupLsp(lspconfig.ts_ls, {
         capabilities = capabilities,
         on_attach = on_attach,
