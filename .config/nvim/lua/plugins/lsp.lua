@@ -112,6 +112,18 @@ return {
         capabilities = capabilities,
         flags = lsp_flags,
         on_attach = on_attach,
+        filetypes = {
+          "javascript",
+          "javascriptreact",
+          "javascript.jsx",
+          "typescript",
+          "typescriptreact",
+          "typescript.tsx",
+          "vue",
+          "svelte",
+          "astro",
+          "css",
+        },
         settings = {
           experimental = {
             useFlatConfig = true,
@@ -144,13 +156,13 @@ return {
         flags = lsp_flags,
         filetypes = { "vue" },
       })
-      setupLsp(lspconfig.cssls, {
-        capabilities = capabilities,
-        on_attach = on_attach,
-        flags = lsp_flags,
-        cmd = { "vscode-css-language-server", "--stdio" },
-        filetypes = { "css", "scss", "less" },
-      })
+      -- setupLsp(lspconfig.cssls, {
+      --   capabilities = capabilities,
+      --   on_attach = on_attach,
+      --   flags = lsp_flags,
+      --   cmd = { "vscode-css-language-server", "--stdio" },
+      --   filetypes = { "css", "scss", "less" },
+      -- })
       setupLsp(lspconfig.html, {
         capabilities = capabilities,
         on_attach = on_attach,

@@ -85,6 +85,9 @@ return {
             --   }
             -- end,
           },
+          css = {
+            require("formatter.filetypes.css").eslint_d,
+          },
           javascript = {
             require("formatter.filetypes.javascript").eslint_d,
           },
