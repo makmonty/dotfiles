@@ -1,11 +1,11 @@
 @use 'variables';
 
 .bar {
-  /* background: @theme_bg_color_transparent; */
+  /* background: variables.$theme_bg_color_transparent; */
 }
 
 .bar-container {
-  padding: 8px;
+  margin: 8px;
 }
 
 .bar-module {

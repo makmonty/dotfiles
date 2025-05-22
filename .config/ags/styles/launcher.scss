@@ -15,6 +15,8 @@
     color: variables.$theme_bg;
     caret-color: variables.$theme_bg;
     border-radius: 6px;
+    box-shadow: none;
+
   }
 
   &:not(.empty) entry {

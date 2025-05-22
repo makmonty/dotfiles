@@ -34,7 +34,6 @@ export function OsdPopup({
   children?: Array<JSX.Element> | Binding<Array<JSX.Element>>
 }) {
   const parentClassName = typeof className === 'string' ? Variable(className) : className;
-  console.log(parentClassName.get())
   return <window
     className={bind(parentClassName).as((value) => `osd-popup ${value}`)}
     namespace="osd"
@@ -52,8 +51,8 @@ export function OsdPopup({
     exclusivity={Astal.Exclusivity.NORMAL}
     application={App}
   >
-  <box className="osd-container">
-    {child || children}
-  </box>
+    <box className="osd-container">
+      {child || children}
+    </box>
   </window>
 }
