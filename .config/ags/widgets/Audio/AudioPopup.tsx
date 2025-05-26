@@ -3,7 +3,7 @@ import Wp from "gi://AstalWp"
 import { OsdDropdownList } from '../Osd/DropdownList'
 import { execAsync } from 'astal'
 
-const audio = Wp.get_default().audio
+const audio = Wp.get_default()!.audio
 
 export function AudioPopup(gdkMonitor: Gdk.Monitor) {
   // audio.get_devices().forEach(device => {
@@ -17,10 +17,10 @@ export function AudioPopup(gdkMonitor: Gdk.Monitor) {
   //   console.log('Speaker -', speaker.get_name(), '-', speaker.get_description(), '-', speaker.get_id())
   // })
 
-  const items = audio.get_speakers().map((endpoint: Wp.Endpoint) => {
+  const items = audio.get_speakers()!.map((endpoint: Wp.Endpoint) => {
     return {
       onClick: () => endpoint.set_is_default(true),
-      label: endpoint.get_description()
+      label: (audio.get_default_speaker()?.id === endpoint.id ? '✓ ' : '') + endpoint.get_description()
     }
   })
 

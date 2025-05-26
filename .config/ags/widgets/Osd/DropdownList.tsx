@@ -16,7 +16,7 @@ export function OsdDropdownList({
   gdkMonitor: Gdk.Monitor,
   name: string,
   className?: Binding<string> | string,
-  keyMode?: Astal.KeyMode
+  keyMode?: Astal.Keymode
   layer?: Astal.Layer
   setup?: (self: Astal.Window) => void,
   items: Array<any>
@@ -36,9 +36,16 @@ export function OsdDropdownList({
       {items.map(item =>
         ItemComponent ?
           <ItemComponent item={item} /> :
-          <button onClicked={() => {
-            item.onClick?.();
-          }}>{item.label}</button>
+          <button
+            className="osd-dropdown-item"
+            halign={Gtk.Align.START}
+            hexpand={true}
+            onClicked={() => {
+              item.onClick?.();
+            }}
+          >
+            {item.label}
+          </button>
       )}
     </box>
   </OsdPopup>

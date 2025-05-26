@@ -6,7 +6,7 @@ export function Audio({ gdkMonitor }: { gdkMonitor: Gdk.Monitor }) {
   let popup: Gtk.Widget | null = null
   return <button
     className="audio"
-    onClick={(_, event: Gdk.Event) => {
+    onClick={(_, event: Astal.ClickEvent) => {
       if (event.button === Astal.MouseButton.PRIMARY) {
         if (popup) {
           popup.destroy()
@@ -16,7 +16,6 @@ export function Audio({ gdkMonitor }: { gdkMonitor: Gdk.Monitor }) {
         }
       }
     }}
-  >
-    <label label="audio" />
-  </button>
+    label="audio"
+  />
 }

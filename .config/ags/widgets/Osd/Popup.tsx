@@ -27,7 +27,7 @@ export function OsdPopup({
   marginBottom?: number,
   marginLeft?: number,
   marginRight?: number
-  keyMode?: Astal.KeyMode
+  keyMode?: Astal.Keymode
   layer?: Astal.Layer
   setup?: (self: Astal.Window) => void,
   child?: JSX.Element | Binding<JSX.Element> | Binding<Array<JSX.Element>>
