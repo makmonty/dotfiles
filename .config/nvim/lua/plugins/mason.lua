@@ -17,7 +17,7 @@ return {
           'jsonls',
           --'eslint_d',
           'ts_ls',
-          'volar',
+          'vue_ls',
         },
         automatic_installation = true,
       }

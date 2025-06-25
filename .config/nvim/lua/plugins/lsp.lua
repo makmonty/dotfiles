@@ -150,7 +150,7 @@ return {
         --},
         --},
       })
-      setupLsp(lspconfig.volar, {
+      setupLsp(lspconfig.vue_ls, {
         capabilities = capabilities,
         on_attach = on_attach,
         flags = lsp_flags,
