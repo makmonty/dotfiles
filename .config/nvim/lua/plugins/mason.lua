@@ -8,7 +8,7 @@ return {
   {
     'mason-org/mason-lspconfig.nvim',
     config = function()
-      require'mason-lspconfig'.setup{
+      require('mason-lspconfig').setup({
         ensure_installed = {
           'eslint',
           'lua_ls',
@@ -19,8 +19,7 @@ return {
           'ts_ls',
           'vue_ls',
         },
-        automatic_installation = true,
-      }
+      })
     end
   },
 }
