@@ -5,7 +5,7 @@
 	<name>Abrir un terminal aquí</name>
 	<submenu></submenu>
 	<unique-id>1723102497985401-1</unique-id>
-	<command>foot -D %f</command>
+	<command>kitty %f</command>
 	<description>Ejemplo de una acción personalizada</description>
 	<range></range>
 	<patterns>*</patterns>
