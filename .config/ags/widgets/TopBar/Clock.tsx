@@ -1,31 +1,23 @@
-import { Astal, Gdk, Gtk } from 'astal/gtk3'
-import { Variable } from 'astal'
+import { Astal, Gdk, Gtk } from 'ags/gtk4'
+import { createPoll } from 'ags/time'
 import { CalendarPopup } from '../Calendar/CalendarPopup'
 
-const systemDate = Variable('').poll(1000, ['date', '+%a %e %b, %H:%M:%S'])
+const systemDate = createPoll(0, 1000, 'date "+%a %e %b, %H:%M:%S"')
 
 export function Clock({ gdkMonitor }: { gdkMonitor: Gdk.Monitor }) {
   let popup: Gtk.Widget | null = null
   return <button
-    className="clock"
-    onClick={(_, event: Gdk.Event) => {
-      if (event.button === Astal.MouseButton.PRIMARY) {
-        if (popup) {
-          popup.destroy()
-          popup = null
-        } else {
-          popup = CalendarPopup(gdkMonitor)
-        }
+    class="clock"
+    onClicked={() => {
+        popup = CalendarPopup(gdkMonitor)
       }
-    }}
+    }
   >
-    {systemDate((value) =>
       <label
-        className="clock-label"
+        class="clock-label"
         halign={Gtk.Align.START}
         maxWidthChars="24"
-        label={value}
+        label={systemDate(value => value.toString())}
       />
-    )}
   </button>
 }

@@ -1,5 +1,6 @@
-import { App, Astal, Gdk, Gtk } from 'astal/gtk3'
-import { execAsync } from 'astal'
+import { Astal, Gdk, Gtk } from 'ags/gtk4'
+import App from 'ags/gtk4/app'
+import { execAsync } from 'ags/process'
 import GObject from 'astal/gobject'
 
 const sessionButtons = [
@@ -46,23 +47,22 @@ export function Session(gdkMonitor: Gdk.Monitor) {
     gdkmonitor={gdkMonitor}
     anchor={Astal.WindowAnchor.TOP | Astal.WindowAnchor.BOTTOM | Astal.WindowAnchor.LEFT | Astal.WindowAnchor.RIGHT}
     keymode={Astal.Keymode.ON_DEMAND}
-    className="session-popup"
+    class="session-popup"
     layer={Astal.Layer.OVERLAY}
     valign={Gtk.Align.FILL}
-    exclusivty={Astal.Exclusivity.IGNORE}
+    // exclusivity={Astal.Exclusivity.IGNORE}
     halign={Gtk.Align.FILL}
     marginTop={-48} // Hack to cover the top bar
     application={App}
-    fullscreen={true}
-    setup={(self: Astal.Window) => self.connect('key-press-event', (_: any, event: Gdk.Event) => {
-      if (event.get_keycode()[1] === 9) {
-        closeAllSessionWindows()
-      }
-    })}
+    // $={(self: Astal.Window) => self.connect('key-press-event', (_: any, event: Gdk.Event) => {
+    //   if (event.get_keycode()[1] === 9) {
+    //     closeAllSessionWindows()
+    //   }
+    // })}
   >
     <box
-      vertical={true}
-      className="session-container"
+      orientation={Gtk.Orientation.VERTICAL}
+      class="session-container"
       valign={Gtk.Align.CENTER}
       halign={Gtk.Align.CENTER}
     >
@@ -73,8 +73,8 @@ export function Session(gdkMonitor: Gdk.Monitor) {
             label.label = button.label;
           }
           return <button
-            className="session-button"
-            cursor="pointer"
+            class="session-button"
+            cursor={Gdk.Cursor.POINTER}
             onClicked={() => {
               closeAllSessionWindows();
               switch(typeof button.command) {
@@ -86,16 +86,16 @@ export function Session(gdkMonitor: Gdk.Monitor) {
                   break;
               }
             }}
-            onHover={setLabel}
+            // onHover={setLabel}
           >
             <label
-              className="session-button-label"
+              class="session-button-label"
               label={button.icon}
             />
           </button>
         })}
       </box>
-      <label className="session-label" label="" />
+      <label class="session-label" label="" />
     </box>
   </window>
 

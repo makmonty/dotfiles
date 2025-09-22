@@ -1,7 +1,8 @@
-import { App, Astal, Gdk, Gtk } from 'astal/gtk3'
-import { AstalIO, Variable } from 'astal'
+import { Astal, Gdk, Gtk } from 'ags/gtk4'
+import App from 'ags/gtk4/app'
+import { createState, createComputed, With } from 'ags'
 import Wp from 'gi://AstalWp'
-import { timeout } from 'astal/time'
+import { timeout, Time } from 'ags/time'
 import { OsdPopup } from '../Osd/Popup';
 import { OsdLevelBar } from '../Osd/LevelBar';
 
@@ -21,10 +22,10 @@ const ICON_VOLUME_MUTED = '\udb81\udf5f';
 // ['1', Widget.Icon('audio-volume-low-symbolic')],
 // ['0', Widget.Icon('audio-volume-muted-symbolic')],
 
-const volume = Variable(0);
-const isMuted = Variable(false);
-const speaker = Variable.derive([volume, isMuted], (vol, muted) => muted ? null : vol)
-let volumeTimeout: AstalIO.Time | null;
+const [volume, setVolume] = createState(0);
+const [isMuted, setIsMuted] = createState(false);
+const speaker = createComputed([volume, isMuted], (vol, muted) => muted ? null : vol)
+let volumeTimeout: Time | null;
 
 let volumePopup: Astal.Window | null = null
 
@@ -44,8 +45,8 @@ export const getIconForVolume = (volume: number, isMuted: boolean) => {
 export const showVolumePopup = () => {
   volumeTimeout?.cancel();
 
-  isMuted.set(audio?.get_default_speaker()?.mute || false);
-  volume.set(audio?.get_default_speaker()?.volume || 0);
+  setIsMuted(audio?.get_default_speaker()?.mute || false);
+  setVolume(audio?.get_default_speaker()?.volume || 0);
 
   if (!App.get_windows().some((w: Gtk.Window) => w.name === 'volume-popup')) {
     App.get_monitors().map(VolumePopup);
@@ -67,14 +68,16 @@ export const showVolumePopup = () => {
 };
 
 export function VolumeIcon() {
-  return <box className="volume-icon-container" halign={Gtk.Align.CENTER}>
-    {speaker(() => [
-      <label
-        className="volume-icon osd-icon"
-        label={getIconForVolume(volume.get(), isMuted.get())}
-        halign={Gtk.Align.START}
-      />
-    ])}
+  return <box class="volume-icon-container" halign={Gtk.Align.CENTER}>
+    <With value={speaker}>
+      {() => (
+        <label
+          class="volume-icon osd-icon"
+          label={getIconForVolume(volume, isMuted)}
+          halign={Gtk.Align.START}
+        />
+      )}
+    </With>
   </box>
 }
 
@@ -85,17 +88,11 @@ export function VolumePopup(gdkMonitor: Gdk.Monitor) {
     className="volume-popup"
   >
     <box
-      className="volume-container"
-      vertical={true}
+      class="volume-container"
+      orientation={Gtk.Orientation.VERTICAL}
       halign={Gtk.Align.CENTER}
     >
       <VolumeIcon />
-      {speaker(() =>
-        <OsdLevelBar
-          disabled={isMuted.get()}
-          value={volume.get()}
-        />
-      )}
     </box>
   </OsdPopup>
 

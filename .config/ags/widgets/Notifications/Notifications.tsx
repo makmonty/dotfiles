@@ -1,4 +1,4 @@
-import { App, Astal, Gdk, Gtk } from 'astal/gtk3'
+import { App, Astal, Gdk, Gtk } from 'ags/gtk4'
 import { Variable } from 'astal'
 import { timeout } from 'astal/time'
 import Notifd from 'gi://AstalNotifd'
@@ -31,10 +31,10 @@ export function removeNotification(notification: Notifd.Notification) {
 }
 
 export function NotificationBox({notification}: {notification: Notifd.Notification}) {
-  return <button className="osd-popup notification" onClick={() => removeNotification(notification)}>
+  return <button class="osd-popup notification" onClick={() => removeNotification(notification)}>
     {notification.icon && <icon gIcon={notification.icon} />}
     {notification.image && <Gtk.Image gIcon={notification.image} />}
-    <box vertical>
+    <box orientation={Gtk.Orientation.VERTICAL}>
       <label label={notification.summary} />
       <label label={notification.body} />
     </box>
@@ -44,12 +44,12 @@ export function NotificationBox({notification}: {notification: Notifd.Notificati
 export function Notifications(gdkMonitor: Gdk.Monitor) {
   return <window
     name="notifications"
-    className="notifications"
+    class="notifications"
     gdkmonitor={gdkMonitor}
     application={App}
     anchor={Astal.WindowAnchor.TOP | Astal.WindowAnchor.RIGHT}
   >
-    <box vertical className="notification-list">
+    <box vertical class="notification-list">
       {notifications(items => items.map(item =>
           <NotificationBox notification={item} />
         )

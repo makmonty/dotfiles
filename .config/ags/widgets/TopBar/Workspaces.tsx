@@ -1,7 +1,8 @@
-import { App, Gdk, Gtk } from 'astal/gtk3'
+import { Gdk, Gtk } from 'ags/gtk4'
+import App from 'ags/gtk4/app'
 import Hyprland from 'gi://AstalHyprland';
 import GObject from 'astal/gobject'
-import { execAsync } from 'astal'
+import { execAsync } from 'ags/process'
 
 const hyprland = Hyprland.get_default()
 
@@ -15,12 +16,13 @@ const addWorkspace = (ws: Hyprland.Workspace, parent: GObject.Object) => {
   monitors[ws.monitor.id][ws.id] = {widget, ws};
   const position = findWorkspacePosition(ws);
   workspacesById[ws.monitor.id] ||= [];
+  const currentPositionWidgetId = workspacesById[ws.monitor.id][position] || null
   workspacesById[ws.monitor.id].splice(position, 0, ws.id)
 
-  parent.add(widget);
-  parent.reorder_child(widget, position)
-  parent.notify('children');
-  parent.show_all();
+  parent.append(widget);
+  parent.reorder_child_after(widget, currentPositionWidgetId !== null ? monitors[ws.monitor.id][currentPositionWidgetId].widget : null)
+  // parent.notify('children');
+  // parent.show_all();
 }
 
 const findWorkspacePosition = (ws: Hyprland.Workspace) => {
@@ -41,8 +43,8 @@ const removeWorkspace = (ws: Hyprland.Workspace, parent: any) => {
   if (widget) {
     parent.remove(widget);
   }
-  parent.notify('children');
-  parent.show_all();
+  // parent.notify('children');
+  // parent.show_all();
   delete monitors[ws.monitor.id][ws.id];
   const index = workspacesById[ws.monitor.id].findIndex(wsId => wsId === ws.id)
   workspacesById[ws.monitor.id].splice(index, 1)
@@ -65,18 +67,24 @@ export function Workspace({ ws }: { ws: Hyprland.Workspace }) {
   return <button
     vexpand={false}
     hexpand={false}
-    className={className}
+    class={className}
     valign={Gtk.Align.CENTER}
     tooltipText={`Workspace ${ws.name}`}
     onClicked={() => execAsync(`hyprctl dispatch workspace ${ws.id}`)}
-    setup={self => self.hook(
-      hyprland,
-      'event',
-      self => {
-        self.toggleClassName('focused', hyprland.get_focused_workspace()?.id === ws.id);
-        self.toggleClassName('active', ws.get_monitor().get_active_workspace()?.id === ws.id);
-      },
-    )}
+    $={self => {
+      hyprland.connect('event', (() => {
+        if(hyprland.get_focused_workspace()?.id === ws.id) {
+        } else {
+          self.remove_css_class('focused')
+        }
+
+        if(ws.get_monitor().get_active_workspace()?.id === ws.id) {
+          self.add_css_class('active');
+        } else {
+          self.remove_css_class('active');
+        }
+      }))
+    }}
   >
     <label
       label={ws.name}
@@ -106,14 +114,10 @@ export function Workspaces ({ gdkMonitor }: { gdkMonitor: Gdk.Monitor }) {
   }
 
   return <box
-    className="workspaces"
-    setup={self => {
+    class="workspaces"
+    $={self => {
       setWorkspaces(self);
-      self.hook(
-        hyprland,
-        'event',
-        setWorkspaces
-      );
+      hyprland.connect('event', () => setWorkspaces(self));
     }}
   />
 }

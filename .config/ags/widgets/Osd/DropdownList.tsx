@@ -1,6 +1,4 @@
-import { bind, Variable } from 'astal'
-import { App, Astal, Gdk, Gtk } from 'astal/gtk3'
-import Binding from 'astal/binding'
+import { App, Astal, Gdk, Gtk } from 'ags/gtk4'
 import { OsdPopup } from './Popup'
 
 export function OsdDropdownList({
@@ -15,29 +13,29 @@ export function OsdDropdownList({
 }: {
   gdkMonitor: Gdk.Monitor,
   name: string,
-  className?: Binding<string> | string,
+  className?: string,
   keyMode?: Astal.Keymode
   layer?: Astal.Layer
   setup?: (self: Astal.Window) => void,
   items: Array<any>
   ItemComponent?: JSX.Element
 }) {
-  const parentClassName = typeof className === 'string' ? Variable(className) : className;
+  const parentClassName = className;
   const popup = <OsdPopup
     gdkMonitor={gdkMonitor}
-    className={bind(parentClassName).as((value) => `osd-dropdown ${value}`)}
+    class={parentClassName}
     name={name}
     keyMode={keyMode}
     anchor={Astal.WindowAnchor.TOP | Astal.WindowAnchor.RIGHT}
     layer={layer}
-    setup={setup}
+    $={setup}
   >
-    <box className="osd-dropdown-container" vertical={true}>
+    <box class="osd-dropdown-container" orientation={Gtk.Orientation.VERTICAL}>
       {items.map(item =>
         ItemComponent ?
           <ItemComponent item={item} /> :
           <button
-            className="osd-dropdown-item"
+            class="osd-dropdown-item"
             halign={Gtk.Align.START}
             hexpand={true}
             onClicked={() => {

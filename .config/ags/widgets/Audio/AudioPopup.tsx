@@ -1,7 +1,7 @@
-import { Gdk } from 'astal/gtk3'
+import { Gdk } from 'ags/gtk4'
+import { execAsync } from 'ags/process'
 import Wp from "gi://AstalWp"
 import { OsdDropdownList } from '../Osd/DropdownList'
-import { execAsync } from 'astal'
 
 const audio = Wp.get_default()!.audio
 

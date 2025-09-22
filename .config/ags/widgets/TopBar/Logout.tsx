@@ -1,9 +1,9 @@
-import { App } from 'astal/gtk3'
+import App from 'ags/gtk4/app'
 import { Session } from '../Session/Session';
 
 export function LogoutButton() {
   return <button
-    onClick={() => App.get_monitors().map(Session)}
+    onClicked={() => App.get_monitors().map(Session)}
   >
     <label label="⏻" />
   </button>

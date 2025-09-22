@@ -3,7 +3,7 @@ export function OsdLevelBar({ disabled, value }: {
   value: number
 }) {
   return <levelbar
-    className={`osd-level-bar ${disabled ? 'disabled' : ''}`}
+    class={`osd-level-bar ${disabled ? 'disabled' : ''}`}
     value={value}
   />
 }

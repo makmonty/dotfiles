@@ -1,4 +1,4 @@
-import { App, Astal, Gdk, Gtk } from 'astal/gtk3'
+import { App, Astal, Gdk, Gtk } from 'ags/gtk4'
 import { AstalIO, Variable } from 'astal'
 import { exec } from "astal/process"
 import { timeout } from 'astal/time'
@@ -46,18 +46,18 @@ export const BrightnessIcon = () =>
     label={brightness((value) => getIconForBrightness(value))}
     xalign={0}
     hpack="center"
-    className="brightness-icon osd-icon"
+    class="brightness-icon osd-icon"
   />
 
 export function BrightnessPopup(gdkMonitor: Gdk.Monitor) {
   brightnessPopup = <OsdPopup
     gdkMonitor={gdkMonitor}
     name="brightness-popup"
-    className="osd-popup-brightness"
+    class="osd-popup-brightness"
   >
     <box
-      className="volume-container"
-      vertical={true}
+      class="volume-container"
+      orientation={Gtk.Orientation.VERTICAL}
       halign={Gtk.Align.CENTER}
     >
       <BrightnessIcon />

@@ -1,6 +1,5 @@
-import { bind, Variable } from 'astal'
-import { App, Astal, Gdk } from 'astal/gtk3'
-import Binding from 'astal/binding'
+import { Astal, Gdk } from 'ags/gtk4'
+import App from 'ags/gtk4/app'
 
 export function OsdPopup({
   gdkMonitor,
@@ -20,7 +19,7 @@ export function OsdPopup({
 }: {
   gdkMonitor: Gdk.Monitor,
   name: string,
-  className?: Binding<string> | string,
+  className?: string,
   anchor?: Astal.WindowAnchor
   margin?: number,
   marginTop?: number,
@@ -30,12 +29,13 @@ export function OsdPopup({
   keyMode?: Astal.Keymode
   layer?: Astal.Layer
   setup?: (self: Astal.Window) => void,
-  child?: JSX.Element | Binding<JSX.Element> | Binding<Array<JSX.Element>>
-  children?: Array<JSX.Element> | Binding<Array<JSX.Element>>
+  child?: JSX.Element | Array<JSX.Element>
+  children?: Array<JSX.Element>
 }) {
-  const parentClassName = typeof className === 'string' ? Variable(className) : className;
+  const parentClassName = className;
   return <window
-    className={bind(parentClassName).as((value) => `osd-popup ${value}`)}
+    visible
+    class={`osd-popup ${parentClassName}`}
     namespace="osd"
     name={name}
     anchor={anchor}
@@ -46,12 +46,12 @@ export function OsdPopup({
     marginRight={marginRight}
     keymode={keyMode}
     layer={layer}
-    setup={setup}
+    $={setup}
     gdkmonitor={gdkMonitor}
     exclusivity={Astal.Exclusivity.NORMAL}
     application={App}
   >
-    <box className="osd-container">
+    <box class="osd-container">
       {child || children}
     </box>
   </window>

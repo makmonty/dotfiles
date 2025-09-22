@@ -1,5 +1,5 @@
-import { App, Astal, Gdk, Gtk } from 'astal/gtk3'
-import Binding from 'astal/binding'
+import { Astal, Gdk, Gtk } from 'ags/gtk4'
+import App from 'ags/gtk4/app'
 import { Workspaces } from './Workspaces'
 import { Systray } from './Systray'
 import { Clock } from './Clock'
@@ -24,28 +24,29 @@ export function startBars() {
 }
 
 export function BarModule({ child, children }: {
-  child?: JSX.Element | Binding<JSX.Element> | Binding<Array<JSX.Element>>
-  children?: Array<JSX.Element> | Binding<Array<JSX.Element>>
+  child?: JSX.Element
+  children?: Array<JSX.Element>
 }) {
-  return <box className="bar-module">
+  return <box class="bar-module">
     {child}
     {children}
   </box>
 }
 
-export function TopBar(gdkMonitor: Gdk.Monitor) {
+export function TopBar({ gdkMonitor }: {gdkMonitor: Gdk.Monitor}) {
   return <window
+    visible
     name="bar"
-    className="bar"
+    application={App}
+    class="bar"
     gdkmonitor={gdkMonitor}
     exclusivity={Astal.Exclusivity.EXCLUSIVE}
     anchor={Astal.WindowAnchor.TOP
       | Astal.WindowAnchor.LEFT
       | Astal.WindowAnchor.RIGHT}
-    application={App}
   >
     <centerbox
-      className="bar-container"
+      class="bar-container"
       startWidget={
         <box>
           <BarModule>
@@ -60,10 +61,12 @@ export function TopBar(gdkMonitor: Gdk.Monitor) {
           <BarModule>
             <Audio gdkMonitor={gdkMonitor} />
           </BarModule>
+
           <BarModule>
             <BatteryIcon />
             <Systray />
           </BarModule>
+
           <BarModule>
             <Clock gdkMonitor={gdkMonitor} />
             <LogoutButton />

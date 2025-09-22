@@ -1,19 +1,16 @@
-import { App, Astal, Gdk, Gtk } from 'astal/gtk3'
-import { Variable } from 'astal'
+import { Gdk, Gtk } from 'ags/gtk4'
 import { AudioPopup } from '../Audio/AudioPopup'
 
 export function Audio({ gdkMonitor }: { gdkMonitor: Gdk.Monitor }) {
   let popup: Gtk.Widget | null = null
   return <button
-    className="audio"
-    onClick={(_, event: Astal.ClickEvent) => {
-      if (event.button === Astal.MouseButton.PRIMARY) {
-        if (popup) {
-          popup.destroy()
-          popup = null
-        } else {
-          popup = AudioPopup(gdkMonitor)
-        }
+    class="audio"
+    onClicked={() => {
+      if (popup) {
+        popup.destroy()
+        popup = null
+      } else {
+        popup = AudioPopup(gdkMonitor)
       }
     }}
     label="audio"
