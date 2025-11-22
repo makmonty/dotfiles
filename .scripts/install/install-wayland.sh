@@ -5,16 +5,17 @@ yay -S \
   hyprland \
   hyprlock hypridle wlogout \
   swww \
-  aylurs-gtk-shell-git \
   xdg-desktop-portal-hyprland \
   xorg-xhost \
   wlr-randr \
   wdisplays \
+  waybar \
   wl-clipboard \
   grim slurp swappy \
   nwg-look \
   emote \
   brightnessctl \
   rofi-wayland
+#aylurs-gtk-shell-git \
 #hyprpaper \
 #wayfire wayfire-plugins-extra wcm wf-config wf-shell \
