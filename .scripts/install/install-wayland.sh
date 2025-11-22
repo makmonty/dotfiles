@@ -11,6 +11,7 @@ yay -S \
   wdisplays \
   waybar \
   wlogout \
+  swayosd \
   wl-clipboard \
   grim slurp swappy \
   nwg-look \
