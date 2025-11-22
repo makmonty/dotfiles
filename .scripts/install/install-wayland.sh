@@ -10,6 +10,7 @@ yay -S \
   wlr-randr \
   wdisplays \
   waybar \
+  wlogout \
   wl-clipboard \
   grim slurp swappy \
   nwg-look \
