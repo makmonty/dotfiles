@@ -7,18 +7,19 @@
   "modules-center": ["hyprland/window"],
 
   // Modules configuration
-  "wlr/workspaces": {
+  "hyprland/workspaces": {
     "on-click": "activate",
-    "format": "{icon}",
-    "format-icons": {
-      "1": "",
-      "2": "",
-      "3": "",
-      "4": "",
-      "5": "",
-      "active": "",
-      "default": ""
-    }
+    "show-special": true,
+    //"format": "{icon}",
+    //"format-icons": {
+      //"1": "",
+      //"2": "",
+      //"3": "",
+      //"4": "",
+      //"5": "",
+      //"active": "",
+      //"default": ""
+    //}
   },
   "hyprland/window": {
     "max-length": 200,
