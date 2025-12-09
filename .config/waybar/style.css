@@ -79,7 +79,11 @@ window#waybar.solo {
 /* } */
 
 #workspaces button.urgent {
-    background-color: @theme_danger;
+  background-color: @theme_danger;
+}
+
+#workspaces button.special {
+  background-color: @theme_secondary;
 }
 
 /* #clock, */
