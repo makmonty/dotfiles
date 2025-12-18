@@ -18,7 +18,8 @@ yay -S \
   nwg-look \
   emote \
   brightnessctl \
-  rofi-wayland
+  vicinae
+#rofi-wayland \
 #aylurs-gtk-shell-git \
 #hyprpaper \
 #wayfire wayfire-plugins-extra wcm wf-config wf-shell \
