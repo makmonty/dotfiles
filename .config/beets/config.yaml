@@ -1,6 +1,8 @@
-directory: /mnt/disk_angel/Musica
+directory: /mnt/disk_media/media/Musica/MP3
+#plugins: convert info
 import:
-  move: true
+  languages: en es
+  move: false
   log: ~/.config/beets/log.txt
 ui:
   color: yes
@@ -8,7 +10,9 @@ paths:
   default: $albumartist/$original_year - $album%aunique{}/$track - $title
   comp: $albumartist/Compilations/$original_year - $album%aunique{}/$track - $title
   singleton: $artist - $title
-  albumtype:soundtrack: Bandas Sonoras/$album/$track - $title
+  #albumtype:soundtrack: Bandas Sonoras/$album/$track - $title
   albumtype:single: $albumartist/Singles/$original_year - $album%aunique{}/$track - $title
   albumtype:ep: $albumartist/EPs/$original_year - $album%aunique{}/$track - $title
-
+convert:
+  command: ~/mp3gapless.sh $source $dest
+  extension: mp3
