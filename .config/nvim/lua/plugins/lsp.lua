@@ -25,7 +25,6 @@ return {
       },
     },
     config = function()
-      local lspconfig = require("lspconfig")
       local mason_registry = require("mason-registry")
       -- local util = lspconfig.util
       --local coq = require("coq")
@@ -89,15 +88,15 @@ return {
         -- debounce_text_changes = 150,
       }
 
-      local setupLsp = function(lsp, options)
+      local setupLsp = function(lspName, options)
         --lsp.setup(coq.lsp_ensure_capabilities(options))
         options.capabilities = blink.get_lsp_capabilities(options.capabilities)
-        lsp.setup(options)
+        vim.lsp.config(lspName, options)
       end
 
       -- Here go the server setups
 
-      setupLsp(lspconfig.lua_ls, {
+      setupLsp("lua_ls", {
         settings = {
           Lua = {
             diagnostics = {
@@ -108,7 +107,7 @@ return {
         on_attach = on_attach,
         flags = lsp_flags,
       })
-      setupLsp(lspconfig.eslint, {
+      setupLsp("eslint", {
         capabilities = capabilities,
         flags = lsp_flags,
         on_attach = on_attach,
@@ -150,7 +149,7 @@ return {
         --},
         --},
       })
-      setupLsp(lspconfig.vue_ls, {
+      setupLsp("vue_ls", {
         capabilities = capabilities,
         on_attach = on_attach,
         flags = lsp_flags,
@@ -163,7 +162,7 @@ return {
       --   cmd = { "vscode-css-language-server", "--stdio" },
       --   filetypes = { "css", "scss", "less" },
       -- })
-      setupLsp(lspconfig.html, {
+      setupLsp("html", {
         capabilities = capabilities,
         on_attach = on_attach,
         flags = lsp_flags,
@@ -173,7 +172,7 @@ return {
       --on_attach = on_attach,
       --flags = lsp_flags,
       --})
-      setupLsp(lspconfig.jsonls, {
+      setupLsp("jsonls", {
         capabilities = capabilities,
         on_attach = on_attach,
         flags = lsp_flags,
@@ -181,7 +180,7 @@ return {
 
       local vue_language_server_path =
         vim.fn.expand("$MASON/packages/vue-language-server/node_modules/@vue/language-server")
-      setupLsp(lspconfig.ts_ls, {
+      setupLsp("ts_ls", {
         capabilities = capabilities,
         on_attach = on_attach,
         flags = lsp_flags,
@@ -196,12 +195,12 @@ return {
           },
         },
       })
-      setupLsp(lspconfig.openscad_lsp, {
+      setupLsp("openscad_lsp", {
         capabilities = capabilities,
         on_attach = on_attach,
         flags = lsp_flags,
       })
-      setupLsp(lspconfig.clangd, {
+      setupLsp("clangd", {
         capabilities = capabilities,
         on_attach = on_attach,
         flags = lsp_flags,
