@@ -19,15 +19,15 @@ return {
     end,
   },
   -- Sessions
-  {
-    "rmagatti/auto-session",
-    config = function()
-      require("auto-session").setup({
-        auto_save_enabled = true,
-        auto_restore_enabled = false,
-      })
-    end,
-  },
+  -- {
+  --   "rmagatti/auto-session",
+  --   config = function()
+  --     require("auto-session").setup({
+  --       auto_save_enabled = true,
+  --       auto_restore_enabled = false,
+  --     })
+  --   end,
+  -- },
   -- Per-project config files
   {
     "MunifTanjim/exrc.nvim",
