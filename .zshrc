@@ -119,6 +119,7 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias dir='ls -l --color'
 alias ssh='TERM=xterm-256color ssh'
+alias beetflac='beet -c ~/.config/beets/config-flac.yaml'
 
 # Handy functions
 
