@@ -1,5 +1,4 @@
 directory: /mnt/disk_media/media/Musica/MP3
-#plugins: convert info
 import:
   languages: en es
   move: false
@@ -13,6 +12,10 @@ paths:
   #albumtype:soundtrack: Bandas Sonoras/$album/$track - $title
   albumtype:single: $albumartist/Singles/$original_year - $album%aunique{}/$track - $title
   albumtype:ep: $albumartist/EPs/$original_year - $album%aunique{}/$track - $title
+#plugins: convert info
 convert:
-  command: ~/mp3gapless.sh $source $dest
-  extension: mp3
+  format: mp3
+  formats:
+    mp3:
+      command: lame --preset insane --noreplaygain $source $dest
+      extension: mp3
