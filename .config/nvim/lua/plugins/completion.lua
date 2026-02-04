@@ -114,9 +114,9 @@ return {
         },
         completion = {
           menu = {
-            auto_show = true
-          }
-        }
+            auto_show = true,
+          },
+        },
       },
 
       appearance = {
@@ -135,7 +135,7 @@ return {
           "exact",
           "score",
           "sort_text",
-        }
+        },
       },
 
       -- default list of enabled providers defined so that you can extend it

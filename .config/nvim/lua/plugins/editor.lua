@@ -1,51 +1,51 @@
 return {
   -- Editorconfig integration
-  { 'editorconfig/editorconfig-vim' },
-  -- Prettier configuration
-  { 'numToStr/prettierrc.nvim' },
+  { "editorconfig/editorconfig-vim" },
+  -- Prettier integration
+  { "MunifTanjim/prettier.nvim" },
   -- Show css colors inline
-  { 'ap/vim-css-color' },
+  { "ap/vim-css-color" },
   -- Underlines the current word and its appearances
-  { 'itchyny/vim-cursorword' },
+  { "itchyny/vim-cursorword" },
   -- Change easily the surrounding characters
-  { 'tpope/vim-surround' },
+  { "tpope/vim-surround" },
   -- Autoclosing brackets
   -- { 'jiangmiao/auto-pairs' },
   {
-    'windwp/nvim-autopairs',
+    "windwp/nvim-autopairs",
     event = "InsertEnter",
     opts = {},
   },
   -- Make multiline changes
-  { 'mg979/vim-visual-multi' },
+  { "mg979/vim-visual-multi" },
   -- Comment easily
   {
-    'numToStr/Comment.nvim',
+    "numToStr/Comment.nvim",
     config = function()
-      require'Comment'.setup{
+      require("Comment").setup({
         toggler = {
-          line = '<Leader>cl',
-          block = '<Leader>cb',
+          line = "<Leader>cl",
+          block = "<Leader>cb",
         },
         opleader = {
-          line = '<Leader>cl',
-          block = '<Leader>cb',
+          line = "<Leader>cl",
+          block = "<Leader>cb",
         },
         mappings = {
           basic = true,
           extra = false,
         },
-      }
-    end
+      })
+    end,
   },
   -- Bracket colorization
-  { 'junegunn/rainbow_parentheses.vim' },
+  { "junegunn/rainbow_parentheses.vim" },
   -- Indent lines
   {
-    'lukas-reineke/indent-blankline.nvim',
-    main = 'ibl',
+    "lukas-reineke/indent-blankline.nvim",
+    main = "ibl",
     config = function()
-      require'ibl'.setup{}
-    end
+      require("ibl").setup({})
+    end,
   },
 }
