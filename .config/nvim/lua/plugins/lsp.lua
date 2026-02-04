@@ -1,7 +1,43 @@
 return {
   {
     "neovim/nvim-lspconfig",
-    --   config = function()
+    config = function()
+      -- Format on save
+      vim.api.nvim_create_autocmd("BufWritePre", {
+        pattern = "*",
+        callback = function(args)
+          vim.lsp.buf.format()
+        end,
+      })
+      -- Configs
+      vim.lsp.config("lua_ls", {
+        settings = {
+          Lua = {
+            diagnostics = {
+              globals = { "vim" },
+            },
+          },
+        },
+      })
+      vim.lsp.config("ts_ls", {
+        filetypes = {
+          "javascript",
+          "javascriptreact",
+          "javascript.jsx",
+          "typescript",
+          "typescriptreact",
+          "typescript.tsx",
+          "vue",
+        },
+      })
+      vim.lsp.config("eslint", {
+        settings = {
+          experimental = {
+            useFlatConfig = false,
+          },
+        },
+      })
+    end,
     --     local mason_registry = require("mason-registry")
     --     -- local util = lspconfig.util
     --     --local coq = require("coq")
