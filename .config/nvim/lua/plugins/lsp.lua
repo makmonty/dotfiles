@@ -9,7 +9,7 @@ return {
           vim.lsp.buf.format({
             filter = function(client)
               return client.name ~= "ts_ls"
-            end
+            end,
           })
         end,
       })
@@ -39,6 +39,11 @@ return {
           experimental = {
             useFlatConfig = false,
           },
+        },
+      })
+      vim.lsp.config("vtsls", {
+        filetypes = {
+          "vue",
         },
       })
     end,
