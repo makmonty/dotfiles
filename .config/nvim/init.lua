@@ -26,6 +26,8 @@ require("mappings")
 -- Replaced by barbar.nvim
 -- require('tabline')
 
+-- require("vim._core.ui2").enable()
+
 vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal"
 vim.diagnostic.config({
   virtual_text = false,
@@ -61,34 +63,43 @@ vim.api.nvim_create_autocmd("CmdlineChanged", {
 vim.api.nvim_create_autocmd("LspAttach", {
   group = lspAutocmdGroup,
   callback = function(ev)
-    vim.lsp.completion.enable(true, ev.data.client_id, ev.buf, {
-      autotrigger = true,
-      -- Optional formating of items
-      convert = function(item)
-        -- Remove leading misc chars for abbr name,
-        -- and cap field to 25 chars
-        --local abbr = item.label
-        --abbr = abbr:match("[%w_.]+.*") or abbr
-        --abbr = #abbr > 25 and abbr:sub(1, 24) .. "…" or abbr
-        --
-        -- Remove return value
-        --local menu = ""
+    local client = assert(vim.lsp.get_client_by_id(ev.data.client_id))
 
-        -- Only show abbr name, remove leading misc chars (bullets etc.),
-        -- and cap field to 15 chars
-        local abbr = item.label
-        abbr = abbr:gsub("%b()", ""):gsub("%b{}", "")
-        abbr = abbr:match("[%w_.]+.*") or abbr
-        abbr = #abbr > 15 and abbr:sub(1, 14) .. "…" or abbr
+    if client:supports_method("textDocument/completion") then
+      -- Optional: trigger autocompletion on EVERY keypress. May be slow!
+      local chars = {}
+      for i = 32, 126 do
+        table.insert(chars, string.char(i))
+      end
+      client.server_capabilities.completionProvider.triggerCharacters = chars
 
-        -- Cap return value field to 15 chars
-        local menu = item.detail or ""
-        menu = #menu > 15 and menu:sub(1, 14) .. "…" or menu
+      vim.lsp.completion.enable(true, ev.data.client_id, ev.buf, {
+        autotrigger = true,
+        -- Optional formating of items
+        convert = function(item)
+          -- Remove leading misc chars for abbr name,
+          -- and cap field to 25 chars
+          --local abbr = item.label
+          --abbr = abbr:match("[%w_.]+.*") or abbr
+          --abbr = #abbr > 25 and abbr:sub(1, 24) .. "…" or abbr
+          --
+          -- Remove return value
+          --local menu = ""
 
-        return { abbr = abbr, menu = menu }
-      end,
-    })
+          -- Only show abbr name, remove leading misc chars (bullets etc.),
+          -- and cap field to 15 chars
+          local abbr = item.label
+          abbr = abbr:gsub("%b()", ""):gsub("%b{}", "")
+          abbr = abbr:match("[%w_.]+.*") or abbr
+          abbr = #abbr > 15 and abbr:sub(1, 14) .. "…" or abbr
+
+          -- Cap return value field to 15 chars
+          local menu = item.detail or ""
+          menu = #menu > 15 and menu:sub(1, 14) .. "…" or menu
+
+          return { abbr = abbr, menu = menu }
+        end,
+      })
+    end
   end,
 })
-
-require("vim._core.ui2").enable()
