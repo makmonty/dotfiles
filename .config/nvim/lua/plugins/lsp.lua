@@ -2,6 +2,11 @@ return {
   {
     "neovim/nvim-lspconfig",
     config = function()
+      local setupLsp = function(lspName, config)
+        vim.lsp.config[lspName] = config
+        vim.lsp.enable(lspName)
+      end
+
       -- Format on save
       vim.api.nvim_create_autocmd("BufWritePre", {
         pattern = "*",
@@ -14,7 +19,7 @@ return {
         end,
       })
       -- Configs
-      vim.lsp.config("lua_ls", {
+      setupLsp("lua_ls", {
         settings = {
           Lua = {
             diagnostics = {
@@ -23,7 +28,7 @@ return {
           },
         },
       })
-      vim.lsp.config("ts_ls", {
+      setupLsp("ts_ls", {
         filetypes = {
           "javascript",
           "javascriptreact",
@@ -34,14 +39,14 @@ return {
           "vue",
         },
       })
-      vim.lsp.config("eslint", {
+      setupLsp("eslint", {
         settings = {
           experimental = {
             useFlatConfig = false,
           },
         },
       })
-      vim.lsp.config("vtsls", {
+      setupLsp("vtsls", {
         filetypes = {
           "vue",
         },

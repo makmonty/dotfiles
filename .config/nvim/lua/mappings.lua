@@ -1,4 +1,5 @@
 vim.keymap.set("i", "<C-S>", "<C-O>:w<CR>")
+vim.keymap.set("i", "<C-Space>", "<C-X><C-I>")
 vim.keymap.set("n", "<C-S>", ":w<CR>")
 vim.keymap.set("n", "<Leader>f", ":Telescope current_buffer_fuzzy_find<CR>")
 --vim.keymap.set('n', '<C-f>', ':FzfLua lgrep_curbuf<CR>')
