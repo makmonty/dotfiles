@@ -26,7 +26,7 @@ require("mappings")
 -- Replaced by barbar.nvim
 -- require('tabline')
 
--- require("vim._core.ui2").enable()
+require("vim._core.ui2").enable()
 
 vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal"
 vim.diagnostic.config({
