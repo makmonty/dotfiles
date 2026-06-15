@@ -1,33 +1,33 @@
 return {
-  {
-    "stevearc/conform.nvim",
-    -- Everything in opts will be passed to setup()
-    opts = {
-      -- Define your formatters
-      formatters_by_ft = {
-        lua = { "stylua" },
-        javascript = { "prettierd", "prettier", "eslint_d" },
-        typescript = { "prettierd", "prettier", "eslint_d" },
-        vue = { "prettierd", "prettier", "eslint_d" },
-      },
-      -- Set up format-on-save
-      format_on_save = {
-        -- timeout_ms = 100,
-        lsp_format = "fallback",
-      },
-      -- Customize formatters
-      -- formatters = {
-      --   shfmt = {
-      --     prepend_args = { "-i", "2" },
-      --   },
-      -- },
-    },
-    -- log_level = vim.log.levels.TRACE,
-    -- init = function()
-    --   -- If you want the formatexpr, here is the place to set it
-    --   vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
-    -- end,
-  },
+  -- {
+  --   "stevearc/conform.nvim",
+  --   -- Everything in opts will be passed to setup()
+  --   opts = {
+  --     -- Define your formatters
+  --     formatters_by_ft = {
+  --       lua = { "stylua" },
+  --       javascript = { "prettierd", "prettier", "eslint_d" },
+  --       typescript = { "prettierd", "prettier", "eslint_d" },
+  --       vue = { "prettierd", "prettier", "eslint_d" },
+  --     },
+  --     -- Set up format-on-save
+  --     format_on_save = {
+  --       -- timeout_ms = 100,
+  --       lsp_format = "fallback",
+  --     },
+  --     -- Customize formatters
+  --     -- formatters = {
+  --     --   shfmt = {
+  --     --     prepend_args = { "-i", "2" },
+  --     --   },
+  --     -- },
+  --   },
+  --   -- log_level = vim.log.levels.TRACE,
+  --   -- init = function()
+  --   --   -- If you want the formatexpr, here is the place to set it
+  --   --   vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
+  --   -- end,
+  -- },
   -- {
   --   "mhartington/formatter.nvim",
   --

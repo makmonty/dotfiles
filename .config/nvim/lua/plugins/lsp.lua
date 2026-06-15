@@ -16,6 +16,7 @@ return {
               return client.name ~= "ts_ls"
             end,
           })
+          -- require("conform").format({ bufnr = args.buf })
         end,
       })
       -- Configs
@@ -39,16 +40,16 @@ return {
           "vue",
         },
       })
+      setupLsp("vtsls", {
+        filetypes = {
+          "vue",
+        },
+      })
       setupLsp("eslint", {
         settings = {
           experimental = {
             useFlatConfig = false,
           },
-        },
-      })
-      setupLsp("vtsls", {
-        filetypes = {
-          "vue",
         },
       })
     end,
