@@ -1,6 +1,6 @@
 vim.keymap.set("i", "<C-S>", "<C-O>:w<CR>")
-vim.keymap.set("i", "<C-Space>", "<C-X><C-I>")
 vim.keymap.set("n", "<C-S>", ":w<CR>")
+vim.keymap.set("i", "<C-Space>", "<C-X><C-O>")
 vim.keymap.set("n", "<Leader>f", ":Telescope current_buffer_fuzzy_find<CR>")
 --vim.keymap.set('n', '<C-f>', ':FzfLua lgrep_curbuf<CR>')
 vim.keymap.set("n", "<Leader>g", ":Telescope live_grep<CR>")
@@ -36,3 +36,10 @@ vim.keymap.set({ "n", "x", "o" }, "s", "<Plug>(leap)")
 -- map('n', 'tk', ' :BufferNext<CR>')
 -- map('n', 'tl', ' :BufferLast<CR>')
 -- map('n', 'td', ' :BufferClose<CR>')
+
+-- vim.cmd.inoremap('<expr> <Tab>  pumvisible() ? <C-y> : <Tab>')
+-- vim.cmd.inoremap('<expr> <CR>   pumvisible() ? "<C-e><CR>" : "<CR>"')
+-- vim.keymap.set("i", "<C-M>", function()
+--   return vim.fn.pumvisible() == 1 and "<C-e><CR>" or "<CR>"
+-- end)
+-- vim.keymap.set("tnoremap <C-n> <Tab>")
