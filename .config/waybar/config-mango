@@ -1,0 +1,31 @@
+{
+  "include": [
+    "~/.config/waybar/config"
+  ],
+  "modules-left": [
+    "mango/workspaces"
+    //"mango/layout"
+    //"mango/keymode"
+  ],
+  "modules-center": [
+    "mango/window"
+  ],
+
+  "mango/workspaces": {
+    "hide-empty": true,
+    "on-click": "activate",
+    "overview-label": "OVERVIEW",
+    "format": "{icon}"
+  },
+  "mango/layout": {
+    "format": "{}",
+    "format-S": "↔"
+  },
+  "mango/window": {
+    "max-length": 200,
+    "separate-outputs": true
+  },
+  "mango/keymode": {
+    "format": "{}"
+  },
+}

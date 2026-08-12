@@ -1,15 +1,16 @@
 @import "./dracula.css";
 
 window#waybar {
-    /* background: linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 0)); */
-    background: transparent;
-    color: @theme_fg;
-    font-family: FontAwesome, Roboto, Helvetica, Arial, sans-serif;
-    font-size: 14px;
+  /* background: linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 0)); */
+  /* background: transparent; */
+  background: @theme_bg;
+  color: @theme_fg;
+  font-family: FontAwesome, Roboto, Helvetica, Arial, sans-serif;
+  font-size: 14px;
 }
 
 window#waybar.hidden {
-    opacity: 0.2;
+  opacity: 0.2;
 }
 
 button {
@@ -21,8 +22,7 @@ button:hover label {
   color: @theme_accent;
 }
 
-button label {
-}
+button label {}
 
 /*
 window#waybar.empty {
@@ -44,7 +44,6 @@ window#waybar.solo {
 
 #workspaces button {
   /* padding: 0 5px; */
-  background-color: rgba(255, 255, 255, 0.2);
   color: #ffffff;
 
   padding: 0;
@@ -63,16 +62,15 @@ window#waybar.solo {
   margin-right: 8px;
 }
 
-#workspaces button label {
-}
+#workspaces button label {}
 
-#workspaces button:hover {
-}
+#workspaces button:hover {}
 
 #workspaces button.active {
   background-color: @theme_accent;
   min-width: 32px;
 }
+
 /* #workspaces button.focused { */
 /*     background-color: #64727D; */
 /*     box-shadow: inset 0 -3px #ffffff; */
@@ -108,7 +106,7 @@ window#waybar.solo {
 
 #window,
 #workspaces {
-    margin: 0;
+  margin: 0;
 }
 
 
@@ -118,18 +116,18 @@ window#waybar.solo {
   padding: 5px;
 }
 
-.modules-left > * > *,
-.modules-center > * > *,
-.modules-right > * > * {
+.modules-left>*>*,
+.modules-center>*>*,
+.modules-right>*>* {
   margin: 0 4px 0 0;
   padding: 3px 8px;
   background: @theme_bg;
   border-radius: 99999px;
 }
 
-.modules-left > *:last-child > *,
-.modules-center > *:last-child > *,
-.modules-right > *:last-child > * {
+.modules-left>*:last-child>*,
+.modules-center>*:last-child>*,
+.modules-right>*:last-child>* {
   margin-right: 0;
 }
 
