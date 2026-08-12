@@ -13,6 +13,7 @@ export PATH=$PATH:$HOME/Android/Sdk/emulator
 export PATH=$PATH:$HOME/.local/bin
 export PATH=$PATH:$HOME/.cargo/bin
 export PATH=$PATH:/snap/bin
+export PATH=$PATH:/usr/local/go/bin
 
 # Path to your oh-my-zsh installation.
 export ZSH="${HOME}/.oh-my-zsh"
@@ -185,8 +186,6 @@ nnn ()
 
 alias notes='nvim ~/Nextcloud/Documentos/Obsidian'
 
-source <(fzf --zsh)
-
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -r ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
@@ -228,3 +227,11 @@ export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+source <(fzf --zsh)
+
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv zsh)"
+
+
+# Load Angular CLI autocompletion.
+source <(ng completion script)
