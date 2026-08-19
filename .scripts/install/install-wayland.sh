@@ -2,23 +2,25 @@
 
 yay -S \
 	wayland \
-	hyprland \
-	hyprlock hypridle wlogout \
-	awww-git \
-	xdg-desktop-portal-hyprland \
+	mangowm \
+	noctalia \
 	xorg-xhost \
 	wlr-randr \
 	wdisplays \
-	waybar \
-	wlogout \
-	dunst \
-	swayosd \
 	wl-clipboard \
 	grim slurp swappy \
 	nwg-look \
 	emote \
-	brightnessctl \
-	vicinae
+	brightnessctl
+#vicinae \
+#hyprland \
+#hyprlock hypridle wlogout \
+#awww-git \
+#xdg-desktop-portal-hyprland \
+#waybar \
+#wlogout \
+#dunst \
+#swayosd \
 #rofi-wayland \
 #aylurs-gtk-shell-git \
 #hyprpaper \
