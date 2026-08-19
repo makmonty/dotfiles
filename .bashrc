@@ -121,3 +121,6 @@ source ~/.bash-git-prompt/gitprompt.sh
 . "$HOME/.cargo/env"
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+# Vite+ bin (https://viteplus.dev)
+. "$HOME/.vite-plus/env"

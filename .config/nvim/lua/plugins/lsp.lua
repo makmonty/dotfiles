@@ -52,6 +52,8 @@ return {
           },
         },
       })
+      setupLsp("oxfmt", {})
+      setupLsp("oxlint", {})
     end,
     --     local mason_registry = require("mason-registry")
     --     -- local util = lspconfig.util

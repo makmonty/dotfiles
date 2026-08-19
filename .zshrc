@@ -14,6 +14,7 @@ export PATH=$PATH:$HOME/.local/bin
 export PATH=$PATH:$HOME/.cargo/bin
 export PATH=$PATH:/snap/bin
 export PATH=$PATH:/usr/local/go/bin
+export PATH=$PATH:$HOME/bin
 
 # Path to your oh-my-zsh installation.
 export ZSH="${HOME}/.oh-my-zsh"
@@ -230,8 +231,8 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 
 source <(fzf --zsh)
 
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv zsh)"
+#eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv zsh)"
 
 
 # Load Angular CLI autocompletion.
-source <(ng completion script)
+#source <(ng completion script)
