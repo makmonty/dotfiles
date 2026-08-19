@@ -1,0 +1,6 @@
+[plugins]
+enabled = [
+  "blackbartblues/audio-switcher",
+  "ezequiel/mango_layouts",
+  "rylos/syncthing",
+]

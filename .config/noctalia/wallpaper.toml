@@ -21,7 +21,7 @@ per_monitor_directories = false
 path = "/home/angel/.config/wallpapers/current"
 
 [wallpaper.automation]
-enabled                      = true
+enabled                      = false
 interval_seconds             = 1800
 order                        = "random" # random | alphabetical
 recursive                    = true     # scan subdirectories when selecting random wallpapers

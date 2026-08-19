@@ -1,0 +1,7 @@
+[control_center]
+sidebar = "compact"
+# sidebar_section = "compact"  # optional; defaults to the same as sidebar
+# width = 700  # full-sidebar width in pixels (600–1200)
+# show_shortcut_labels = true  # text under Home shortcut icons
+# show_session_button = true   # session-actions button in the Home header
+# hidden_tabs = ["monitor", "weather"]  # hide tabs you never use

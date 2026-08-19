@@ -18,12 +18,12 @@ shadow             = true        # cast the global [shell.shadow]
 contact_shadow     = false       # dark gradient between an attached panel and the bar (depth at the seam)
 panel_overlap      = 1           # logical px an attached panel overlaps the bar edge to hide the seam
 radius             = 12          # global corner radius fallback
-radius_top_left    = 12
-radius_top_right   = 12
+radius_top_left    = 0
+radius_top_right   = 0
 radius_bottom_left = 12
 radius_bottom_right = 12
 concave_edge_corners = true      # carve the screen-edge corners inward; requires margin_edge = 0
-margin_ends        = 100         # inset from each end of the bar along its main axis
+margin_ends        = 0         # inset from each end of the bar along its main axis
 margin_edge        = 0           # distance from the nearest screen edge (positive values float the bar)
 margin_opposite_edge = 0         # extra reserved space on the inward side of the bar (below for top, above for bottom)
 padding            = 14          # main-axis padding from bar edges to start/end widget sections
@@ -41,6 +41,28 @@ capsule_radius     = 8.0            # omit for automatic pill radius
 capsule_opacity    = 1.0
 # capsule_border   = "outline"   # omit this key for no border by default
 
-start  = ["launcher", "wallpaper", "workspaces"]
+start  = [
+  "control-center",
+  "launcher",
+  "workspaces",
+  "ezequiel/mango_layouts:btn",
+]
 center = ["clock"]
-end    = ["media", "tray", "notifications", "clipboard", "network", "bluetooth", "volume", "brightness", "battery", "control-center", "session"]
+end    = [
+  # "media",
+  "blackbartblues/audio-switcher:widget",
+  "tray",
+  "clipboard",
+  # "network",
+  "bluetooth",
+  # "volume",
+  "brightness",
+  "battery",
+  "rylos/syncthing:bar",
+  "wallpaper",
+  "notifications",
+  # "session"
+]
+
+[widget.workspaces]
+hide_when_empty = true

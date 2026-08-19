@@ -3,5 +3,6 @@ files = [
   "bar.toml",
   "nightlight.toml",
   "notifications.toml",
+  "plugins.toml",
   "theme.toml"
 ]

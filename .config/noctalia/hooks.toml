@@ -1,0 +1,2 @@
+[hooks]
+wallpaper_changed = "~/.local/bin/setwallpaper $NOCTALIA_WALLPAPER_PATH"
