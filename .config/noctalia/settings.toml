@@ -1,0 +1,7 @@
+[include]
+files = [
+  "bar.toml",
+  "nightlight.toml",
+  "notifications.toml",
+  "theme.toml"
+]
