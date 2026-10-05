@@ -3,6 +3,10 @@ return {
     "neovim/nvim-lspconfig",
     config = function()
       local setupLsp = function(lspName, config)
+        config.on_attach = function(client, bufnr)
+          local bufopts = { noremap = true, silent = true, buffer = bufnr }
+          vim.keymap.set("n", "<Leader>rn", vim.lsp.buf.rename, bufopts)
+        end
         vim.lsp.config[lspName] = config
         vim.lsp.enable(lspName)
       end
@@ -52,8 +56,8 @@ return {
           },
         },
       })
-      setupLsp("oxfmt", {})
-      setupLsp("oxlint", {})
+      -- setupLsp("oxfmt", {})
+      -- setupLsp("oxlint", {})
     end,
     --     local mason_registry = require("mason-registry")
     --     -- local util = lspconfig.util
